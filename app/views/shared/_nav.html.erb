@@ -2,9 +2,9 @@
   <div class="nav-container">
     <%= render partial: "shared/navbar_brand" %>
     <% if current_user %>
-      <%= render partial: "shared/admin_nav" %>
+      <%= render partial: "shared/user_nav" %>
     <% else %>
-      <%= render partial: "shared/user_functions" %>
+      <%= render partial: "shared/guest_functions" %>
     <% end %>
   </div>
 </nav>

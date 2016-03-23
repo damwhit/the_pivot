@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :cart_products, only: [:create, :destroy, :update]
   resources :mailing_list_emails, only: [:create]
 
-  resources :users, only: [:new, :create] do
+  resources :users, only: [:new, :create, :show] do
     resources :orders, only: [:new, :index, :create, :show]
     get "/orders/:order_id/thanks", to: "orders#thanks", as: "thanks"
   end
@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index]
     resources :events, only: [:index]
   end
+
 
   get "orders/login", to: "orders#checkout_login", as: "checkout_login"
   post "orders/login", to: "orders#checkout_user", as: "checkout_user"

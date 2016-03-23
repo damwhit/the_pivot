@@ -1,21 +1,23 @@
+<h3 >upcoming events</h3>
+<br>
+<p><a href="#">See all events</a></p>
 <div class="table-responsive">
-  <table class="table table-hover table-condensed table-products">
-    <thead>
-      <tr>
-        <th></th>
-        <th>name</th>
-        <th>venue</th>
-        <th>category</th>
-        <th>time</th>
-        <th>description</th>
-      </tr>
-    </thead>
-      <tr id= "1-product">
-        <td><%= image_tag("http://www.designbolts.com/wp-content/uploads/2012/12/Denver-Nuggets-Logo-design.jpg", class:"admin-product-image") %></td>
-        <td>game with ball</td>
-        <td>center of pepsi</td>
-        <td>Saturday, March 26th 2016</td>
-        <td>family fun for everyone</td>
-      </tr>
+  <table class="table table-hover table-condensed table-bordered">
+    <tbody>
+      <% 10.times do %>
+          <tr class="text-align-center">
+            <th><img class="admin-product-image" src="http://s3.amazonaws.com/littleowl-turing/products/images/000/000/031/small/open-uri20160310-3-2dc6lz?1457653073" alt="Open uri20160310 3 2dc6lz?1457653073"></th>
+            <th>
+              <button class="btn btn btn-primary btn-s">Create listing</button>
+            </th>
+            <th>Dinosaur.js</th>
+            <th>2016-06-21</th>
+            <th>7:30pm at Colorado Convention Center</th>
+            <th>Big important conference</th>
+            <th>conventions</th>
+            <th>tech, multi-day</th>
+          </tr>
+      <% end %>
+    </tbody>
   </table>
 </div>

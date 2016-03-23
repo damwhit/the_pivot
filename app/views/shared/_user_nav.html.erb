@@ -7,7 +7,11 @@
       <ul class="dropdown-menu">
         <li><%= current_user.fullname.downcase %></li>
         <li class="divider"></li>
-        <li><%= link_to "dashboard", admin_dashboard_path %></li>
+        <% if current_user && current_user.admin? %>
+          <li><%= link_to "dashboard", admin_dashboard_path %></li>
+        <% else %>
+          <li><%= link_to "dashboard", user_dashboard_path %></li>
+        <% end %>
         <li><%= link_to "logout", logout_path, method: :delete %></li>
       </ul>
     </li>
@@ -16,5 +20,6 @@
         <i class="fa fa-compass fa-lg"></i>
       </a>
     </li>
+    <%= render partial: "shared/user_functions" %>
   </ul>
 </div>
