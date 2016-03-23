@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root to: 'home#index'
 
+  get '/sell', to: 'events#index', as: 'sell'
+
   resources :products, only: [:index, :show]
   resource :cart, only: [:show]
   resources :cart_products, only: [:create, :destroy, :update]
