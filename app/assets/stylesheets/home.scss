@@ -8,6 +8,21 @@
   margin-top: -5px;
 }
 
+.carousel img {
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 100px;
+}
+
+.event-header{
+  margin: 20px 20px 20px 20px;
+}
+
+.spacer {
+    margin-top: 50px;
+}
+
 .hero-unit a {
   text-decoration: none;
 }
@@ -49,7 +64,7 @@
   padding:0;
 }
 
-.coffee-landing {
+.sports-landing {
   background-image: url('https://images.unsplash.com/photo-1455813870877-04a32045af63?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=264ec158e23999db9350a0502fa4e60b');
 }
 
