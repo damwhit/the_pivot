@@ -4,4 +4,8 @@ class Admin::UsersController < Admin::BaseController
     @order_products = OrderProduct.all
     flash.now[:info] = current_user.admin_message.sample
   end
+
+  def index
+    @orders = Order.all
+  end
 end

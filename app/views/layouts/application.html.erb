@@ -18,29 +18,24 @@
   <%= javascript_include_tag "https://www.google.com/jsapi", "chartkick" %>
 </head>
 <body>
+  <%= render partial: "shared/nav" %>
   <% if current_user && current_user.admin? %>
-    <%= render partial: "shared/admin_nav" %>
-      <div id="wrapper">
-         <div id="sidebar-wrapper">
-           <%= render partial: "shared/sidebar_nav" %>
-         </div>
+    <div id="wrapper">
+      <%= render partial: "shared/sidebar_nav" %>
     <% flash.each do |type, message| %>
       <%= content_tag :div, sanitize(message), class: "alert alert_#{type} admin-flash" %>
     <% end %>
     <div id="page-content-wrapper">
   <% else %>
-    <%= render partial: "shared/nav" %>
-
     <% flash.each do |type, message| %>
       <%= content_tag :div, sanitize(message), class: "alert alert_#{type}" %>
     <% end %>
-<% end %>
+  <% end %>
 
-<%= yield %>
+  <%= yield %>
 
-</div>
-
-<%= javascript_include_tag 'application' %>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  </div>
+  <%= javascript_include_tag 'application' %>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 </body>
 </html>
