@@ -1,0 +1,58 @@
+<h3 class="<%= params[:status] %> admin-order-index-header">all users</h3><br>
+<div class="row">
+  <div class="col-sm-3">
+    <%= form_tag "#", method: 'get' do %>
+      <div class="form-group">
+        <%= text_field_tag :id_search, params[:id], placeholder: "search by id", class: "form-control form-control-sm search-form"%>
+        <button class="btn btn-little-owl btn-sm">search by id</button>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-sm-3">
+    <%= form_tag "#", method: 'get' do %>
+      <div class="form-group">
+        <%= text_field_tag :search, params[:search], placeholder: "search by name", class: "form-control form-control-sm search-form"%>
+        <button class="btn btn-little-owl btn-sm">search by name</button>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-sm-3">
+    <%= form_tag "#", method: 'get' do %>
+      <div class="form-group">
+        <select>
+          <option selected="selected" value="active">active</option>
+          <option value="suspended">suspended</option>
+        </select>
+        <button class="btn btn-little-owl btn-sm">search by status</button>
+      </div>
+    <% end %>
+  </div>
+</div>
+<br>
+<div class="table-responsive">
+  <table class="table table-hover table-condensed table-bordered table-striped order-index-table">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>status</th>
+        <th></th>
+      </tr>
+    </thead>
+    <% 2.times do |n| %>
+      <tr id="<%= n %>-order">
+        <td class="col-md-2"><%= link_to "#{n}","#" %></td>
+        <td class="text-nowrap col-md-6"><%= link_to "Name ##{n}","#"%></td>
+        <td class="col-md-2">
+          <select>
+            <option selected="selected" value="active">active</option>
+            <option value="suspended">suspended</option>
+          </select>
+        </td>
+        <td class="col-md-2">
+          <button class="btn btn-checkout btn-s">update status</button>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

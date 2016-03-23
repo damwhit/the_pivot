@@ -1,8 +1,10 @@
-<nav role="navigation" class="navbar navbar-default custom-navbar">
+<nav role="navigation" class="navbar navbar-default custom-navbar navbar-fixed-top">
   <div class="nav-container">
     <%= render partial: "shared/navbar_brand" %>
-    <div class="navbar-nav pull-right">
+    <% if current_user && current_user.admin? %>
+      <%= render partial: "shared/admin_nav" %>
+    <% else %>
       <%= render partial: "shared/user_functions" %>
-    </div>
+    <% end %>
   </div>
 </nav>

@@ -14,10 +14,12 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    get "/dashboard", to: "users#show"
+    get "/dashboard", to: "events#index"
     resources :products, only: [:new, :create, :index, :update]
     resources :orders, only: [:index, :show, :update]
     resources :comments, only: [:create]
+    resources :users, only: [:index]
+    resources :events, only: [:index]
   end
 
   get "orders/login", to: "orders#checkout_login", as: "checkout_login"
