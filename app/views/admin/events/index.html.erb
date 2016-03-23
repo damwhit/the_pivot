@@ -1,0 +1,104 @@
+<h3 class="inactive-<%= params[:inactive] %> admin-product-index-header">current events</h3>
+<br>
+<p><a href="#">See all events</a></p>
+<div class="table-responsive">
+  <table class="table table-hover table-condensed table-products">
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+        <th>name</th>
+        <th>description</th>
+        <th>venue</th>
+        <th>date</th>
+        <th>starting time</th>
+        <th>category</th>
+        <th>tags</th>
+        <th>status</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th><img class="admin-product-image" src="http://s3.amazonaws.com/littleowl-turing/products/images/000/000/031/small/open-uri20160310-3-2dc6lz?1457653073" alt="Open uri20160310 3 2dc6lz?1457653073"></th>
+        <th>
+          <button class="btn btn btn-primary btn-s">update image</button>
+        </th>
+        <th>Dinosaur.JS</th>
+        <th>Big important conference</th>
+        <th>
+          <select>
+            <option value="venue-pepsi-center">Pepsi Center</option>
+            <option value="venue-red-rocks-ampitheatre">Red Rocks Ampitheatre</option>
+            <option selected="selected" value="venue-colorado-convention-center">Colorado Convention Center</option>
+          </select>
+        </th>
+        <th>
+          <input type="date" name="event_date" placeholder="mm/dd/yy" class="form-control form-control-sm search-form">
+        </th>
+        <th>
+          <input type="time" name="event_time" class="form-control form-control-sm" value = "08:30:00">
+        </th>
+        <th>
+          <select>
+            <option value="category-sports">sports</option>
+            <option value="category-concerts">concerts</option>
+            <option selected="selected" value="category-conventions">conventions</option>
+            <option value="category-popups">popups</option>
+            <option value="category-festivals">festivals</option>
+            <option value="category-comedy">comedy</option>
+          </select>
+        </th>
+        <th>business, multi-day</th>
+        <th>
+          <select>
+            <option value="upcoming">upcoming</option>
+            <option selected="selected" value="cancelled">cancelled</option>
+          </select>
+        </th>
+        <th>
+          <button class="btn btn-checkout btn-s">update event details</button>
+        </th>
+      </tr>
+      <tr>
+        <th><img class="admin-product-image" src="http://s3.amazonaws.com/littleowl-turing/products/images/000/000/031/small/open-uri20160310-3-2dc6lz?1457653073" alt="Open uri20160310 3 2dc6lz?1457653073"></th>
+        <th>
+          <button class="btn btn btn-primary btn-s">update image</button>
+        </th>
+        <th>Nuggets vs. Cavs</th>
+        <th>Random teams</th>
+        <th>
+          <select>
+            <option selected="selected" value="venue-pepsi-center">Pepsi Center</option>
+            <option value="venue-red-rocks-ampitheatre">Red Rocks Ampitheatre</option>
+            <option value="venue-colorado-convention-center">Colorado Convention Center</option>
+          </select>
+        </th>
+        <th>
+          <input type="date" name="event_date" placeholder="mm/dd/yy" class="form-control form-control-sm search-form">
+        </th>
+        <th>
+          <input type="time" name="event_time" class="form-control form-control-sm" value = "18:30:00">
+        </th>
+        <th>
+          <select>
+            <option selected="selected" value="category-sports">sports</option>
+            <option value="category-concerts">concerts</option>
+            <option value="category-conventions">conventions</option>
+            <option value="category-popups">popups</option>
+            <option value="category-festivals">festivals</option>
+            <option value="category-comedy">comedy</option>
+          </select>
+        </th>
+        <th>family, basketball</th>
+        <th><select>
+          <option selected="selected" value="upcoming">upcoming</option>
+          <option value="cancelled">cancelled</option>
+        </select></th>
+        <th>
+          <button class="btn btn-checkout btn-s">update event details</button>
+        </th>
+      </tr>
+    </tbody>
+  </table>
+</div>

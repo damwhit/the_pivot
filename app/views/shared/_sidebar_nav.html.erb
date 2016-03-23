@@ -4,8 +4,12 @@
       <h>hi <%= current_user.first_name.downcase %></p>
     </li>
     <li class="divider"></li>
-    <li><%= link_to "events", "#" %></li>
+    <li><%= link_to "events", admin_events_path %></li>
     <li><%= link_to "users", admin_users_path %></li>
+    <li><%= link_to "venues", "#" %></li>
+    <li><%= link_to "categories", "#" %></li>
+    <li><%= link_to "tags", "#" %></li>
+    <li class="divider"></li>
     <li><%= link_to "stats", "#" %></li>
   </ul>
 </div>
