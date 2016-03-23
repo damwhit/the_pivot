@@ -1,3 +1,20 @@
-// Place all the styles related to the events controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.event-title {
+  margin: 50px 50px 50px 50px;
+  font-size: 150%;
+}
+
+.tickets-title {
+  margin: 60px 50px 50px 0px;
+  font-size: 100%;
+}
+
+.event-image-large {
+  width: 450px;
+  height:300px;
+  overflow:hidden;
+  margin-left: 50px;
+}
+
+.tab-space {
+  padding-left: 8em;
+}
