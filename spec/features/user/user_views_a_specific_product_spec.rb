@@ -1,21 +1,30 @@
 require "rails_helper"
 
-RSpec.feature "UserViewsASpecificProduct", type: :feature do
-  scenario "user views a specific product" do
-    category = Category.create(name:"coffee")
-    product = category.products.create(name:"Ethiopian", price:1500, description:"Ethiopian coffee is super good")
+RSpec.feature "UserViewsASpecificEvent", type: :feature do
+  pending
+  scenario "user views a specific event" do
+    event = event
 
-    visit "/coffee"
+    listing1 = listing1
+    listing2 = listing2
 
-    within "div##{product.name}-link" do
-      click_on "#{product.id}-product"
-    end
+    visit "/festivals"
 
-    expect(current_path).to eq("/products/#{product.id}")
+    click_on "Sun Festival"
 
-    within "div#product" do
-      expect(page).to have_content(product.name)
-      expect(page).to have_content(product.description)
-    end
+    expect(current_path).to eq(event_path(event))
+
+    expect(page).to have_content(event.time)
+    expect(page).to have_content(event.venue.city)
+    expect(page).to have_content(listing1.price)
+    expect(page).to have_content(listing1.seat)
+    expect(page).to have_content(listing2.price)
+    expect(page).to have_content(listing2.seat)
   end
 end
+
+# As a visitor
+# When I visit ‘/category_name’
+# And click on a event title
+# I will see the time and location of the event
+# And see all the tickets on sale for the event
