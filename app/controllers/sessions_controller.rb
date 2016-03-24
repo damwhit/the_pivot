@@ -10,8 +10,8 @@ class SessionsController < ApplicationController
       if user.admin?
         redirect_to admin_dashboard_path
       else
-        flash[:info] = "Hey #{user.first_name}, welcome to Little Owl."
-        redirect_to root_path
+        flash[:info] = "Hey #{user.first_name}, welcome to Ticket Cacher."
+        redirect_to user_dashboard_path(current_user)
       end
     else
       flash.now[:alert] = "Sorry, friend.  Something went wrong :(... Please try again."

@@ -7,8 +7,8 @@
         <th>listing id</th>
         <th>row number</th>
         <th>seat number</th>
-        <th>status</th>
         <th>price</th>
+        <th>status</th>
         <th></th>
       </tr>
     </thead>
@@ -19,17 +19,14 @@
         <th><input type="text" value="45" name="row number"></th>
         <th><input type="text" value="45" name="seat number"></th>
         <th>
-          <select>
-            <option value="active">active</option>
-            <option value="cancelled">cancelled</option>
-            <option selected="selected" value="status-paid">paid</option>
-          </select>
-        </th>
-        <th>
           <input type="text" value="$100" name="price"></th>
         </th>
+        <th>listed</th>
         <th>
           <button class="btn btn-checkout btn-s">update listing</button>
+        </th>
+        <th>
+          <button class="btn btn-danger btn-s">remove listing</button>
         </th>
       </tr>
       <% end %>

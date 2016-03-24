@@ -1,4 +1,9 @@
-<div id="orders" class="container">
+<div class="textContainer order-hero-unit user-dashboard-hero-unit">
+  <div class="text-container hero-container">
+    <h1>Dis is yo dashboard, user</h1>
+  </div>
+</div><br>
+<div id="orders">
   <div class="row">
     <div class="col-sm-8 col-sm-offset-2 outline" >
       <h1>upcoming events</h1>
@@ -14,6 +19,7 @@
               <th></th>
             </tr>
           </thead>
+          <% 3.times do %>
             <tr>
               <td><h4><%= link_to '22', '#' %></h4></td>
               <td><h4>2016-06-21</h4></td>
@@ -21,13 +27,14 @@
               <td><h4>$200</h4></td>
               <td><h4><%= link_to "details", '#' %></h4></td>
             </tr>
+          <% end %>
         </table>
       </div>
     </div>
   </div>
 </div>
 <br>
-<div id="listings" class="container">
+<div id="listings">
   <div class="row">
     <div class="col-sm-8 col-sm-offset-2 outline" >
       <h1>listings</h1>
@@ -44,6 +51,7 @@
               <th></th>
             </tr>
           </thead>
+          <% 3.times do %>
             <tr>
               <td><h4><%= link_to '22', '#' %></h4></td>
               <td><h4>2016-06-21</h4></td>
@@ -51,41 +59,33 @@
               <td><h4>$200</h4></td>
               <td><h4><%= link_to "details", '#' %></h4></td>
             </tr>
+          <% end %>
         </table>
       </div>
     </div>
   </div>
 </div>
 <br>
-<div id="listings" class="container">
+<div id="listings">
   <div class="row">
     <div class="col-sm-8 col-sm-offset-2 outline" >
+      <h1>contact info</h1>
+      <h5 class="rjust"> <%= link_to "edit contact info", '#' %> </h5>
       <div class="table-responsive">
-        <table class="table table-hover table-condensed table-products ">
-          <thead>
-            <tr>
-              <th><strong>contact info</strong></th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
+        <table class="table table-hover table-condensed table-products table-bordered">
             <tr>
               <td>
-                <h6 class="ljust">
+                <h4 class="text-center">
                   David Whitaker <br>
                   1510 Blake St. <br>
                   Denver, CO 80205
-                </h6>
+                </h4>
               </td>
               <td>
-                <h6 class="rjust">
+                <h4 class="text-center">
                   317 695 9721 <br>
                   damwhit@gmail.com
-                </h6>
-              </td>
-              <td>
+                </h4>
               </td>
             </tr>
         </table>
