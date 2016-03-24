@@ -1,28 +1,39 @@
-<div class="col-md-6">
-  <div class="event-title">
-    <h1><%= @event %></h1>
-  </div>
-  <%= image_tag('http://mortenbentzon.com/wp-content/uploads/2014/07/midnightsun_blog161-e1406761557421.jpg', class: "event-image-large") %>
-</div>
-
-<div class="col-md-6">
-  <div class="tickets-title">
-    <h1>Available Tickets</h1>
-  </div>
-  <% 10.times do |num| %>
-    <div class="panel panel-default">
-      <div class="panel-heading"> Listing <%= "#{num + 1}" %> </div>
-        <div class="panel-body">
-          <%= form_tag() do %>
-            <div class="col-xs-3 col-sm-3 col-md-3 form-inline">
-              Quantity: <%= select_tag "quantity", options_for_select([*1..10]), {class: "form-control form-control-sm"} %>
-            </div>
-        <% end %>
-          <span class="tab-space">Row: 4 | Seat 5</span><span class="tab-space">Price: $75</span>
-          <button class="btn btn-default btn-success listing-cart">Add to cart!</button>
-        </div>
+<div class="container-fluid">
+  <div class="col-md-6">
+    <div class="event-title">
+      <h1><%= @event %></h1>
     </div>
-  <% end %>
+    <%= image_tag('http://mortenbentzon.com/wp-content/uploads/2014/07/midnightsun_blog161-e1406761557421.jpg', class: "event-image-large") %>
+    <div class="event-description">
+      Saturday, August 6
+    </div>
+    <div class="event-description">
+      2:00 pm at Glorious Mountain
+    </div>
+    <div class="event-description">
+      Lima, Peru
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="tickets-title">
+      <h1>available tickets</h1>
+    </div>
+    <% 10.times do |num| %>
+      <div class="panel panel-default">
+        <div class="panel-heading"> listing <%= "#{num + 1}" %> </div>
+          <div class="panel-body">
+            <%= form_tag() do %>
+              <div class="col-xs-3 col-sm-3 col-md-3 form-inline">
+                quantity: <%= select_tag "quantity", options_for_select([*1..10]), {class: "form-control form-control-sm"} %>
+              </div>
+          <% end %>
+            <span class="tab-space">row: 4 | seat 5</span><span class="tab-space">price: $75</span>
+            <button class="btn btn-default btn-success listing-cart">add to cart!</button>
+          </div>
+      </div>
+    <% end %>
+  </div>
 </div>
 
 <%= render partial: "shared/mailing_list" %>
