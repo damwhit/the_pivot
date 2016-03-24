@@ -1,10 +1,12 @@
 <h3 class="inactive-<%= params[:inactive] %> admin-product-index-header">current events</h3>
 <br>
-<p><a href="#">See all events</a></p>
+<p><a href="#">all events</a> &bull; <a href="#">upcoming events</a> &bull; <a href="#">past events</a> &bull; <a href="#">cancelled events</a> &bull; <%= link_to "new event", new_admin_event_path %></p>
+<br>
 <div class="table-responsive">
   <table class="table table-hover table-condensed table-products">
     <thead>
       <tr>
+        <th>id</th>
         <th></th>
         <th></th>
         <th>name</th>
@@ -20,26 +22,27 @@
     </thead>
     <tbody>
       <tr>
-        <th><img class="admin-product-image" src="http://s3.amazonaws.com/littleowl-turing/products/images/000/000/031/small/open-uri20160310-3-2dc6lz?1457653073" alt="Open uri20160310 3 2dc6lz?1457653073"></th>
-        <th>
+        <td><%= link_to "1","#"%></td>
+        <td><img class="admin-product-image" src="http://s3.amazonaws.com/littleowl-turing/products/images/000/000/031/small/open-uri20160310-3-2dc6lz?1457653073" alt="Open uri20160310 3 2dc6lz?1457653073"></td>
+        <td>
           <button class="btn btn btn-primary btn-s">update image</button>
-        </th>
-        <th><input type="text" value="Dinosaur.JS" name="event_name"></th>
-        <th><input type="text" value="Big important conference" name="event_description" </th>
-        <th>
+        </td>
+        <td><input type="text" value="Dinosaur.JS" name="event_name"></td>
+        <td><input type="text" value="Big important conference" name="event_description" </td>
+        <td>
           <select>
             <option value="venue-pepsi-center">Pepsi Center</option>
             <option value="venue-red-rocks-ampitheatre">Red Rocks Ampitheatre</option>
             <option selected="selected" value="venue-colorado-convention-center">Colorado Convention Center</option>
           </select>
-        </th>
-        <th>
+        </td>
+        <td>
           <input type="date" name="event_date" value="2016-06-21"; class="form-control form-control-sm search-form">
-        </th>
-        <th>
+        </td>
+        <td>
           <input type="time" name="event_time" class="form-control form-control-sm" value = "08:30:00">
-        </th>
-        <th>
+        </td>
+        <td>
           <select>
             <option value="category-sports">sports</option>
             <option value="category-concerts">concerts</option>
@@ -48,39 +51,41 @@
             <option value="category-festivals">festivals</option>
             <option value="category-comedy">comedy</option>
           </select>
-        </th>
-        <th><input type="text" value="tech, multi-day" name="event_tags"></th>
-        <th>
+        </td>
+        <td><input type="text" value="tech, multi-day" name="event_tags"></td>
+        <td>
           <select>
             <option value="upcoming">upcoming</option>
             <option selected="selected" value="cancelled">cancelled</option>
           </select>
-        </th>
-        <th>
+        </td>
+        <td>
           <button class="btn btn-checkout btn-s">update event details</button>
-        </th>
+        </td>
       </tr>
+    <% 20.times do |n|%>
       <tr>
-        <th><img class="admin-product-image" src="http://s3.amazonaws.com/littleowl-turing/products/images/000/000/031/small/open-uri20160310-3-2dc6lz?1457653073" alt="Open uri20160310 3 2dc6lz?1457653073"></th>
-        <th>
+        <td><%= link_to "#{n+2}","#"%></td>
+        <td><img class="admin-product-image" src="http://s3.amazonaws.com/littleowl-turing/products/images/000/000/031/small/open-uri20160310-3-2dc6lz?1457653073" alt="Open uri20160310 3 2dc6lz?1457653073"></td>
+        <td>
           <button class="btn btn btn-primary btn-s">update image</button>
-        </th>
-        <th><input type="text" value="Nuggets vs. Cavs" name="event_name"></th>
-        <th><input type="text" value="Random teams" name="event_description" </th>
-        <th>
+        </td>
+        <td><input type="text" value="Nuggets vs. Cavs <%="#{n}"%>" name="event_name"></td>
+        <td><input type="text" value="Random teams" name="event_description" </td>
+        <td>
           <select>
             <option selected="selected" value="venue-pepsi-center">Pepsi Center</option>
             <option value="venue-red-rocks-ampitheatre">Red Rocks Ampitheatre</option>
             <option value="venue-colorado-convention-center">Colorado Convention Center</option>
           </select>
-        </th>
-        <th>
-          <input type="date" name="event_date" value="2016-07-08" class="form-control form-control-sm search-form">
-        </th>
-        <th>
+        </td>
+        <td>
+          <input type="date" name="event_date" value="2016-07-<%="#{n}" %>" class="form-control form-control-sm search-form">
+        </td>
+        <td>
           <input type="time" name="event_time" class="form-control form-control-sm" value = "18:30:00">
-        </th>
-        <th>
+        </td>
+        <td>
           <select>
             <option selected="selected" value="category-sports">sports</option>
             <option value="category-concerts">concerts</option>
@@ -89,16 +94,17 @@
             <option value="category-festivals">festivals</option>
             <option value="category-comedy">comedy</option>
           </select>
-        </th>
-        <th><input type="text" value="family, basketball" name="event_tags"></th>
-        <th><select>
+        </td>
+        <td><input type="text" value="family, basketball" name="event_tags"></td>
+        <td><select>
           <option selected="selected" value="upcoming">upcoming</option>
           <option value="cancelled">cancelled</option>
-        </select></th>
-        <th>
+        </select></td>
+        <td>
           <button class="btn btn-checkout btn-s">update event details</button>
-        </th>
+        </td>
       </tr>
+    <% end %>
     </tbody>
   </table>
 </div>
