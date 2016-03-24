@@ -1,4 +1,6 @@
-<h3 class="<%= params[:status] %> admin-order-index-header">all users</h3><br>
+<h3 class="<%= params[:status] %> admin-order-index-header">active users</h3><br>
+<p><a href="#">all users</a> &bull; <a href="#">active users</a> &bull; <a href="#">suspended users</a></p>
+<br>
 <div class="row">
   <div class="col-sm-3">
     <%= form_tag "#", method: 'get' do %>
@@ -13,17 +15,6 @@
       <div class="form-group">
         <%= text_field_tag :search, params[:search], placeholder: "search by name", class: "form-control form-control-sm search-form"%>
         <button class="btn btn-little-owl btn-sm">search by name</button>
-      </div>
-    <% end %>
-  </div>
-  <div class="col-sm-3">
-    <%= form_tag "#", method: 'get' do %>
-      <div class="form-group">
-        <select>
-          <option selected="selected" value="active">active</option>
-          <option value="suspended">suspended</option>
-        </select>
-        <button class="btn btn-little-owl btn-sm">search by status</button>
       </div>
     <% end %>
   </div>

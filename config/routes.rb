@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:create]
     resources :users, only: [:index]
     resources :events, only: [:index, :new]
+    resources :venues, only: [:index, :new]
   end
 
   get "orders/login", to: "orders#checkout_login", as: "checkout_login"
