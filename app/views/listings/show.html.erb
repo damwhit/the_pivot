@@ -14,6 +14,7 @@
           <th>listing id</th>
           <th>row number</th>
           <th>seat number</th>
+          <th></th>
           <th>price</th>
           <th>status</th>
           <th></th>
@@ -22,19 +23,22 @@
       </thead>
       <tbody>
         <tr>
-          <th><%= link_to '22', '#' %></th>
-          <th><input type="text" value="45" name="row number"></th>
-          <th><input type="text" value="45" name="seat number"></th>
-          <th>
-            <input type="text" value="$100" name="price"></th>
-          </th>
-          <th>listed</th>
-          <th>
+          <td><%= link_to '22', '#' %></td>
+          <td><input type="text" value="45" name="row number"></td>
+          <td><input type="text" value="45" name="seat number"></td>
+          <td>
+            <button class="btn btn-warning btn-s">change seat</button>
+          </td>
+          <td>
+            <input type="text" value="$100" name="price"></td>
+          </td>
+          <td>listed</td>
+          <td>
             <button class="btn btn-checkout btn-s">update listing</button>
-          </th>
-          <th>
+          </td>
+          <td>
             <button class="btn btn-danger btn-s">remove listing</button>
-          </th>
+          </td>
         </tr>
       </tbody>
     </table>
