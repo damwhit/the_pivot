@@ -8,11 +8,11 @@ module SpecHelpers
 
 
   def category1
-    Category.find_or_create_by(name:"Festivals"), #prolly will need find or create by
+    Category.find_or_create_by(name:"Festivals") #prolly will need find or create by
   end
 
   def category2
-    Category.find_or_create_by(name:"Sports")]
+    Category.find_or_create_by(name:"Sports")
   end
 
   def venue1
@@ -37,8 +37,8 @@ module SpecHelpers
 
   def make_events
     {
-      event1: category1.events.create(name: "Sun Festival", image_file_path: 'http://mortenbentzon.com/wp-content/uploads/2014/07/midnightsun_blog161-e1406761557421.jpg', venue_id: venue1.id, time: "8:00", status: "active")
-      event2: category.events.create(name: "EDM Spectacular", image_file_path: 'http://mortenbentzon.com/wp-content/uploads/2014/07/midnightsun_blog161-e1406761557421.jpg', venue_id: venue1.id, time: "7:00", status: "active")
+      event1: category1.events.create(name: "Sun Festival", image_file_path: 'http://mortenbentzon.com/wp-content/uploads/2014/07/midnightsun_blog161-e1406761557421.jpg', venue_id: venue1.id, time: "8:00", status: "active"),
+      event2: category.events.create(name: "EDM Spectacular", image_file_path: 'http://mortenbentzon.com/wp-content/uploads/2014/07/midnightsun_blog161-e1406761557421.jpg', venue_id: venue1.id, time: "7:00", status: "active"),
       event3: category2.events.create(name: "Basketball", image_file_path: 'http://a57.foxnews.com/global.fncstatic.com/static/managed/img/fn-latino/sports/660/371/us%20beats%20brazil.jpg?ve=1&tl=1', venue_id: venue2.id, time: "8:00", status: "active")
     }
   end

@@ -2,6 +2,8 @@ require "rails_helper"
 
 RSpec.feature "AdminViewsAllOrders", type: :feature do
   scenario "they see all of the orders" do
+    pending
+    # for both admin and less for seller/user
     coffee = Category.create(name:"coffee")
 
     product1 = coffee.products.create(name: "Finca San Matias",

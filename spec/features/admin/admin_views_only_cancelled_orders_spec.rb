@@ -2,6 +2,8 @@ require "rails_helper"
 
 RSpec.feature "AdminViewsCancelledOrders", type: :feature do
   scenario "they see only cancelled orders" do
+    pending
+    # seller(user) can view all cancelled orders
     coffee = Category.create(name:"coffee")
 
     product1 = coffee.products.create(name: "Finca San Matias",

@@ -2,6 +2,8 @@ require "rails_helper"
 
 RSpec.feature "AdminCanAddProduct", type: :feature do
   scenario "they see the correct flash message after product is added" do
+    pending
+    # create an event - maybe want similar for selling listing
     admin = User.create(fullname: "john adams",
                         email: "admin@example.com",
                         password: 'password',

@@ -2,6 +2,8 @@ require "rails_helper"
 
 RSpec.feature "AdminViewsCompletedOrders", type: :feature do
   scenario "they see only completed orders" do
+    pending
+    # seller can view all completed orders?
     coffee = Category.create(name:"coffee")
 
     product1 = coffee.products.create(name: "Finca San Matias",

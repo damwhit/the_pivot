@@ -2,6 +2,8 @@ require "rails_helper"
 
 RSpec.feature "AdminCanCommentOnOrder", type: :feature do
   scenario "they comment on specific orders" do
+    pending
+    # may or may not keep
     coffee = Category.create(name:"coffee")
 
     product1 = coffee.products.create(name: "Finca San Matias",
