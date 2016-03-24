@@ -1,0 +1,32 @@
+<h3 class="inactive-<%= params[:inactive] %> admin-product-index-header">basketball events</h3>
+<br>
+<p><%=link_to "all tags", admin_tags_path%></p>
+<br>
+<div class="table-responsive">
+  <table class="table table-hover table-condensed table-products">
+    <thead>
+      <tr>
+        <th><div class="text-center">event</div></th>
+        <th><div class="text-center">description</div></th>
+        <th><div class="text-center">venue</div></th>
+        <th><div class="text-center">date</div></th>
+        <th><div class="text-center">starting time</div></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% 6.times do |n|%>
+      <tr>
+        <td>Nuggets vs Other team <%="#{n}"%></td>
+        <td>Regular season home game</td>
+        <td>The Glorious Pepsi Center</td>
+        <td>June <%= "#{n+10}"%>, 2016</td>
+        <td>7:30 PM</td>
+        <td class="col-md-2">
+          <button class="btn btn-danger btn-s text-center">remove basketball tag</button>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
