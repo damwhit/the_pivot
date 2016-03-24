@@ -1,4 +1,22 @@
 <h3>upcoming events</h3>
+<div class="row">
+  <div class="col-sm-3">
+    <%= form_tag "#", method: 'get' do %>
+      <div class="form-group">
+        <%= text_field_tag :date, params[:date], placeholder: "search by date", class: "form-control form-control-sm search-form"%>
+        <button class="btn btn-little-owl btn-sm">search by date</button>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-sm-3">
+    <%= form_tag "#", method: 'get' do %>
+      <div class="form-group">
+        <%= text_field_tag :search, params[:search], placeholder: "search by venue", class: "form-control form-control-sm search-form"%>
+        <button class="btn btn-little-owl btn-sm">search by venue</button>
+      </div>
+    <% end %>
+  </div>
+</div>
 <br>
 <p><a href="#">See all events</a></p>
 <div class="table-responsive">
