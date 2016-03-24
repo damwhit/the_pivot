@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160309234957) do
+ActiveRecord::Schema.define(version: 20160324215135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,20 +31,46 @@ ActiveRecord::Schema.define(version: 20160309234957) do
 
   add_index "comments", ["order_id"], name: "index_comments_on_order_id", using: :btree
 
-  create_table "mailing_list_emails", force: :cascade do |t|
-    t.string "email"
+  create_table "events", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "category_id"
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "time"
+    t.string   "status",             default: "upcoming"
+    t.integer  "venue_id"
   end
 
-  create_table "order_products", force: :cascade do |t|
-    t.integer  "product_id"
-    t.integer  "order_id"
-    t.integer  "quantity"
+  add_index "events", ["category_id"], name: "index_events_on_category_id", using: :btree
+  add_index "events", ["venue_id"], name: "index_events_on_venue_id", using: :btree
+
+  create_table "listings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "order_products", ["order_id"], name: "index_order_products_on_order_id", using: :btree
-  add_index "order_products", ["product_id"], name: "index_order_products_on_product_id", using: :btree
+  add_index "listings", ["event_id"], name: "index_listings_on_event_id", using: :btree
+  add_index "listings", ["user_id"], name: "index_listings_on_user_id", using: :btree
+
+  create_table "mailing_list_emails", force: :cascade do |t|
+    t.string "email"
+  end
+
+  create_table "order_listings", force: :cascade do |t|
+    t.integer  "listing_id"
+    t.integer  "order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "order_listings", ["listing_id"], name: "index_order_listings_on_listing_id", using: :btree
+  add_index "order_listings", ["order_id"], name: "index_order_listings_on_order_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.string   "street"
@@ -66,23 +92,16 @@ ActiveRecord::Schema.define(version: 20160309234957) do
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
-  create_table "products", force: :cascade do |t|
-    t.string   "name"
+  create_table "tickets", force: :cascade do |t|
     t.integer  "price"
-    t.string   "description"
-    t.integer  "category_id"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-    t.boolean  "sale",               default: false
-    t.integer  "sale_price"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-    t.boolean  "inactive",           default: false
+    t.string   "seat"
+    t.string   "row"
+    t.integer  "listing_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
+  add_index "tickets", ["listing_id"], name: "index_tickets_on_listing_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
@@ -95,9 +114,19 @@ ActiveRecord::Schema.define(version: 20160309234957) do
     t.string   "fullname"
   end
 
+  create_table "venues", force: :cascade do |t|
+    t.string "name"
+    t.string "city"
+    t.string "state"
+  end
+
   add_foreign_key "comments", "orders"
-  add_foreign_key "order_products", "orders"
-  add_foreign_key "order_products", "products"
+  add_foreign_key "events", "categories"
+  add_foreign_key "events", "venues"
+  add_foreign_key "listings", "events"
+  add_foreign_key "listings", "users"
+  add_foreign_key "order_listings", "listings"
+  add_foreign_key "order_listings", "orders"
   add_foreign_key "orders", "users"
-  add_foreign_key "products", "categories"
+  add_foreign_key "tickets", "listings"
 end

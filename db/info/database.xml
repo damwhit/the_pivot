@@ -48,7 +48,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="502" y="210" name="comments">
+<table x="177" y="156" name="comments">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -63,7 +63,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="699" y="210" name="orders">
+<table x="459" y="195" name="orders">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -116,31 +116,22 @@
 <part>id</part>
 </key>
 </table>
-<table x="890" y="215" name="tickets">
+<table x="908" y="120" name="tickets">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="price" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="id_event" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="events" row="id" />
-</row>
-<row name="id_orders" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="orders" row="id" />
-</row>
 <row name="seat" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="id_buyer" null="1" autoincrement="0">
+<row name="row" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="users" row="id" />
-</row>
-<row name="id_seller" null="1" autoincrement="0">
+<default>NULL</default></row>
+<row name="id_listings" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="users" row="id" />
+<default>NULL</default><relation table="listings" row="id" />
 </row>
 <key type="PRIMARY" name="">
 <part>id</part>
@@ -186,7 +177,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="494" y="409" name="users">
+<table x="98" y="405" name="users">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -226,17 +217,33 @@
 <part>id</part>
 </key>
 </table>
-<table x="604" y="822" name="order_sellers">
+<table x="720" y="566" name="listings">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="id_order" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="orders" row="id" />
-</row>
 <row name="id_seller" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="users" row="id" />
+</row>
+<row name="id_events" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="events" row="id" />
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="633" y="213" name="order_listings">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="id_listings" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="listings" row="id" />
+</row>
+<row name="id_orders" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="orders" row="id" />
 </row>
 <key type="PRIMARY" name="">
 <part>id</part>
