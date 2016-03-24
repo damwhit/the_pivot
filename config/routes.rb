@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:new, :index, :create, :show]
     get "/orders/:order_id/thanks", to: "orders#thanks", as: "thanks"
     resources :listings, only: [:new, :create, :index]
+    get "/listing", to: "listings#show", as: "show"
   end
 
   namespace :admin do

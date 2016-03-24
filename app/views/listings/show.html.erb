@@ -1,0 +1,46 @@
+<div class="col-md-12">
+  <div class="event-title">
+    <h1><%= @event %></h1>
+  </div>
+  <%= image_tag('http://mortenbentzon.com/wp-content/uploads/2014/07/midnightsun_blog161-e1406761557421.jpg', class: "event-image-large") %>
+</div>
+<br>
+<div class="col-md-12">
+    <h1>listing 22</h1>
+  <div class="table-responsive">
+    <table class="table table-hover table-condensed table-products">
+      <thead>
+        <tr>
+          <th>listing id</th>
+          <th>row number</th>
+          <th>seat number</th>
+          <th>status</th>
+          <th>price</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th><%= link_to '22', '#' %></th>
+          <th><input type="text" value="45" name="row number"></th>
+          <th><input type="text" value="45" name="seat number"></th>
+          <th>
+            <select>
+              <option value="active">active</option>
+              <option value="cancelled">cancelled</option>
+              <option selected="selected" value="status-paid">paid</option>
+            </select>
+          </th>
+          <th>
+            <input type="text" value="$100" name="price"></th>
+          </th>
+          <th>
+            <button class="btn btn-checkout btn-s">update listing</button>
+          </th>
+        </tr>
+      </tbody>
+    </table>
+</div>
+
+<%= render partial: "shared/mailing_list" %>
+<%= render partial: "shared/footer" %>

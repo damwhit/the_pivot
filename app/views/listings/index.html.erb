@@ -1,6 +1,5 @@
 <h3 class="inactive-<%= params[:inactive] %> admin-product-index-header">my listings</h3>
 <br>
-<p><a href="#">See all listings</a></p>
 <div class="table-responsive">
   <table class="table table-hover table-condensed table-products">
     <thead>
@@ -16,7 +15,7 @@
     <tbody>
       <% 10.times do %>
       <tr>
-        <th>1</th>
+        <th><%= link_to '22', '#' %></th>
         <th><input type="text" value="45" name="row number"></th>
         <th><input type="text" value="45" name="seat number"></th>
         <th>
