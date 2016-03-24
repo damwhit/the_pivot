@@ -1,32 +1,18 @@
 require "rails_helper"
 
-RSpec.feature "UserAddsProductToCart", type: :feature do
-  scenario "user adds product to cart" do
-    category = Category.create(name:"coffee")
-    product = category.products.create(name:"Ethiopian", price:1500, description:"Ethiopian coffee is super good" )
-
-    visit "/products/#{product.id}"
-
-    click_on "Add to cart"
-
-    expect(page).to have_content("Ethiopian added to cart")
-    expect(current_path).to eq("/products")
-
-    product2 = category.products.create(name:"Columbian", price:1800, description:"Columbian coffee is super good")
-
-    visit "/products/#{product2.id}"
-
-    click_on "Add to cart"
-
-    expect(page).to have_content("Columbian added to cart")
-    expect(current_path).to eq("/products")
-
-    click_on "cart"
-
-    expect(current_path).to eq("/cart")
-
-    expect(page).to have_content(product.name)
-    expect(page).to have_content(product.price/100)
-    expect(page).to have_content("$33")
+RSpec.feature "UserAddsListingToCart", type: :feature do
+  scenario "user adds listing to cart" do
+    
   end
 end
+
+# As a visitor
+# When I view an individual event
+# I see a list of all the tickets associated with the event
+# When I find the ticket I want
+# And then click on “Add to cart”
+# My current path should be  ‘/category_name’
+# And I should see a flash message that says the ticket has been added to the cart
+# When I click on the cart icon
+# My current path should be ‘/cart’
+# And I should see the ticket I added with the order subtotal
