@@ -5,6 +5,10 @@
   padding: 5px;
 }
 
+.status-text {
+  color: blue;
+}
+
 .order-show-header h3 {
   margin: 0;
   padding: 0;
@@ -31,6 +35,15 @@
 
 .order-id {
   margin: 0;
+  color: green;
+}
+
+.upcoming-text{
+  color: green;
+}
+
+.past-text{
+  color: blue;
 }
 
 #order-comments {
@@ -43,7 +56,7 @@
 }
 
 .order-hero-unit {
-    background-image:url('https://images.unsplash.com/photo-1454438992604-4a8e59768a5a?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=0a2332b700028dfe22fcf779b6363e42');
+    background-image:url('https://s-media-cache-ak0.pinimg.com/736x/4c/6e/3b/4c6e3bfaf5ba9cf6c3587b5cf1aafa5d.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -62,7 +75,7 @@
 }
 
 .order-hero-unit h1 {
-    color: #fff;
+    color: #000;
     font-weight: bold;
     font-size: 40px;
     font-weight: 300;
@@ -78,11 +91,11 @@
 }
 
 .order-history-hero-unit {
-  background-image: url('https://images.unsplash.com/photo-1446321423766-c339f030bd0a?crop=entropy&dpr=2&fit=crop&fm=jpg&h=700&ixjsv=2.1.0&ixlib=rb-0.3.5&q=50&w=650');
+  background-image: url('https://vice-images.vice.com/images/content-images-crops/2015/11/04/we-hung-out-with-esports-fans-to-watch-the-league-of-legends-world-championship-final-in-berlin-345-body-image-1446645334-size_1000.jpg?resize=*:*&output-quality=');
 }
 
 .cart-hero-unit {
-  background-image: url('https://images.unsplash.com/44/fN6hZMWqRHuFET5YoApH_StBalmainCoffee.jpg?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=087ad5c368ba199970b3cdbd76589e0d');
+  background-image: url('http://d2118lkw40i39g.cloudfront.net/wp-content/uploads/2015/08/o-ROCK-CONCERT-facebook.jpg');
 }
 
 .login-hero-unit {
@@ -91,4 +104,8 @@
 
 .signup-hero-unit {
   background-image: url('https://images.unsplash.com/photo-1445052693476-5134dfe40f70?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=60f81289a3a2e175deef3ddfd6fa5205');
+}
+
+.cat-image {
+  margin: 0 auto;
 }

@@ -1,6 +1,6 @@
 module CartHelper
   def cart_total(products)
-    raw_cart_total(products) / 100
+    #raw_cart_total(products) / 100
   end
 
   def raw_cart_total(products)

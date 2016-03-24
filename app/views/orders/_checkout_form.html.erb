@@ -1,5 +1,5 @@
 <div class="form-group text-center form-div">
-  <%= form_for(:order, url: user_orders_path) do |f| %>
+  <%= form_for(:order) do |f| %>
     <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
     data-description= "Get dat coffee"

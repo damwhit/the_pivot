@@ -1,12 +1,13 @@
 <div class="container-fluid text-center">
-  <h1>Hey <%= current_user.first_name %>! 🎉🎉</h1>
-  <h3>We've emailed a receipt to <%= @order.email %></h3><br>
-  <h4>Here at Little Owl we work super hard to make the best products and share them with the world.<br>If you have any questions about your order or coffee in general, please don't hesitate to <a href="mailto:littleowlturing@gmail.com?Subject=hello%20again" target="_top">contact us</a>.</h4>
+  <h1>Hey user! 💖💖💖</h1>
+  <h3>We've emailed a receipt to email!</h3>
+  <h4>You can check out your order details <%= link_to 'here', '#' %></h4><br>
+  <h4>Here at ticketcacher we aim to please!<br>If you have any questions or concerns, please don't hesitate to <a href="mailto:ticketcacherturing@gmail.com?Subject=hello%20again" target="_top">contact us</a>.</h4>
 </div>
+<br>
+<<%= image_tag("https://www.petsworld.in/blog/wp-content/uploads/2015/09/rockstar-cat.jpg", class: "cat-image img-responsive") %>
+<h3 class="text-center">rock on.</h3>
 <%= render partial: "shared/mailing_list" %>
-<div class="container-fluid">
-  <%= render partial: "shared/featured_products" %>
-</div>
 <br>
 <br>
 <br>
