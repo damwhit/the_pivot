@@ -4,7 +4,7 @@
   </div>
 </div>
 
-<div class="container-fluid">
+<div class="container">
   <div class="row">
     <% 12.times do %>
       <div class="col-xs-12 col-sm-6 col-md-4 product-div">
@@ -12,35 +12,32 @@
           <div class="col-xs-12">
             <%= link_to image_tag('http://mortenbentzon.com/wp-content/uploads/2014/07/midnightsun_blog161-e1406761557421.jpg', class: "img-responsive event-image"), '#' %>
             <div class="sm-product-info">
-              <p>Sun Festival, Lima Peru</p>
-              <p>August 6</p>
-              <h4><%= link_to "View Event", '#' %></h4>
+              <p><%= link_to "Sun Festival, Lima Peru", '#' %></p>
+              <p>August 6 | 9:00 AM</p>
             </div>
           </div>
           <div class="product-info">
-            <p>Sun Festival, Lima Peru</p>
-            <p>August 6</p>
-            <h4><%= link_to "View Event", '#' %></h4>
+            <p><%= link_to "Sun Festival, Lima Peru", '#' %></p>
+            <p>August 6 | 9:00 AM</p>
           </div>
         </div>
         <div class="row xs-product-row product-row">
           <div class="col-xs-6">
             <%= link_to image_tag('http://mortenbentzon.com/wp-content/uploads/2014/07/midnightsun_blog161-e1406761557421.jpg', class: "img-responsive event-image"), '#' %>
             <div class="sm-product-info">
-              <p>Sun Festival, Lima Peru</p>
-              <p>August 6</p>
-              <h4><%= link_to "View Event", '#' %></h4>
+              <p><%= link_to "Sun Festival, Lima Peru", '#' %></p>
+              <p>August 6 | 9:00 AM</p>
             </div>
           </div>
           <div class="product-info">
-            <p>Sun Festival, Lima Peru</p>
-            <p>August 6</p>
-            <h4><%= link_to "View Event", '#' %></h4>
+            <p><%= link_to "Sun Festival, Lima Peru", '#' %></p>
+            <p>August 6 | 9:00 AM</p>
           </div>
         </div>
       </div>
     <% end %>
   </div>
+</div>
 
 <%= render partial: "shared/mailing_list" %>
 <%= render partial: "shared/footer" %>

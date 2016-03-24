@@ -20,6 +20,10 @@
   margin-right: 30px;
 }
 
+.listing-cart {
+  margin-left: 80px;
+}
+
 .product-unit {
   background-repeat: no-repeat;
   background-position: center;
@@ -34,7 +38,8 @@
 }
 
 
-.product-info a {
+.product-info p {
+  margin: 0 0 0;
   text-decoration: none;
 }
 
@@ -73,8 +78,12 @@
     display: none;
   }
 
-  .sm-product-info {
-    display: none;
+  p {
+    margin: 0 0 0;
+  }
+
+  .sm-product-info p {
+    margin: 0 0 0;
   }
 
   .featured-sub-product {
@@ -110,6 +119,11 @@
 .event-image {
   width: 350px;
   height:200px;
+  overflow:hidden;
+}
+.event-image-sm {
+  width: 250px;
+  height:100px;
   overflow:hidden;
 }
 

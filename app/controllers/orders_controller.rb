@@ -28,24 +28,24 @@ class OrdersController < ApplicationController
   def show
     if current_user
       @order = current_user.orders.find(params[:id])
-    else
-      redirect_to root_path
+    #else
+      #redirect_to root_path
     end
   end
 
   def thanks
     if current_user
       @order = current_user.orders.find(params[:order_id])
-    else
-      redirect_to root_path
+    #else
+      #redirect_to root_path
     end
   end
 
   def index
     if current_user
       @orders = current_user.orders
-    else
-      redirect_to root_path
+    #else
+      #redirect_to root_path
     end
   end
 

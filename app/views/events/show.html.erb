@@ -13,7 +13,13 @@
     <div class="panel panel-default">
       <div class="panel-heading"> Listing <%= "#{num + 1}" %> </div>
         <div class="panel-body">
-          <span class="tab-space">Row: 4</span><span class="tab-space">Price: $75</span><span class="tab-space">Quantity: 10</span>
+          <%= form_tag() do %>
+            <div class="col-xs-3 col-sm-3 col-md-3 form-inline">
+              Quantity: <%= select_tag "quantity", options_for_select([*1..10]), {class: "form-control form-control-sm"} %>
+            </div>
+        <% end %>
+          <span class="tab-space">Row: 4 | Seat 5</span><span class="tab-space">Price: $75</span>
+          <button class="btn btn-default btn-success listing-cart">Add to cart!</button>
         </div>
     </div>
   <% end %>
