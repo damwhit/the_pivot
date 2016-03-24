@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     get "/dashboard", to: "users#show"
     resources :orders, only: [:new, :index, :create, :show]
     get "/orders/:order_id/thanks", to: "orders#thanks", as: "thanks"
-    resources :listings, only: [:new, :index]
+    resources :listings, only: [:new, :create, :index]
   end
 
   namespace :admin do
