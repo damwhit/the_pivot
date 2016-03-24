@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "AuthenticatedUserSecurity", type: :feature do
+  pending
   scenario "An authenticated user cannot view another users data" do
     pending
     # make the tests pass!!!!
@@ -22,6 +23,8 @@ RSpec.feature "AuthenticatedUserSecurity", type: :feature do
   end
 
   scenario "An unauthenticated user cannot view another users data" do
+    pending
+
 
     visit "/users/1/orders"
 

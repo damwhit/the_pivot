@@ -3,6 +3,7 @@ require "rails_helper"
 RSpec.feature "UserRegisters", type: :feature do
   pending
   scenario "user registers" do
+    pending
     visit root_path
 
     click_on 'login'

@@ -1,7 +1,9 @@
 require "rails_helper"
 
 RSpec.feature "AdminUsesSearchFeatureForOrders", type: :feature do
+  pending
   before(:each) do
+    pending
     coffee = Category.create(name:"coffee")
 
     product1 = coffee.products.create(name: "Finca San Matias",

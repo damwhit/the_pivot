@@ -2,6 +2,7 @@ require "rails_helper"
 
 RSpec.feature "UserCreatesAccount", type: :feature do
   scenario "user creates account" do
+    pending
     category = Category.create(name:"coffee")
     product = category.products.create(name:"Ethiopian", price:1500, description:"Ethiopian coffee is super good")
 

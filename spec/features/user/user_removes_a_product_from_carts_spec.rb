@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "UserRemovesAProductFromCarts", type: :feature do
   scenario "they see all that the removed item is no longer there" do
+    pending
     category = Category.create(name:"coffee")
     product = category.products.create(name:"Ethiopian", price:1500, description:"Ethiopian coffee is super good")
 

@@ -2,6 +2,7 @@ require "rails_helper"
 
 RSpec.feature "UserCantLeaveSignupFieldBlank", type: :feature do
   scenario "user gets error message" do
+    pending
     visit "/"
 
     click_on "login"

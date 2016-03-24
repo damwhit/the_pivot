@@ -1,8 +1,8 @@
 require "rails_helper"
 
 RSpec.feature "UserViewsASpecificEvent", type: :feature do
-  pending
   scenario "user views a specific event" do
+    pending
     event = event
 
     listing1 = listing1

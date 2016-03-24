@@ -1,12 +1,13 @@
 require "rails_helper"
 
 RSpec.feature "UserViewsEventsByCategory", type: :feature do
-  pending
   scenario "user views events by category" do
+    pending
 
     event1 = make_events[:event1]
     event2 = make_events[:event2]
-    event3 = make_events[:event3] #experimenting with spec helper
+    event3 = make_events[:event3]
+    #experimenting with spec helper
 
     # category1 = Category.create(name:"Festivals")
     # category2 = Category.create(name:"Sports")

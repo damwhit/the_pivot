@@ -1,7 +1,9 @@
 require 'rails_helper'
 
-RSpec.feature "UserChangesQunatityOfProductInCart", type: :feature do
-  scenario "they change the quanity of a product and see it updated in the cart" do
+RSpec.feature "UserChangesQuantityOfProductInCart", type: :feature do
+  scenario "they change the quantity of a product and see it updated in the cart" do
+    pending
+    #for tickets instead
     category = Category.create(name:"coffee")
     product = category.products.create(name:"Ethiopian", price:1500, description:"Ethiopian coffee is super good")
 
