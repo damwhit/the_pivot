@@ -5,6 +5,10 @@
   padding: 5px;
 }
 
+.status-text {
+  color: blue;
+}
+
 .order-show-header h3 {
   margin: 0;
   padding: 0;
@@ -32,6 +36,14 @@
 .order-id {
   margin: 0;
   color: green;
+}
+
+.upcoming-text{
+  color: green;
+}
+
+.past-text{
+  color: blue;
 }
 
 #order-comments {

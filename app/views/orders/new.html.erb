@@ -48,9 +48,13 @@
       <div class="cart text-center">
         <h3>Hey, user!</h3>
         <h4>Your total is $300.00</h4><br>
-        <p>Click "submit order" below and you'll be asked all billing and shipping questions. Then bask is the knowledge that you will soon be attendinga kick-ass event.</p>
+        <p>Click "submit order" below and you'll be asked all billing and shipping questions. Then bask in the knowledge that you will soon be attending a kick-ass event.</p>
           <%= render partial: "checkout_form", locals: {amount: 300 } %>
       </div>
     </div>
   </div>
+</div>
+
+<div class="continue-shopping-checkout">
+  Not done yet?<span class="small-indent"></span><button class="btn btn-default btn-success">continue shopping</button>
 </div>

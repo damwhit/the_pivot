@@ -52,14 +52,14 @@
         <h1 class="cart-total">$300.00</h1>
         <div class="checkout">
           <% if current_user %>
-            <%= link_to "Checkout", new_user_order_path(current_user), class:"btn btn-checkout form-control" %>
+            <%= link_to "Checkout", '#', class:"btn btn-checkout form-control" %>
           <% else %>
-            <%= link_to "Checkout", checkout_login_path, class:"btn btn-checkout form-control" %>
+            <%= link_to "Checkout", '#', class:"btn btn-checkout form-control" %>
           <% end %>
         </div>
         <h4>or</h4>
         <div class="continue-shopping">
-          <%= link_to "Continue Shopping", products_path, class:"btn btn-primary form-control" %>
+          <%= link_to "Continue Shopping", '#', class:"btn btn-primary form-control" %>
         </div>
       </div>
     </div>
