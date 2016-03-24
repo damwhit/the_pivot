@@ -20,7 +20,7 @@
           <tr class="text-align-center">
             <th><img class="admin-product-image" src="http://s3.amazonaws.com/littleowl-turing/products/images/000/000/031/small/open-uri20160310-3-2dc6lz?1457653073" alt="Open uri20160310 3 2dc6lz?1457653073"></th>
             <th>
-              <button class="btn btn btn-primary btn-s">Create listing</button>
+              <%= button_to "Create Listing", new_user_listing_path(current_user), method: :get %>
             </th>
             <th>Dinosaur.js</th>
             <th>2016-06-21</th>

@@ -1,0 +1,25 @@
+<!-- selling tickets
+ - put in details for each ticket individually
+ - form has a box for each ticket
+ - if more than one ticket, click on “add more tickets”
+ - use Jquery to add more ticket fields -->
+<div class="row">
+ <div class="col-xs-3">
+   </div>
+     <div class="col-xs-6">
+       <h1>New listing for Event</h1>
+       <div class="form-group text-center form-div">
+         <%= form_tag(user_listings_path) do %>
+         <%= label_tag :ticket_id,  nil, class:"sr-only"  %>
+         <%= text_field_tag :ticket_id, nil, required:true, placeholder: "ticket number", class:"form-control text-input" %><br>
+         <%= label_tag :row_number,  nil, class:"sr-only"  %>
+         <%= text_field_tag :row_number, nil, required:true, placeholder: "row number", class:"form-control text-input" %><br>
+         <%= label_tag :seat_number,  nil, class:"sr-only"  %>
+         <%= text_field_tag :seat_number, nil, required:true, placeholder: "seat number", class:"form-control text-input" %><br>
+         <%= submit_tag "create listing", class:"btn btn-checkout" %>
+         <% end %>
+       </div>
+     </div>
+   <div class="col-xs-3">
+ </div>
+</div>
