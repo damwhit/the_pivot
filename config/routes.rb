@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     resources :users, only: [:index]
     resources :events, only: [:index, :new]
     resources :venues, only: [:index, :new]
+    resources :categories, only: [:index, :new]
+    resources :tags, only: [:index, :new, :show]
   end
 
   get "orders/login", to: "orders#checkout_login", as: "checkout_login"
