@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :listings, only: [:new, :create, :index]
     get "/listing", to: "listings#show", as: "show"
   end
-  
+
   resources :users, only: [:new, :create] do
     resources :orders, only: [:create] #took out index and show
     #get "/orders/:order_id/thanks", to: "orders#thanks", as: "thanks"
@@ -49,6 +49,6 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
 
-  get "/category", to: "categories#show"
+  get "/:name", to: "categories#show"
   get "/event", to: "events#show"
 end

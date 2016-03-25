@@ -1,37 +1,37 @@
-<div class="<%= @category %>-hero-unit category-hero-unit">
+<div class="<%= (@category.name).downcase %>-hero-unit category-hero-unit">
   <div class="container text-center hero-container">
-    <h1><%= @category %></h1>
+    <h1><%= @category.name %></h1>
   </div>
 </div>
 
 <div class="container">
   <div class="row">
-    <% 12.times do %>
+    <% @category.events.each do |event| %>
       <div class="col-xs-12 col-sm-6 col-md-4 product-div">
         <div class="row sm-product-row product-row">
           <div class="col-xs-12">
-            <%= link_to image_tag('http://mortenbentzon.com/wp-content/uploads/2014/07/midnightsun_blog161-e1406761557421.jpg', class: "img-responsive event-image"), '#' %>
+            <%= link_to image_tag(event.image.url(:show), class: "img-responsive event-image"), '#' %>
             <div class="sm-product-info">
-              <p><%= link_to "Sun Festival, Lima Peru", '#' %></p>
-              <p>August 6 | 9:00 AM</p>
+              <p><%= link_to "#{event.name}, #{event.venue.city}", '#' %></p>
+              <p> <%= event.format_date %> | <%= event.format_time %></p>
             </div>
           </div>
           <div class="product-info">
-            <p><%= link_to "Sun Festival, Lima Peru", '#' %></p>
-            <p>August 6 | 9:00 AM</p>
+            <p><%= link_to "#{event.name}, #{event.venue.city}", '#' %></p>
+            <p><%= event.format_date %> | <%=event.format_time%></p>
           </div>
         </div>
         <div class="row xs-product-row product-row">
           <div class="col-xs-6">
-            <%= link_to image_tag('http://mortenbentzon.com/wp-content/uploads/2014/07/midnightsun_blog161-e1406761557421.jpg', class: "img-responsive event-image"), '#' %>
+            <%= link_to image_tag(event.image.url(:show), class: "img-responsive event-image"), '#' %>
             <div class="sm-product-info">
-              <p><%= link_to "Sun Festival, Lima Peru", '#' %></p>
-              <p>August 6 | 9:00 AM</p>
+              <p><%= link_to "#{event.name}, #{event.venue.city}", '#' %></p>
+              <p> <%= event.format_date %> | <%=event.format_time%></p>
             </div>
           </div>
           <div class="product-info">
-            <p><%= link_to "Sun Festival, Lima Peru", '#' %></p>
-            <p>August 6 | 9:00 AM</p>
+            <p><%= link_to "#{event.name}, #{event.venue.city}", '#' %></p>
+            <p> <%= event.format_date %> | <%=event.format_time%></p>
           </div>
         </div>
       </div>
