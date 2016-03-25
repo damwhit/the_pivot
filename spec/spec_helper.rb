@@ -1,6 +1,6 @@
-require 'simplecov'
+require "simplecov"
 require "paperclip/matchers"
-require 'rspec/active_model/mocks'
+require "rspec/active_model/mocks"
 
 module SpecHelpers
   def category1
@@ -20,7 +20,11 @@ module SpecHelpers
   end
 
   def event
-    category1.events.find_or_create_by(name: "Sun Festival", venue_id: venue.id, time: "8:00", status: "active")
+    category1.events.find_or_create_by(
+      name: "Sun Festival",
+      venue_id: venue.id,
+      time: "8:00",
+      status: "active")
   end
 
   def listing1
