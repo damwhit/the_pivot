@@ -4,11 +4,11 @@ require 'rspec/active_model/mocks'
 
 module SpecHelpers
   def category1
-    Category.find_or_create_by(name: "Festivals")
+    Category.find_or_create_by(name: "festivals")
   end
 
   def category2
-    Category.find_or_create_by(name: "Sports")
+    Category.find_or_create_by(name: "sports")
   end
 
   def venue1
