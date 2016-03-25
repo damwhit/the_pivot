@@ -2,17 +2,13 @@ require 'simplecov'
 require "paperclip/matchers"
 require 'rspec/active_model/mocks'
 
-SimpleCov.start("rails")
-
 module SpecHelpers
-
-
   def category1
-    Category.find_or_create_by(name:"Festivals") #prolly will need find or create by
+    Category.find_or_create_by(name: "Festivals") #prolly will need find or create by
   end
 
   def category2
-    Category.find_or_create_by(name:"Sports")
+    Category.find_or_create_by(name: "Sports")
   end
 
   def venue1
@@ -24,7 +20,7 @@ module SpecHelpers
   end
 
   def event
-    category1.events.find_or_create_by(name: "Sun Festival", image_file_path: 'http://mortenbentzon.com/wp-content/uploads/2014/07/midnightsun_blog161-e1406761557421.jpg', venue_id: venue.id, time: "8:00", status: "active")
+    category1.events.find_or_create_by(name: "Sun Festival", venue_id: venue.id, time: "8:00", status: "active")
   end
 
   def listing1
@@ -37,12 +33,14 @@ module SpecHelpers
 
   def make_events
     {
-      event1: category1.events.create(name: "Sun Festival", image_file_path: 'http://mortenbentzon.com/wp-content/uploads/2014/07/midnightsun_blog161-e1406761557421.jpg', venue_id: venue1.id, time: "8:00", status: "active"),
-      event2: category.events.create(name: "EDM Spectacular", image_file_path: 'http://mortenbentzon.com/wp-content/uploads/2014/07/midnightsun_blog161-e1406761557421.jpg', venue_id: venue1.id, time: "7:00", status: "active"),
-      event3: category2.events.create(name: "Basketball", image_file_path: 'http://a57.foxnews.com/global.fncstatic.com/static/managed/img/fn-latino/sports/660/371/us%20beats%20brazil.jpg?ve=1&tl=1', venue_id: venue2.id, time: "8:00", status: "active")
+      event1: category1.events.create(name: "Sun Festival", venue_id: venue1.id, time: "16:00", status: "active", date: "March 02, 2017"),
+      event2: category1.events.create(name: "EDM Spectacular", venue_id: venue1.id, time: "18:00", status: "active", date: "November 20, 2020"),
+      event3: category2.events.create(name: "Basketball", venue_id: venue2.id, time: "19:00", status: "active", date: "July 10, 2016")
     }
   end
 end
+
+SimpleCov.start("rails")
 
 RSpec.configure do |config|
   config.include Paperclip::Shoulda::Matchers
