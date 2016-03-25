@@ -4,7 +4,7 @@ require 'rspec/active_model/mocks'
 
 module SpecHelpers
   def category1
-    Category.find_or_create_by(name: "Festivals") #prolly will need find or create by
+    Category.find_or_create_by(name: "Festivals")
   end
 
   def category2
