@@ -33,9 +33,9 @@ module SpecHelpers
 
   def make_events
     {
-      event1: category1.events.create(name: "Sun Festival", venue_id: venue1.id, time: "16:00", status: "active", date: "March 02, 2017"),
-      event2: category1.events.create(name: "EDM Spectacular", venue_id: venue1.id, time: "18:00", status: "active", date: "November 20, 2020"),
-      event3: category2.events.create(name: "Basketball", venue_id: venue2.id, time: "19:00", status: "active", date: "July 10, 2016")
+      event1: category1.events.create(name: "Sun Festival", venue_id: venue1.id, time: "March 02, 2017 16:00", status: "active"),
+      event2: category1.events.create(name: "EDM Spectacular", venue_id: venue1.id, time: "November 20, 2020 18:00", status: "active"),
+      event3: category2.events.create(name: "Basketball", venue_id: venue2.id, time: "July 10, 2016 19:00", status: "active")
     }
   end
 end

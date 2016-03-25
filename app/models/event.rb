@@ -22,7 +22,7 @@ class Event < ActiveRecord::Base
   end
 
   def format_date
-    date.strftime("%a,%e %b")
+    time.strftime("%a,%e %b")
   end
 
   def format_time
