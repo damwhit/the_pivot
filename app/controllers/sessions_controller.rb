@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
         redirect_to user_dashboard_path(current_user)
       end
     else
-      flash.now[:alert] = "Sorry, friend.  Something went wrong :(... Please try again."
+      flash.now[:error] = "Sorry, friend.  Something went wrong :(... Please try again."
       render :new
     end
   end
