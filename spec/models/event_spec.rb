@@ -4,6 +4,7 @@ RSpec.describe Event, type: :model do
   include SpecHelpers
   it { should belong_to :venue }
   it { should belong_to :category }
+  it { should have_many :listings }
 
   context "formats time" do
     it "formats the time" do
