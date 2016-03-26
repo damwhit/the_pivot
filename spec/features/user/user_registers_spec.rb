@@ -17,7 +17,7 @@ RSpec.feature "UserRegisters", type: :feature do
     expect(current_path).to eq(root_path)
 
     within("div .alert") do
-      expect(page).to have_content("Hey Bob, welcome to Ticket Cacher.")
+      expect(page).to have_content("Hey Bob, welcome to ticketcacher.")
     end
     within(".sidebar-nav") do
       expect(page).to have_content("listings")
