@@ -54,6 +54,17 @@ module SpecHelpers
         status: "active")
     }
   end
+
+  def create_and_stub_admin
+    admin = User.create(first_name: "john",
+                        last_name:  "adams",
+                        email:      "admin@example.com",
+                        password:   "password",
+                        role: 1
+                        )
+    ApplicationController.any_instance.stub(:current_user) {admin}
+    admin
+  end
 end
 
 SimpleCov.start("rails")
