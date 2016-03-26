@@ -17,6 +17,12 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 
   config.filter_rails_from_backtrace!
+
+  config.mock_with :rspec do |configuration|
+    configuration.syntax = [:expect, :should]
+    #configuration.syntax = :should
+    #configuration.syntax = :expect
+  end
 end
 
 Shoulda::Matchers.configure do |config|
@@ -29,11 +35,12 @@ end
 
 def create_and_stub_admin
   admin = User.create(first_name: "john",
-                      last_name: "adams",
-                      email:     "admin@example.com",
-                        password: 'password',
-                        role: 1
-                        )
-  ApplicationController.any_instance.stub(:current_user) {admin}
+                      last_name:  "adams",
+                      email:      "admin@example.com",
+                      password:   "password",
+                      fullname:   "John Adams",
+                      role: 1
+                      )
+  ApplicationController.any_instance.stub(:current_user) { admin }
   admin
 end

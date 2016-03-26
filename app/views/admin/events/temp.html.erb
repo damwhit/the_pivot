@@ -9,12 +9,21 @@
     <div id="new-product" class="form-group has success form-div col-xs-6 col-xs-offset-3">
       <%= form_for [:admin, @event] do |f| %>
         <div class="text-left">
-          <%= f.label :name %>
+          <%= f.label :name, class:"sr-only"  %>
           <%= f.text_field :name, placeholder: "name", class:"form-control form-control-success" %><br>
-          <%= f.label :venue %>
-          <%= select(:venue, :venue_id, @venues.map {|venue| [venue.name, venue.id]} ) %><br>
-          <%= f.label :date %>
-          <%= select_date Date.today, prefix: :start_date, class: "form-control form-control-sm search-form" %><br>
+        <label for="event-name">name</label>
+        <input placeholder="name" class="form-control text-input" type="text" name="event[name]" id="event-name">
+        <br>
+        <label for="event-description">description</label>
+        <input placeholder="description" class="form-control text-input" type="text" name="event[description]" id="event-description">
+        <br>
+        <label for="event-venue">venue</label>
+        <select id="event-venue" class="form-control" required="required" name="event[venue_id]">
+          <option selected="selected" value="1">Colorado Convention Center</option>
+          <option value="2">Pepsi Center</option>
+          <option value="3">Red Rocks Ampitheatre</option>
+        </select>
+        <br>
         <label for="event-date">date</label>
         <input id="event-date" type="date" name="event[date]" value="2016-06-21"; class="form-control form-control-sm search-form">
         <br>
