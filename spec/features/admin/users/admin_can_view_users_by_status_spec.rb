@@ -1,6 +1,7 @@
 require "rails_helper"
 
 RSpec.feature "AdminCanViewUsersByStatus", type: :feature do
+  
   scenario "sees active users" do
     User.create(fullname: "John Adams",
                 email: "johnadams@example.com",
@@ -27,7 +28,6 @@ RSpec.feature "AdminCanViewUsersByStatus", type: :feature do
       expect(page).to_not have_content "5"
       expect(page).to_not have_content "John Adams"
       expect(page).to_not have_content "25"
-    # I see only active users and they are sorted by their ID number
     end
   end
 end
