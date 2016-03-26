@@ -24,15 +24,17 @@ RSpec.feature "UserViewsASpecificEvent", type: :feature do
     expect(page).to have_content(event.venue.city)
 
     within("#listing-#{listing_1.id}") do
-      expect(page).to have_content("price: $9")
       expect(page).to have_content("row: 5")
+      expect(page).to have_content("price: $9")
       expect(page).to have_content("quantity: 2")
+      expect(page).to_not have_content("row 7")
     end
 
     within("#listing-#{listing_2.id}") do
       expect(page).to have_content("row: 7")
       expect(page).to have_content("price: $10")
       expect(page).to have_content("quantity: 1")
+      expect(page).to_not have_content("row 5")
     end
   end
 end
