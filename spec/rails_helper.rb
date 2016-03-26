@@ -33,6 +33,29 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 
   config.filter_rails_from_backtrace!
+
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  # config.around(:each, js: true) do |example|
+  #   DatabaseCleaner.strategy = :truncation
+  #   ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
+  #   example.run
+  #   ActiveRecord::Base.shared_connection = nil
+  # end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
 end
 
 Shoulda::Matchers.configure do |config|

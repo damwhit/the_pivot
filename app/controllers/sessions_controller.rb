@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       if user.admin?
         redirect_to admin_dashboard_path
       else
-        redirect_to user_dashboard_path(current_user)
+        redirect_to user_dashboard_path
       end
     else
       flash.now[:error] = "Sorry, friend.  Something went wrong :(... Please try again."
