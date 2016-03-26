@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      flash[:info] = "Hey #{@user.first_name}, welcome to Ticket Cacher."
+      flash[:info] = "Hey #{@user.first_name}, welcome to ticketcacher."
       redirect_to root_path
     else
       flash.now[:alert] = "Sorry, friend.  Something went wrong :(... Please try again."
