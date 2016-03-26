@@ -1,20 +1,19 @@
 class SessionsController < ApplicationController
   def new
-
   end
 
   def create
     user = User.find_by(email: params[:session][:email])
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
+      flash[:info] = "Hi #{user.first_name}, welcome to ticketcacher!"
       if user.admin?
         redirect_to admin_dashboard_path
       else
-        flash[:info] = "Hey #{user.first_name}, welcome to Ticket Cacher."
-        redirect_to user_dashboard_path(current_user)
+        redirect_to user_dashboard_path
       end
     else
-      flash.now[:alert] = "Sorry, friend.  Something went wrong :(... Please try again."
+      flash.now[:error] = "Sorry, friend.  Something went wrong :(... Please try again."
       render :new
     end
   end

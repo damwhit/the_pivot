@@ -1,26 +1,26 @@
 require "rails_helper"
 
 RSpec.feature "UserRegisters", type: :feature do
-  pending
   scenario "user registers" do
-    pending
     visit root_path
+    click_on "sign in"
 
-    click_on 'login'
-
-    click_on 'signup'
+    click_on "signup"
 
     expect(current_path).to eq(new_user_path)
 
-    fill_in "Name", with: "Bob"
+    fill_in "user[fullname]", with: "Bob"
     fill_in "Password", with: "password"
     fill_in "Email", with: "bob@example.com"
-    click_on "Submit"
+    click_on "signup"
 
     expect(current_path).to eq(root_path)
 
-    within("#flash") do
-      expect(page).to have_content("welcome to ticketcacher bob!")
+    within("div .alert") do
+      expect(page).to have_content("Hey Bob, welcome to ticketcacher.")
+    end
+    within(".sidebar-nav") do
+      expect(page).to have_content("listings")
     end
   end
 end
