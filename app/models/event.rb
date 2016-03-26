@@ -19,10 +19,6 @@ class Event < ActiveRecord::Base
 
   scope :active_products, -> { where(inactive: false) }
 
-  def display_price
-    "$#{price.to_i / 100}"
-  end
-
   def format_date
     time.strftime("%a,%e %b")
   end

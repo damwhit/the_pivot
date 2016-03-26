@@ -8,30 +8,31 @@ RSpec.feature "UserViewsASpecificEvent", type: :feature do
     listing_1 = listing1
     listing_2 = listing2
 
+    ticket_1 = ticket1.update(row: "5", seat: "8", price: 900)
+    ticket_2 = ticket2.update(row: "5", seat: "9", price: 900)
+    ticket_3 = ticket3.update(row: "7", seat: "3", price: 1000)
+
     visit "/festivals"
 
     within(".event-name") do
       click_on "Sun Festival"
     end
-    # is database cleaner not working?
 
-    visit "/events/#{event.id}"
-
-    #expect(current_path).to eq(event_path(event))
-
-    #can we not use AWS for specs?
+    expect(current_path).to eq(event_path(event))
 
     expect(page).to have_content(event.format_time)
     expect(page).to have_content(event.venue.city)
-    #expect(page).to have_content(listing_1.ticket.price)
-    #expect(page).to have_content(listing_1.ticket.seat)
-    #expect(page).to have_content(listing_2.ticket.price)
-    #expect(page).to have_content(listing_2.ticket.seat)
+
+    within("#listing-#{listing_1.id}") do
+      expect(page).to have_content("price: $9")
+      expect(page).to have_content("row: 5")
+      expect(page).to have_content("quantity: 2")
+    end
+
+    within("#listing-#{listing_2.id}") do
+      expect(page).to have_content("row: 7")
+      expect(page).to have_content("price: $10")
+      expect(page).to have_content("quantity: 1")
+    end
   end
 end
-
-# As a visitor
-# When I visit ‘/category_name’
-# And click on a event title
-# I will see the time and location of the event
-# And see all the tickets on sale for the event

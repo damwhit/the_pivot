@@ -5,6 +5,7 @@ popups = Category.find_or_create_by!(name:"popups")
 comedy = Category.find_or_create_by!(name:"comedy")
 conventions = Category.find_or_create_by!(name:"conventions")
 
+
 venue1 = Venue.find_or_create_by!(
   name: "Outside",
   city: "Lima",
@@ -35,13 +36,11 @@ venue5 = Venue.find_or_create_by!(
     status: "active")
 end
 
-9.times do
-  concerts.events.create(
-    name: "Muppet Rock",
-    venue_id: venue2.id,
-    image: open("https://s3.amazonaws.com/ticket-cacher/categories/muppets_rocking.jpg"),
-    time: "November 20, 2020 18:00", status: "active")
-end
+concerts.events.create(
+  name: "Muppet Rock",
+  venue_id: venue2.id,
+  image: open("https://s3.amazonaws.com/ticket-cacher/categories/muppets_rocking.jpg"),
+  time: "November 20, 2020 18:00", status: "active")
 
 9.times do
   sports.events.create(
@@ -78,6 +77,35 @@ end
     time: "July 10, 2016 19:00",
     status: "active")
 end
+
+user1 = User.create(
+        first_name: "Dave",
+        last_name: "Whit",
+        email: "mustachefodays@example.com",
+        password: "password",
+        role: 0,
+        fullname: "Dave Whit"
+        )
+
+user2 = User.create(
+        first_name: "Whitney",
+        last_name: "Whit",
+        email: "whit@example.com",
+        password: "password",
+        role: 0,
+        fullname: "Whitney Whit"
+        )
+event = Event.find_by(name: "Muppet Rock")
+
+listing1 = Listing.find_or_create_by!(user_id: User.first.id, event_id: event.id)
+
+listing2 = Listing.find_or_create_by!(user_id: User.last.id, event_id: event.id)
+
+listing1.tickets.find_or_create_by!(price: 800, seat: "10", row: "2")
+
+listing1.tickets.find_or_create_by!(price: 800, seat: "11", row: "2")
+
+listing2.tickets.find_or_create_by!(price: 1000, seat: "1", row: "1")
 
 admin = User.new(
   fullname: "admin",

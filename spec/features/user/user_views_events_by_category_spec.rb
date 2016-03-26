@@ -10,6 +10,8 @@ RSpec.feature "UserViewsEventsByCategory", type: :feature do
 
     visit "/festivals"
 
+    #add css image
+
     expect(page).to have_content(event1.name)
     expect(page).to have_content(event1.venue.city)
     expect(page).to have_content(event1.format_date)
