@@ -8,9 +8,7 @@ RSpec.feature "UserViewsEventsByCategory", type: :feature do
     event2 = make_events[:event2]
     event3 = make_events[:event3]
 
-    visit root_path
-
-    click_on "festivalz"
+    visit "/festivals"
 
     expect(page).to have_content(event1.name)
     expect(page).to have_content(event1.venue.city)

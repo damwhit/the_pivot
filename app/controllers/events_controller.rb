@@ -4,6 +4,6 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = "Sun Festival"
+    @event = Event.find(params[:id])
   end
 end

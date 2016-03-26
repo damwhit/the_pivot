@@ -1,6 +1,8 @@
 class Event < ActiveRecord::Base
   belongs_to :category
   belongs_to :venue
+  has_many :listings
+
   # has_many :order_products
   # has_many :orders, through: :order_products
 

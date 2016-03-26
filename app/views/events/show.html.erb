@@ -1,17 +1,14 @@
 <div class="container-fluid">
   <div class="col-md-6">
     <div class="event-title">
-      <h1><%= @event %></h1>
+      <h1><%= @event.name %></h1>
     </div>
-    <%= image_tag('http://mortenbentzon.com/wp-content/uploads/2014/07/midnightsun_blog161-e1406761557421.jpg', class: "event-image-large") %>
+    <%= image_tag(@event.image.url(:show), class: "event-image-large") %>
     <div class="event-description">
-      Saturday, August 6
-    </div>
-    <div class="event-description">
-      2:00 pm at Glorious Mountain
+      <%= @event.format_time %>
     </div>
     <div class="event-description">
-      Lima, Peru
+      <%= @event.venue.city %> <%= @event.venue.state %>at <%= @event.venue.name %>
     </div>
   </div>
 

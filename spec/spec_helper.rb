@@ -7,6 +7,17 @@ module SpecHelpers
     Category.find_or_create_by(name: "festivals")
   end
 
+  def user1
+    User.find_or_create_by(
+      first_name: "Dave",
+      last_name: "Whit",
+      email: "mustachefodays@example.com",
+      # password: "password",
+      role: 0,
+      fullname: "Dave Whit"
+    )
+  end
+
   def category2
     Category.find_or_create_by(name: "sports")
   end
@@ -19,20 +30,22 @@ module SpecHelpers
     Venue.find_or_create_by(name: "Stadium", city: "Denver")
   end
 
-  def event
+  def event1
     category1.events.find_or_create_by(
       name: "Sun Festival",
-      venue_id: venue.id,
-      time: "8:00",
+      venue_id: venue1.id,
+      time: "March 02, 2017 16:00",
+      #image: "http://1.bp.blogspot.com/-IH2P-v75_1g/U9ZxRcr7iZI/AAAAAAAACi0/_XM04K8TLwQ/s1600/visit_japan.jpg",
+      # image: open("https://s3.amazonaws.com/ticket-cacher/categories/air_balloons.jpg"),
       status: "active")
   end
 
   def listing1
-    event.find_or_create_by(price: 800, seat: "3", row: "6")
+    event1.listings.find_or_create_by(user_id: user1.id)
   end
 
   def listing2
-    event.find_or_create_by(price: 1000, seat: "4", row: "2")
+    event1.listings.find_or_create_by(user_id: user1.id)
   end
 
   def make_events
@@ -41,16 +54,19 @@ module SpecHelpers
         name: "Sun Festival",
         venue_id: venue1.id,
         time: "March 02, 2017 16:00",
+        image: open("https://s3.amazonaws.com/ticket-cacher/categories/air_balloons.jpg"),
         status: "active"),
       event2: category1.events.create(
         name: "EDM Spectacular",
         venue_id: venue1.id,
         time: "November 20, 2020 18:00",
+        image: open("https://s3.amazonaws.com/ticket-cacher/categories/muppets_rocking.jpg"),
         status: "active"),
       event3: category2.events.create(
         name: "Basketball",
         venue_id: venue2.id,
         time: "July 10, 2016 19:00",
+        image: open("https://s3.amazonaws.com/ticket-cacher/categories/olympic_basketball.jpg"),
         status: "active")
     }
   end
