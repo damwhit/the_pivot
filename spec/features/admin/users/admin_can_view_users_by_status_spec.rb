@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.feature "AdminCanViewUsersByStatus", type: :feature do
-  scenario "sees active users" do
+  before(:each) do
     User.create(fullname: "Abe Lincoln",
                 email: "honestabe@example.com",
                 password: "password",
@@ -15,13 +15,15 @@ RSpec.feature "AdminCanViewUsersByStatus", type: :feature do
                 email: "georgew@example.com",
                 password: "password",
                 id: 4)
-    admin = User.create(fullname: "John Adams",
+    @admin = User.create(fullname: "John Adams",
                         email:      "admin@example.com",
                         password:   "password",
                         role: 1,
                         id: 26)
-    ApplicationController.any_instance.stub(:current_user) { admin }
+    ApplicationController.any_instance.stub(:current_user) { @admin }
+  end
 
+  scenario "sees active users by default" do
     visit "/admin/dashboard"
     click_on "users"
 
@@ -35,5 +37,25 @@ RSpec.feature "AdminCanViewUsersByStatus", type: :feature do
       expect(page).to have_content "26"
       expect(page).to have_content "John Adams"
     end
+  end
+
+  scenario "sees suspended users" do
+    visit "/admin/dashboard"
+    click_on "users"
+    click_on "suspended users"
+
+    within(".users") do
+      expect(page).to have_content "5"
+      expect(page).to have_content "Jane Adams"
+      expect(page).to_not have_content "4"
+      expect(page).to_not have_content "George Washingto_notn"
+      expect(page).to_not have_content "23"
+      expect(page).to_not have_content "Abe Lincoln"
+      expect(page).to_not have_content "26"
+      expect(page).to_not have_content "John Adams"
+    end
+  end
+
+  scenario "sees all users" do
   end
 end
