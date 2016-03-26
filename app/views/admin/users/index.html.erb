@@ -30,20 +30,8 @@
         <th></th>
       </tr>
     </thead>
-    <% 2.times do |n| %>
-      <tr id="<%= n %>-order">
-        <td class="col-md-2"><%= link_to "#{n}","#" %></td>
-        <td class="text-nowrap col-md-6"><%= link_to "Name ##{n}","#"%></td>
-        <td class="col-md-2">
-          <select>
-            <option selected="selected" value="active">active</option>
-            <option value="suspended">suspended</option>
-          </select>
-        </td>
-        <td class="col-md-2">
-          <button class="btn btn-checkout btn-s">update status</button>
-        </td>
-      </tr>
-    <% end %>
+    <div class="users">
+      <%= render partial: "admin/users/user", collection: @users %>
+    </div>
   </table>
 </div>

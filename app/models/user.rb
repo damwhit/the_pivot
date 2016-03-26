@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
 
   enum role: %w(default admin super_admin)
 
+  default_scope -> { order(id: :asc) }
+
   def build_name
     self.first_name = fullname.split[0]
     self.last_name = fullname.split[1..-1].join(" ")

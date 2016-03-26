@@ -56,8 +56,7 @@ module SpecHelpers
   end
 
   def create_and_stub_admin
-    admin = User.create(first_name: "john",
-                        last_name:  "adams",
+    admin = User.create(fullname: "John Adams",
                         email:      "admin@example.com",
                         password:   "password",
                         role: 1)
