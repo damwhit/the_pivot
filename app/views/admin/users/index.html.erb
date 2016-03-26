@@ -1,5 +1,5 @@
 <h3 class="<%= params[:status] %> admin-order-index-header">active users</h3><br>
-<p><a href="#">all users</a> &bull; <a href="#">active users</a> &bull; <a href="#">suspended users</a></p>
+<p><%= link_to "all users", admin_users_path(status: "all") %>&bull; <%= link_to "active users", admin_users_path(status: "active") %> &bull; <%= link_to "suspended users", admin_users_path(status: "suspended") %></p>
 <br>
 <div class="row">
   <div class="col-sm-3">

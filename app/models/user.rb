@@ -24,4 +24,13 @@ class User < ActiveRecord::Base
   def name
     "#{first_name} #{last_name}"
   end
+
+  def self.filter_by_status(status)
+    status ||= "active"
+    if status == "all"
+      User.all
+    else
+      User.where(status: status)
+    end
+  end
 end
