@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   get '/sell', to: 'events#index', as: 'sell'
 
-  resources :events, only: [:index, :show] 
+  resources :events, only: [:index, :show]
   resource :cart, only: [:show]
   resources :cart_products, only: [:create, :destroy, :update]
   resources :mailing_list_emails, only: [:create]

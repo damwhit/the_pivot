@@ -8,9 +8,9 @@ RSpec.feature "UserViewsASpecificEvent", type: :feature do
     listing_1 = listing1
     listing_2 = listing2
 
-    ticket_1 = ticket1.update(row: "5", seat: "8", price: 900)
-    ticket_2 = ticket2.update(row: "5", seat: "9", price: 900)
-    ticket_3 = ticket3.update(row: "7", seat: "3", price: 1000)
+    ticket1.update(row: "5", seat: "8", price: 900)
+    ticket2.update(row: "5", seat: "9", price: 900)
+    ticket3.update(row: "7", seat: "3", price: 1000)
 
     visit "/festivals"
 

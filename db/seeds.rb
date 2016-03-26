@@ -5,7 +5,6 @@ popups = Category.find_or_create_by!(name:"popups")
 comedy = Category.find_or_create_by!(name:"comedy")
 conventions = Category.find_or_create_by!(name:"conventions")
 
-
 venue1 = Venue.find_or_create_by!(
   name: "Outside",
   city: "Lima",
@@ -78,28 +77,31 @@ end
     status: "active")
 end
 
-user1 = User.create(
-        first_name: "Dave",
-        last_name: "Whit",
-        email: "mustachefodays@example.com",
-        password: "password",
-        role: 0,
-        fullname: "Dave Whit"
-        )
+User.create(
+  first_name: "Dave",
+  last_name: "Whit",
+  email: "mustachefodays@example.com",
+  password: "password",
+  role: 0,
+  fullname: "Dave Whit")
 
-user2 = User.create(
-        first_name: "Whitney",
-        last_name: "Whit",
-        email: "whit@example.com",
-        password: "password",
-        role: 0,
-        fullname: "Whitney Whit"
-        )
+User.create(
+  first_name: "Whitney",
+  last_name: "Whit",
+  email: "whit@example.com",
+  password: "password",
+  role: 0,
+  fullname: "Whitney Whit")
+
 event = Event.find_by(name: "Muppet Rock")
 
-listing1 = Listing.find_or_create_by!(user_id: User.first.id, event_id: event.id)
+listing1 = Listing.find_or_create_by!(
+             user_id: User.first.id,
+             event_id: event.id)
 
-listing2 = Listing.find_or_create_by!(user_id: User.last.id, event_id: event.id)
+listing2 = Listing.find_or_create_by!(
+             user_id: User.last.id,
+             event_id: event.id)
 
 listing1.tickets.find_or_create_by!(price: 800, seat: "10", row: "2")
 

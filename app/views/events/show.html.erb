@@ -26,7 +26,7 @@
                 quantity: <%= select_tag "quantity", options_for_select([*1..10]), {class: "form-control form-control-sm"} %>
               </div>
           <% end %>
-            row: <%= listing.tickets.first.row %> <span class="tab-space"> quantity: <%= listing.tickets.count %></span> <span class="tab-space">price: <%= listing.tickets.first.format_price %></span>
+            row: <%= listing.view_row %> <span class="tab-space"> quantity: <%= listing.count_tickets %></span> <span class="tab-space">price: <%= listing.view_price %></span>
             <button class="btn btn-default btn-success listing-cart">add to cart!</button>
           </div>
       </div>
