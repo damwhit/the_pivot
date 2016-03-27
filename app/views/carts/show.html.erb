@@ -25,15 +25,16 @@
               <p class="product-title"><%= ticket.get_event.name %></p>
               <h3 class="product-price">price: <%= ticket.format_price %></h3>
               <h3 class="product-seat">row: <%= ticket.row %></h3>
+              <h3 class="product-seat">seat: <%= ticket.seat %></h3>
               <div id="quantity-dropdown" class="row text-left">
                 <div class="form-inline">
                   <%= form_tag() do %>
                     <input type="hidden" name="_method" value="patch">
                     <div class="col-xs-6 col-sm-4 col-md-3">
-                      <%= select_tag "quantity", options_for_select([*1..10]), {class: "form-control form-control-sm"} %>
+                      <%#= select_tag "quantity", options_for_select([*1..10]), {class: "form-control form-control-sm"} %>
                     </div>
                     <div class="text-left">
-                      <%= submit_tag "Update", class:"btn btn-little-owl"%>
+                      <%#= submit_tag "Update", class:"btn btn-little-owl"%>
                     </div>
                   <% end %>
                 </div>

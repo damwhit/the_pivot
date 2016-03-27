@@ -42,7 +42,9 @@ class Listing < ActiveRecord::Base
 
   def seats
     tickets.map do |ticket|
-      ticket.seat
+      if ticket.status == "active"
+        ticket.seat
+      end
     end
   end
 end

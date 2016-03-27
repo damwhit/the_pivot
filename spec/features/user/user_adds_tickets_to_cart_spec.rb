@@ -12,7 +12,6 @@ RSpec.feature "UserAddsTicketToCart", type: :feature do
 
     within("#listing-#{listing.id}") do
       select "10", from: "seats"
-      select "11", from: "seats"
       click_on "add to cart!"
     end
 
@@ -23,8 +22,6 @@ RSpec.feature "UserAddsTicketToCart", type: :feature do
     click_on "cart"
 
     expect(current_path).to eq("/cart")
-
-    save_and_open_page
 
     expect(page).to have_content(event.name)
     expect(page).to have_content(listing.tickets.first.format_price)

@@ -7,7 +7,6 @@ class CartListingsController < ApplicationController
       Ticket.find_by(seat: seat)
     end
     @cart.add_tickets(tickets)
-    # @cart.add_listing(listing.id, params[:quantity])
     session[:cart] = @cart.contents
     flash[:info] = "listing number #{listing.id} added to cart!"
     redirect_to "/#{listing.listing_category}"
