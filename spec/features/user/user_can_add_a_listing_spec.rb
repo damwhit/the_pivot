@@ -17,8 +17,6 @@ RSpec.feature "UserAddsListingForAnEvent", type: :feature do
 
     visit "/"
 
-    save_and_open_page
-
     expect(page).to_not have_content("sell tickets")
 
     click_on "sign in"
