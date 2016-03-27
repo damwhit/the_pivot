@@ -4,7 +4,7 @@ class ListingsController < ApplicationController
   end
 
   def create
-    redirect_to user_listings_path
+    require "pry"; binding.pry
   end
 
 end

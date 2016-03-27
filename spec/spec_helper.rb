@@ -22,8 +22,8 @@ module SpecHelpers
   def event
     category1.events.find_or_create_by(
       name: "Sun Festival",
-      venue_id: venue.id,
-      time: "8:00",
+      venue_id: venue1.id,
+      time: "March 02, 2017 16:00",
       status: "active")
   end
 

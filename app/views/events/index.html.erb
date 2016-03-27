@@ -28,24 +28,22 @@
         <th>event</th>
         <th>date</th>
         <th>time/venue</th>
-        <th>description</th>
         <th>category</th>
         <th>tags</th>
       </tr>
     </thead>
     <tbody>
-      <% 10.times do %>
+      <% @events.each do |event| %>
           <tr class="text-align-center">
-            <th><img class="admin-product-image" src="http://s3.amazonaws.com/littleowl-turing/products/images/000/000/031/small/open-uri20160310-3-2dc6lz?1457653073" alt="Open uri20160310 3 2dc6lz?1457653073"></th>
-            <th>
-              <%= button_to "Create Listing", new_user_listing_path(current_user), method: :get, class:"btn btn-primary" %>
-            </th>
-            <th>Dinosaur.js</th>
-            <th>2016-06-21</th>
-            <th>7:30pm at Colorado Convention Center</th>
-            <th>Big important conference</th>
-            <th>conventions</th>
-            <th>tech, multi-day</th>
+            <td><%= image_tag(event.image.url(:index), class: "event-image-small") %></td>
+            <td>
+              <%= button_to "create listing", new_user_listing_path(current_user), method: :get, class:"btn btn-primary" %>
+            </td>
+            <td><%= event.name %></td>
+            <td><%= event.format_date %></td>
+            <td><%= event.format_time %> at <%= event.venue %></td>
+            <td><%= event.category %></td>
+            <td>event_tags</td>
           </tr>
       <% end %>
     </tbody>
