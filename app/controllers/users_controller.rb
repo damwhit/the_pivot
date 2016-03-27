@@ -21,6 +21,7 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
+    @listings = Listing.order(updated_at: :desc).take(3)
   end
 
 private

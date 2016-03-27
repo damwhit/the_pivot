@@ -51,4 +51,8 @@ class Listing < ActiveRecord::Base
   def view_price
     tickets.first.format_price
   end
+
+  def format_date
+    updated_at.strftime("%Y-%m-%d")
+  end
 end

@@ -46,7 +46,15 @@ module SpecHelpers
       name: "Sun Festival",
       venue_id: venue1.id,
       time: "March 02, 2017 16:00",
-      status: "active")
+      status: "upcoming")
+  end
+
+  def event2
+    category1.events.find_or_create_by!(
+      name: "Moon Festival",
+      venue_id: venue1.id,
+      time: "March 02, 2015 16:00",
+      status: "inactive")
   end
 
   def make_listings_and_tickets

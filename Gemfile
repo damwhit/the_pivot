@@ -19,7 +19,8 @@ gem 'unicorn'
 gem 'stripe'
 gem 'chartkick'
 gem 'groupdate'
-
+gem 'will_paginate', '~> 3.0.6'
+gem 'bootstrap-will_paginate'
 
 group :development, :test do
   gem 'rspec'
@@ -40,6 +41,7 @@ end
 group :test do
   gem 'shoulda-matchers', '~> 3.1'
   gem 'simplecov', require: false
+  gem 'selenium-webdriver'
 end
 
 ruby "2.2.4"
