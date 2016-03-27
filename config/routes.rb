@@ -4,9 +4,9 @@ Rails.application.routes.draw do
   get '/sell', to: 'events#index', as: 'sell'
   get "/dashboard", to: "users#show", as: "user_dashboard"
 
+  resources :listings, only: [:index, :show]
   resources :events, only: [:index, :show] do
-    resources :listings, only: [:new, :create, :index]
-    get "/listing", to: "listings#show", as: "show"
+    resources :listings, only: [:new, :create]
   end
 
   resource :cart, only: [:show]

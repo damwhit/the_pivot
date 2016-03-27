@@ -8,7 +8,7 @@ RSpec.feature "UserAddsListingForAnEvent", type: :feature do
                         fullname: "John Adams",
                         email: "email@example.com",
                         password: "password")
-    @event = event
+    @event = event1
   end
 
   scenario "user adds a listing", js: true do
@@ -37,10 +37,10 @@ RSpec.feature "UserAddsListingForAnEvent", type: :feature do
 
     click_on "create listing"
 
-    expect(current_path).to eq("/users/#{@user.id}/listings/new")
+    expect(current_path).to eq("/events/#{@event.id}/listings/new")
 
     fill_in "price", with: "10"
-    fill_in "row_number", with: "5"
+    fill_in "row", with: "5"
     fill_in "seat_number_1", with: "10"
 
     click_on "add seat"
@@ -55,6 +55,13 @@ RSpec.feature "UserAddsListingForAnEvent", type: :feature do
 
     expect(current_path).to eq("/dashboard")
 
+    within(".table-listings") do
+      expect(page).to have_content("$30.00")
+    end
+
+    within".alert" do
+      expect(page).to have_content("You just created a new listing!")
+    end
   end
 end
 

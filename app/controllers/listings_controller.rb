@@ -13,11 +13,19 @@ class ListingsController < ApplicationController
     end
     if @listing.save
       flash[:info] = "You just created a new listing!"
-      redirect_to user_dashboard_path(current_user)
+      redirect_to user_dashboard_path
     else
       flash.now[:alert] = "Sorry, boss lolololololololol.  Something went wrong ;>(... Please try again."
       render :new
     end
+  end
+
+  def index
+    @listings = Listing.all
+  end
+
+  def show
+    @listing = Listing.find(params[:id])
   end
 
   private
