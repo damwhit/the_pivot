@@ -4,13 +4,17 @@ RSpec.feature "UserViewsASpecificEvent", type: :feature do
   include SpecHelpers
   scenario "user views a specific event" do
     event = event1
+    user_1 = user1
+    user_2 = user2
 
-    listing_1 = listing1
-    listing_2 = listing2
+    listing_1 = event1.listings.new(user_id: user_1.id)
+    listing_1.tickets << Ticket.new(price: 900, seat: "8", row: "5")
+    listing_1.tickets << Ticket.new(price: 900, seat: "9", row: "5")
+    listing_1.save
 
-    ticket1.update(row: "5", seat: "8", price: 900)
-    ticket2.update(row: "5", seat: "9", price: 900)
-    ticket3.update(row: "7", seat: "3", price: 1000)
+    listing_2 = event1.listings.new(user_id: user_2.id)
+    listing_2.tickets << Ticket.new(price: 1000, seat: "3", row: "7")
+    listing_2.save
 
     visit "/festivals"
 
