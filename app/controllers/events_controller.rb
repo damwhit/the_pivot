@@ -1,7 +1,9 @@
 class EventsController < ApplicationController
 
   def index
-    @events = Event.where("time >= ?", Time.zone.now.beginning_of_day).paginate(page: params[:page]).order(time: :asc)
+    @events = Event.upcoming_events.paginate(page:
+                                             params[:page]).order(time:
+                                                                  :asc)
   end
 
   def show
