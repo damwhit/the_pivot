@@ -11,6 +11,8 @@ class Event < ActiveRecord::Base
   # validates :description, presence: true
   # validates :category_id, presence: true
 
+  scope :upcoming_events, -> { where("time >= ?", Time.zone.now.beginning_of_day) }
+
   has_attached_file :image,
       styles: { index: '275x175>', show: '550x350<', small: '137.5x87.5>' },
       default_url: "logo.ico"
@@ -25,6 +27,14 @@ class Event < ActiveRecord::Base
 
   def format_time
     time.strftime("%I:%M%P")
+  end
+
+  def time_venue
+    "#{format_time} at #{venue.name}"
+  end
+
+  def format_location
+    "#{venue.city}, #{venue.state}"
   end
 
   def self.active_index

@@ -1,6 +1,7 @@
+
 <div class="textContainer order-hero-unit user-dashboard-hero-unit">
   <div class="text-container hero-container">
-    <h1>Dis is yo dashboard, <%= @user.name %></h1>
+    <h1>Dis is yo dashboard, <%= @user.first_name %></h1>
   </div>
 </div><br>
 <div id="orders">
@@ -38,10 +39,10 @@
   <div class="row">
     <div class="col-sm-8 col-sm-offset-2 outline" >
       <h1>listings</h1>
-      <h5 class="ljust"> <%= link_to "Create new listing", new_user_listing_path(current_user)%></h5>
-      <h5 class="rjust"> <%= link_to "view all listings", '#' %> </h5>
+      <h5 class="ljust"><%= link_to "Create new listing", sell_path %></h5>
+      <h5 class="rjust"> <%= link_to "view all listings", listings_path %> </h5>
       <div class="table-responsive">
-        <table class="table table-hover table-condensed table-products table-bordered">
+        <table class="table table-hover table-condensed table-listings table-bordered">
           <thead>
             <tr>
               <th class="text-center">listing</th>
@@ -51,13 +52,9 @@
               <th></th>
             </tr>
           </thead>
-          <% 3.times do %>
+          <% @listings.each do |listing| %>
             <tr>
-              <td><h4><%= link_to '22', '#' %></h4></td>
-              <td><h4>2016-06-21</h4></td>
-              <td><h4>active</h4></td>
-              <td><h4>$200</h4></td>
-              <td><h4><%= link_to "details", '#' %></h4></td>
+              <%= render partial: "shared/listing_info", locals: {listing: listing} %>
             </tr>
           <% end %>
         </table>

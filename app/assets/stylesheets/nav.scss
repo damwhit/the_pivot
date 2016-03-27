@@ -27,6 +27,13 @@
   margin-left: -5px;
 }
 
+$cornflower-blue: #777;
+
+.sell {
+  color: $cornflower-blue;
+  margin-top: 10px;
+}
+
 .dropdown-menu > li > a:hover, .dropdown-menu > .active > a:hover {
  text-decoration: none;
  background-color: white;
