@@ -5,7 +5,11 @@ class Ticket < ActiveRecord::Base
   validates :price, presence: true
 
   def format_price
-    "$#{price.to_i / 100}"
+    "$#{price / 100}"
+  end
+
+  def self.formatted_sum
+    "$#{sum(:price)}.00"
   end
 
   def get_event

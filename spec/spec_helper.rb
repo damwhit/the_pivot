@@ -46,15 +46,30 @@ module SpecHelpers
       name: "Sun Festival",
       venue_id: venue1.id,
       time: "March 02, 2017 16:00",
-      status: "active")
+      status: "upcoming")
+  end
+
+  def event2
+    category1.events.find_or_create_by!(
+      name: "Moon Festival",
+      venue_id: venue1.id,
+      time: "March 02, 2015 16:00",
+      status: "inactive")
   end
 
   def make_listings_and_tickets
-    listing1
-    listing2
-    ticket1
-    ticket2
-    ticket3
+    event = event1
+    user_1 = user1
+    user_2 = user2
+
+    listing_1 = event1.listings.new(user_id: user_1.id)
+    listing_1.tickets << Ticket.new(price: 800, seat: "10", row: "5")
+    listing_1.tickets << Ticket.new(price: 800, seat: "11", row: "5")
+    listing_1.save
+
+    listing_2 = event1.listings.new(user_id: user_2.id)
+    listing_2.tickets << Ticket.new(price: 1000, seat: "1", row: "1")
+    listing_2.save
   end
 
   def listing1
@@ -68,15 +83,15 @@ module SpecHelpers
   end
 
   def ticket1
-    listing1.tickets.find_or_create_by!(price: 800, seat: "10", row: "2")
+    Ticket.find_or_create_by!(price: 800, seat: "10", row: "2", listing_id: listing1.id)
   end
 
   def ticket2
-    listing1.tickets.find_or_create_by!(price: 800, seat: "11", row: "2")
+    Ticket.find_or_create_by!(price: 800, seat: "11", row: "2", listing_id: listing1.id)
   end
 
   def ticket3
-    listing2.tickets.find_or_create_by!(price: 1000, seat: "1", row: "1")
+    Ticket.find_or_create_by!(price: 1000, seat: "1", row: "1", listing_id: listing2.id)
   end
 
   def make_events
