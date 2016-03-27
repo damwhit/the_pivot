@@ -14,7 +14,7 @@
 
   <div class="col-md-6">
     <div class="tickets-title">
-      <h1>available tickets</h1>
+      <h1>available listings</h1>
     </div>
     <% counter = 0  %>
     <% @listings.each do |listing| %>
@@ -25,7 +25,7 @@
             <%= form_tag(cart_listings_path(listing_id: listing.id), method: "post") do %>
 
               <div class="col-xs-3 col-sm-3 col-md-3 form-inline">
-                 seats: <%= select_tag "seats", options_for_select(listing.seats), {multiple: true, class: "form-control form-control-sm"} %>
+                 seats: <%= select_tag "seats", options_for_select(listing.seats), {multiple: true, class: "form-control form-control-sm dropdown-toggle"} %>
                </div>
 
               <%= submit_tag "add to cart!", class: "btn btn-default btn-success listing-cart"%>

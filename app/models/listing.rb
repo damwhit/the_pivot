@@ -48,7 +48,3 @@ class Listing < ActiveRecord::Base
     end
   end
 end
-
-# <div class="col-xs-3 col-sm-3 col-md-3 form-inline">
-#   quantity: <%= select_tag "quantity", options_for_select([*1..10]), {class: "form-control form-control-sm"} %>
-# </div>
