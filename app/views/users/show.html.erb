@@ -1,6 +1,6 @@
 <div class="textContainer order-hero-unit user-dashboard-hero-unit">
   <div class="text-container hero-container">
-    <h1>Dis is yo dashboard, <%= @user.name %></h1>
+    <h1>Dis is yo dashboard, <%= @user.first_name %></h1>
   </div>
 </div><br>
 <div id="orders">
@@ -53,11 +53,11 @@
           </thead>
           <% @listings.each do |listing| %>
             <tr>
-              <td><h4><%= link_to listing.id, '#' %></h4></td>
-              <td><h4><%= listing.event.format_date %></h4></td>
+              <td><h4><%= link_to listing.id, listing_path(listing) %></h4></td>
+              <td><h4><%= listing.format_date %></h4></td>
               <td><h4><%= listing.event.status %></h4></td>
-              <td><h4>$<%= listing.tickets.sum(:price) %>.00</h4></td>
-              <td><h4><%= link_to "details", '#' %></h4></td>
+              <td><h4><%= listing.tickets.formatted_sum %></h4></td>
+              <td><h4><%= link_to "details", listing_path(listing) %></h4></td>
             </tr>
           <% end %>
         </table>

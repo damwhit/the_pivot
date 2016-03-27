@@ -27,6 +27,14 @@ class Event < ActiveRecord::Base
     time.strftime("%I:%M%P")
   end
 
+  def time_venue
+    "#{format_time} at #{venue.name}"
+  end
+
+  def format_location
+    "#{venue.city}, #{venue.state}"
+  end
+
   def self.active_index
     where(inactive: false).order(:name)
   end

@@ -18,7 +18,7 @@
   </div>
 </div>
 <br>
-<p><a href="#">See all events</a></p>
+<p><%= link_to "see all events", events_path %></p>
 <div class="table-responsive">
   <table class="table table-hover table-condensed table-bordered">
     <thead>
@@ -37,13 +37,13 @@
           <tr class="text-align-center">
             <td><%= image_tag(event.image.url(:index), class: "event-image-small") %></td>
             <td>
-              <%= button_to "create listing", new_event_listing_path(@events.first), method: :get, class:"btn btn-primary", :params => {event: event} %>
+              <%= button_to "create listing", new_event_listing_path(event), method: :get, class:"btn btn-primary", :params => {event: event} %>
             </td>
             <td><%= event.name %></td>
             <td><%= event.format_date %></td>
-            <td><%= event.format_time %> at <%= event.venue.name %></td>
+            <td><%= event.time_venue %></td>
             <td><%= event.category.name %></td>
-            <td>event_tags</td>
+            <td>**event_tags**</td>
           </tr>
       <% end %>
     </tbody>
