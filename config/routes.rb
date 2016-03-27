@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     resources :products, only: [:new, :create, :index, :update]
     resources :orders, only: [:index, :show, :update]
     resources :comments, only: [:create]
-    resources :users, only: [:index]
+    resources :users, only: [:index, :update]
     resources :events, only: [:index, :new]
     resources :venues, only: [:index, :new]
     resources :categories, only: [:index, :new]

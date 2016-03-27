@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   validates :fullname, presence: true
   validates :email, presence: true, uniqueness: true
   validates :password_digest, presence: true
+  validates :status, presence: true, inclusion: { in: %w(active suspended) }
 
   enum role: %w(default admin super_admin)
 
