@@ -38,7 +38,7 @@
   <div class="row">
     <div class="col-sm-8 col-sm-offset-2 outline" >
       <h1>listings</h1>
-      <h5 class="ljust"> <%= link_to "Create new listing", new_user_listing_path(current_user)%></h5>
+      <h5 class="ljust"><%= link_to "Create new listing", event_listings_path(@events.first)%></h5>
       <h5 class="rjust"> <%= link_to "view all listings", '#' %> </h5>
       <div class="table-responsive">
         <table class="table table-hover table-condensed table-products table-bordered">

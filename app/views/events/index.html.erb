@@ -37,7 +37,7 @@
           <tr class="text-align-center">
             <td><%= image_tag(event.image.url(:index), class: "event-image-small") %></td>
             <td>
-              <%= button_to "create listing", new_user_listing_path(current_user), method: :get, class:"btn btn-primary", :params => {event: event} %>
+              <%= button_to "create listing", new_event_listing_path(@events.first), method: :get, class:"btn btn-primary", :params => {event: event} %>
             </td>
             <td><%= event.name %></td>
             <td><%= event.format_date %></td>
