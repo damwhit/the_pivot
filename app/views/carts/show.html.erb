@@ -11,20 +11,21 @@
   </div>
   <div class="row">
     <div class="col-sm-7">
-      <% 3.times do %>
+      <% @cart.listings.each do |listing| %>
       <div class="cart-product">
         <div class="row">
           <div class="col-xs-5">
             <div class="cart-image">
-              <%= image_tag('http://mortenbentzon.com/wp-content/uploads/2014/07/midnightsun_blog161-e1406761557421.jpg', class: "event-image-sm img-responsive") %>
+              <%= image_tag(listing.event.image.url(:show), class: "event-image-sm img-responsive") %>
             </div>
             <h5><%= link_to "remove from cart", '#' %></h5>
           </div>
           <div class="col-xs-4 col-sm-7">
             <div class="row">
-              <p class="product-title">Sun Festival</p>
-              <h3 class="product-price">$100.00</h3>
-              <h3 class="product-seat">Row 5 | Seat 7</h3>
+              <p class="product-title"><%= listing.event.name %></p>
+              <h3 class="product-price">price: <%= listing.view_price %></h3>
+              <h3 class="product-seat">row: <%= listing.view_row %></h3>
+              <h3 class="product-seat">quantity: <%= listing.count_tickets %></h3>
               <div id="quantity-dropdown" class="row text-left">
                 <div class="form-inline">
                   <%= form_tag() do %>
@@ -47,9 +48,9 @@
     <div class="col-sm-4 col-sm-offset-1 text-center checkout-con">
       <div class="cart">
         <div class="product-header">
-          <h3>Order Subtotal (3 items)</h3>
+          <h3>Order Subtotal (<%= @cart.count %> items)</h3>
         </div>
-        <h1 class="cart-total">$300.00</h1>
+        <h1 class="cart-total">$<%= cart_total(@cart.listings) %></h1>
         <div class="checkout">
           <% if current_user %>
             <%= link_to "Checkout", '#', class:"btn btn-checkout form-control" %>

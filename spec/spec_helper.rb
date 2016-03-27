@@ -54,6 +54,7 @@ module SpecHelpers
     listing2
     ticket1
     ticket2
+    ticket3
   end
 
   def listing1

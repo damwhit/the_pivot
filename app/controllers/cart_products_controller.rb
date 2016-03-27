@@ -1,11 +1,11 @@
 class CartProductsController < ApplicationController
 
   def create
-    product = Product.find(params[:product_id])
-    @cart.add_product(product.id, params[:quantity])
+    listing = Listing.find(params[:listing_id])
+    @cart.add_listing(listing.id, params[:quantity])
     session[:cart] = @cart.contents
-    flash[:info] = "#{product.name} added to cart"
-    redirect_to products_path
+    flash[:info] = "listing number #{listing.id} added to cart!"
+    redirect_to "/#{listing.listing_category}"
   end
 
   def destroy
