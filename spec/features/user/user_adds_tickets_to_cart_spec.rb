@@ -3,7 +3,6 @@ require "rails_helper"
 RSpec.feature "UserAddsTicketToCart", type: :feature do
   include SpecHelpers
   scenario "user adds Ticket to cart" do
-
     make_listings_and_tickets
 
     event = Event.last
@@ -23,8 +22,6 @@ RSpec.feature "UserAddsTicketToCart", type: :feature do
     click_on "cart"
 
     expect(current_path).to eq("/cart")
-
-    visit '/cart'
 
     expect(page).to have_content(event.name)
     expect(page).to have_content(listing.tickets.first.format_price)

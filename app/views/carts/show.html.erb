@@ -45,24 +45,27 @@
       </div>
       <% end %>
     </div>
-    <div class="col-sm-4 col-sm-offset-1 text-center checkout-con">
-      <div class="cart">
-        <div class="product-header">
-          <h3>Order Subtotal (<%= @cart.count %> items)</h3>
-        </div>
-        <h1 class="cart-total">$<%= cart_total(@cart.listings) %></h1>
-        <div class="checkout">
-          <% if current_user %>
-            <%= link_to "Checkout", '#', class:"btn btn-checkout form-control" %>
-          <% else %>
-            <%= link_to "Checkout", '#', class:"btn btn-checkout form-control" %>
-          <% end %>
-        </div>
-        <h4>or</h4>
-        <div class="continue-shopping">
-          <%= link_to "Continue Shopping", '#', class:"btn btn-primary form-control" %>
+
+    <% if !@cart.empty? %>
+      <div class="col-sm-4 col-sm-offset-1 text-center checkout-con">
+        <div class="cart">
+          <div class="product-header">
+            <h3>Order Subtotal (<%= @cart.count %> items)</h3>
+          </div>
+          <h1 class="cart-total">$<%= cart_total(@cart.listings) %></h1>
+          <div class="checkout">
+            <% if current_user %>
+              <%= link_to "Checkout", '#', class:"btn btn-checkout form-control" %>
+            <% else %>
+              <%= link_to "Checkout", '#', class:"btn btn-checkout form-control" %>
+            <% end %>
+          </div>
+          <h4>or</h4>
+          <div class="continue-shopping">
+            <%= link_to "Continue Shopping", '#', class:"btn btn-primary form-control" %>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
   </div>
 </div>

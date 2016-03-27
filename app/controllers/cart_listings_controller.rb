@@ -1,4 +1,4 @@
-class CartProductsController < ApplicationController
+class CartListingsController < ApplicationController
 
   def create
     listing = Listing.find(params[:listing_id])

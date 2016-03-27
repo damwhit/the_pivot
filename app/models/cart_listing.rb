@@ -1,5 +1,5 @@
 class CartListing < SimpleDelegator
-attr_reader :listing, :quantity
+  attr_reader :listing, :quantity
 
   def initialize(listing_id, quantity)
     @listing = Listing.find(listing_id)

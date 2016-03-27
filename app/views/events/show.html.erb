@@ -22,7 +22,7 @@
         <div class="panel-heading"> Listing: <%= counter += 1 %> </div>
           <div id="listing-<%= listing.id %>", class="panel-body">
             row: <%= listing.view_row %> <span class="tab-space"> quantity: <%= listing.count_tickets %></span> <span class="tab-space">price: <%= listing.view_price %></span>
-            <%= form_tag(cart_products_path(listing_id: listing.id), method: "post") do %>
+            <%= form_tag(cart_listings_path(listing_id: listing.id), method: "post") do %>
               <div class="col-xs-3 col-sm-3 col-md-3 form-inline">
                 quantity: <%= select_tag "quantity", options_for_select([*1..10]), {class: "form-control form-control-sm"} %>
               </div>
