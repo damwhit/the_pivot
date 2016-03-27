@@ -1,6 +1,8 @@
 class Event < ActiveRecord::Base
   belongs_to :category
   belongs_to :venue
+  has_many :listings
+
   # has_many :order_products
   # has_many :orders, through: :order_products
 
@@ -16,10 +18,6 @@ class Event < ActiveRecord::Base
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
   scope :active_products, -> { where(inactive: false) }
-
-  def display_price
-    "$#{price.to_i / 100}"
-  end
 
   def format_date
     time.strftime("%a,%e %b")

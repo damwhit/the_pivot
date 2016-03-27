@@ -1,17 +1,14 @@
 <div class="container-fluid">
   <div class="col-md-6">
     <div class="event-title">
-      <h1><%= @event %></h1>
+      <h1><%= @event.name %></h1>
     </div>
-    <%= image_tag('http://mortenbentzon.com/wp-content/uploads/2014/07/midnightsun_blog161-e1406761557421.jpg', class: "event-image-large") %>
+    <%= image_tag(@event.image.url(:show), class: "event-image-large") %>
     <div class="event-description">
-      Saturday, August 6
-    </div>
-    <div class="event-description">
-      2:00 pm at Glorious Mountain
+      <%= @event.format_time %>
     </div>
     <div class="event-description">
-      Lima, Peru
+      <%= @event.venue.city %>, <%= @event.venue.state %> at <%= @event.venue.name %>
     </div>
   </div>
 
@@ -19,16 +16,17 @@
     <div class="tickets-title">
       <h1>available tickets</h1>
     </div>
-    <% 10.times do |num| %>
+    <% counter = 0  %>
+    <% @listings.each do |listing| %>
       <div class="panel panel-default">
-        <div class="panel-heading"> listing <%= "#{num + 1}" %> </div>
-          <div class="panel-body">
+        <div class="panel-heading"> Listing: <%= counter += 1 %> </div>
+          <div id="listing-<%= listing.id %>", class="panel-body">
             <%= form_tag() do %>
               <div class="col-xs-3 col-sm-3 col-md-3 form-inline">
                 quantity: <%= select_tag "quantity", options_for_select([*1..10]), {class: "form-control form-control-sm"} %>
               </div>
           <% end %>
-            <span class="tab-space">row: 4 | seat 5</span><span class="tab-space">price: $75</span>
+            row: <%= listing.view_row %> <span class="tab-space"> quantity: <%= listing.count_tickets %></span> <span class="tab-space">price: <%= listing.view_price %></span>
             <button class="btn btn-default btn-success listing-cart">add to cart!</button>
           </div>
       </div>

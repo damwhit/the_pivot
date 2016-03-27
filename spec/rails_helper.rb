@@ -10,9 +10,6 @@ require 'support/database_cleaner'
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
-  config.use_transactional_fixtures = false
-  config.infer_spec_type_from_file_location!
-  config.filter_rails_from_backtrace!
 
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
@@ -29,6 +26,9 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
+
+  config.infer_spec_type_from_file_location!
+  config.filter_rails_from_backtrace!
 end
 
 
@@ -39,15 +39,4 @@ Shoulda::Matchers.configure do |config|
 
     with.library :rails
   end
-end
-
-def create_and_stub_admin
-  admin = User.create(first_name: "john",
-                      last_name: "adams",
-                      email:     "admin@example.com",
-                        password: 'password',
-                        role: 1
-                        )
-  ApplicationController.any_instance.stub(:current_user) {admin}
-  admin
 end

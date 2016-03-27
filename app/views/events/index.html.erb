@@ -37,12 +37,12 @@
           <tr class="text-align-center">
             <td><%= image_tag(event.image.url(:index), class: "event-image-small") %></td>
             <td>
-              <%= button_to "create listing", new_user_listing_path(current_user), method: :get, class:"btn btn-primary" %>
+              <%= button_to "create listing", new_user_listing_path(current_user), method: :get, class:"btn btn-primary", :params => {event: event} %>
             </td>
             <td><%= event.name %></td>
             <td><%= event.format_date %></td>
-            <td><%= event.format_time %> at <%= event.venue %></td>
-            <td><%= event.category %></td>
+            <td><%= event.format_time %> at <%= event.venue.name %></td>
+            <td><%= event.category.name %></td>
             <td>event_tags</td>
           </tr>
       <% end %>

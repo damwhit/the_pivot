@@ -1,0 +1,12 @@
+<tr id="user-<%= user.id %>">
+  <td class="col-md-2"><%= link_to "#{user.id}","#" %></td>
+  <td class="text-nowrap col-md-6"><%= link_to "#{user.name}","#"%></td>
+  <%= form_for(user, url: admin_user_path(user.id), method: :patch) do |f| %>
+    <td class="col-md-2">
+    <%= f.select(:status, ["active", "suspended"]) %>
+    </td>
+    <td class="col-md-2">
+      <%= f.submit "update status", class: "btn btn-checkout btn-s" %>
+    </td>
+  <% end %>
+</tr>

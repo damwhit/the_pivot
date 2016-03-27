@@ -20,13 +20,13 @@
   </div>
     <div>
       <div class="form-group text-center form-div">
-          <%= form_for(user_listings_path, method: :post) do %>
+          <%= form_for(user_listings_path(current_user), method: :post) do %>
             <%= label_tag :price,  nil, class:"sr-only"%>
             <%= text_field_tag :price, nil, required:true, placeholder: "price", class:"form-control text-input" %><br>
             <%= label_tag :row_number,  nil, class:"sr-only"  %>
             <%= text_field_tag :row_number, nil, required:true, placeholder: "row number", class:"form-control text-input" %><br>
             <%= label_tag :seat_number,  nil, class:"sr-only"  %>
-            <%= text_field_tag :seat_number, nil, required:true, placeholder: "seat number <%= 1..10 %>", class:"form-control text-input", id: "seat_number_<%= 1..10 %>" %><br>
+            <%= text_field_tag :seat_number, nil, required:true, placeholder: "seat number 1", class:"form-control text-input", id: "seat_number_1", name: "seat_number[0]" %><br>
             <button id="add-seat", class="btn btn-primary">add seat</button>
             <%= submit_tag "create listing", class:"btn btn-checkout", method: :post %>
         <% end %>

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get '/sell', to: 'events#index', as: 'sell'
   get "/dashboard", to: "users#show", as: "user_dashboard"
 
-  resources :products, only: [:index, :show]
+  resources :events, only: [:index, :show]
   resource :cart, only: [:show]
   resources :cart_products, only: [:create, :destroy, :update]
   resources :mailing_list_emails, only: [:create]
@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     resources :products, only: [:new, :create, :index, :update]
     resources :orders, only: [:index, :show, :update]
     resources :comments, only: [:create]
-    resources :users, only: [:index]
+    resources :users, only: [:index, :update]
     resources :events, only: [:index, :new]
     resources :venues, only: [:index, :new]
     resources :categories, only: [:index, :new]
@@ -47,5 +47,4 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
 
   get "/:name", to: "categories#show"
-  get "/event", to: "events#show"
 end
