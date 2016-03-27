@@ -1,12 +1,11 @@
 module CartHelper
-  def cart_total(listings)
-    raw_cart_total(listings) / 100
+  def cart_total(tickets)
+    raw_cart_total(tickets) / 100
   end
 
-  def raw_cart_total(listings)
-    listings.map do |listing|
-      ticket_price = listing.tickets.first.price
-      ticket_price * listing.count_tickets
+  def raw_cart_total(tickets)
+    tickets.map do |ticket|
+      ticket.price
     end.reduce(:+)
   end
 end

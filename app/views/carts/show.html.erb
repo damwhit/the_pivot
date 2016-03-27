@@ -11,21 +11,20 @@
   </div>
   <div class="row">
     <div class="col-sm-7">
-      <% @cart.listings.each do |listing| %>
+      <% @cart.tickets.each do |ticket| %>
       <div class="cart-product">
         <div class="row">
           <div class="col-xs-5">
             <div class="cart-image">
-              <%= image_tag(listing.event.image.url(:show), class: "event-image-sm img-responsive") %>
+               <%= image_tag(ticket.get_event.image.url(:show), class: "event-image-sm img-responsive") %>
             </div>
             <h5><%= link_to "remove from cart", '#' %></h5>
           </div>
           <div class="col-xs-4 col-sm-7">
             <div class="row">
-              <p class="product-title"><%= listing.event.name %></p>
-              <h3 class="product-price">price: <%= listing.view_price %></h3>
-              <h3 class="product-seat">row: <%= listing.view_row %></h3>
-              <h3 class="product-seat">quantity: <%= listing.count_tickets %></h3>
+              <p class="product-title"><%= ticket.get_event.name %></p>
+              <h3 class="product-price">price: <%= ticket.format_price %></h3>
+              <h3 class="product-seat">row: <%= ticket.row %></h3>
               <div id="quantity-dropdown" class="row text-left">
                 <div class="form-inline">
                   <%= form_tag() do %>
@@ -52,7 +51,7 @@
           <div class="product-header">
             <h3>Order Subtotal (<%= @cart.count %> items)</h3>
           </div>
-          <h1 class="cart-total">$<%= cart_total(@cart.listings) %></h1>
+          <h1 class="cart-total">$<%= cart_total(@cart.tickets) %></h1>
           <div class="checkout">
             <% if current_user %>
               <%= link_to "Checkout", '#', class:"btn btn-checkout form-control" %>

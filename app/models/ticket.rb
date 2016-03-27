@@ -7,4 +7,9 @@ class Ticket < ActiveRecord::Base
   def format_price
     "$#{price.to_i / 100}"
   end
+
+  def get_event
+    listing = Listing.find(listing_id)
+    Event.find(listing.event_id)
+  end
 end

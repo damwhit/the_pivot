@@ -5,18 +5,20 @@ class Cart
     @contents = initial_contents || {}
   end
 
-  def add_listing(listing_id, quantity)
-    contents[listing_id.to_s] ||= 0
-    contents[listing_id.to_s] += quantity.to_i
+  def add_tickets(tickets)
+    tickets.each do |ticket|
+      contents[ticket.id.to_s] ||= 0
+      contents[ticket.id.to_s] += 1
+    end
   end
 
   def count
     contents.values.sum
   end
 
-  def listings
-    contents.map do |listing_id, quantity|
-      CartListing.new(listing_id, quantity)
+  def tickets
+    contents.map do |ticket_id, quantity|
+      CartTicket.new(ticket_id, quantity)
     end
   end
 
