@@ -19,6 +19,7 @@
 </div>
 <br>
 <p><%= link_to "see all events", events_path %></p>
+<%= will_paginate %>
 <div class="table-responsive">
   <table class="table table-hover table-condensed table-bordered">
     <thead>
@@ -48,4 +49,5 @@
       <% end %>
     </tbody>
   </table>
+  <%= will_paginate %>
 </div>

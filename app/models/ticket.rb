@@ -9,6 +9,6 @@ class Ticket < ActiveRecord::Base
   end
 
   def self.formatted_sum
-    "$#{sum(:price) / 100}.00"
+    "$#{sum(:price)}.00"
   end
 end

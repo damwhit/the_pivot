@@ -21,7 +21,7 @@
       </a>
     </li>
     <li class="pull-right">
-      <a id="sell" href="/sell" style="color:#777; margin-top: 10px;">sell tickets</a>
+      <%= link_to "sell tickets", sell_path, class: "sell" %>
     </li>
     <%= render partial: "shared/user_functions" %>
   </ul>

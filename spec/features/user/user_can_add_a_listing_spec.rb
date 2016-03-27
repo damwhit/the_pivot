@@ -33,7 +33,7 @@ RSpec.feature "UserAddsListingForAnEvent", type: :feature do
     expect(current_path).to eq("/sell")
 
     expect(page).to have_button("create listing")
-    expect(page).to have_content("#{@event.name}")
+    expect(page).to have_content(@event.name.to_s)
 
     click_on "create listing"
 
@@ -57,24 +57,12 @@ RSpec.feature "UserAddsListingForAnEvent", type: :feature do
 
     within(".table-listings") do
       expect(page).to have_content("$30.00")
+      expect(page).to have_content("Sun Festival")
+      expect(page).to have_content("March 02, 2017 16:00")
+      expect(page).to have_content("active")
     end
-
     within".alert" do
-      expect(page).to have_content("You just created a new listing!")
+      expect(page).to have_content("Your tickets are up for sale!")
     end
   end
 end
-
-# As a logged in user
-# When I visit ‘/’
-# And click on ‘sell tickets’
-# my current page should be '/sell'
-# I see all events paginated and ordered by closest to current date.
-# When I click on "sell tickets for this event" next to the event that I want to sell tickets for.
-# And I fill in the ticket info Row, seat number and the price I would like to sell it for
-# And I click on '+'
-# I get an extra row with only the seat number field
-# I fill in the ticket info seat number
-# And I click on 'Submit listing'
-# I should see 'Your tickets are up for sale!'
-# And I should see the new listing posted on my dashboard
