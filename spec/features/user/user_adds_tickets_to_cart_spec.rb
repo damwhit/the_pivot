@@ -30,4 +30,18 @@ RSpec.feature "UserAddsTicketToCart", type: :feature do
       expect(page).to have_content("$8")
     end
   end
+  scenario "user does not choose a seat and is redirect to event show" do
+    make_listings_and_tickets
+
+    event = Event.last
+    listing = Listing.first
+
+    visit event_path(event)
+
+    within("#listing-#{listing.id}") do
+      click_on "add to cart!"
+    end
+
+    expect(page).to have_content("please select a seat")
+  end
 end

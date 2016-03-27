@@ -14,4 +14,10 @@ class ApplicationController < ActionController::Base
   def current_admin?
     current_user && current_user.admin?
   end
+
+  def get_tickets(seats)
+    seats.map do |seat|
+      Ticket.find_by(seat: seat)
+    end
+  end
 end

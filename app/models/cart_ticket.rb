@@ -1,7 +1,7 @@
 class CartTicket < SimpleDelegator
   attr_reader :listing
 
-  def initialize(ticket_id, _quantity)
+  def initialize(ticket_id)
     @listing = Ticket.find(ticket_id)
     super(@listing)
   end

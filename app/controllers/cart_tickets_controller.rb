@@ -1,15 +1,17 @@
-class CartListingsController < ApplicationController
-
+class CartTicketsController < ApplicationController
   def create
     listing = Listing.find(params[:listing_id])
     seats = params[:seats]
-    tickets = seats.map do |seat|
-      Ticket.find_by(seat: seat)
+    if seats.nil?
+      flash[:alert] = "please select a seat"
+      redirect_to event_path(listing.event_id)
+    else
+      tickets = get_tickets(seats)
+      @cart.add_tickets(tickets)
+      session[:cart] = @cart.contents
+      flash[:info] = "listing number #{listing.id} added to cart!"
+      redirect_to "/#{listing.listing_category}"
     end
-    @cart.add_tickets(tickets)
-    session[:cart] = @cart.contents
-    flash[:info] = "listing number #{listing.id} added to cart!"
-    redirect_to "/#{listing.listing_category}"
   end
 
   def destroy
@@ -33,5 +35,4 @@ class CartListingsController < ApplicationController
   def find_product(id)
     Product.find(id)
   end
-
 end
