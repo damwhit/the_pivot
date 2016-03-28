@@ -2,18 +2,27 @@ require "rails_helper"
 
 RSpec.feature "UserCanPlaceOrderAndViewPreviousOrder", type: :feature do
   include SpecHelpers
-  scenario "user places order and views previous orders", js: true do
+  scenario "user places order and views previous orders" do #, js: true do
     make_listings_and_tickets
 
-    user = user1
+    user = User.create(
+      first_name: "Sam",
+      last_name: "White",
+      email: "fodays@example.com",
+      password: "password",
+      role: 0,
+      fullname: "Sam White"
+    )
 
     event = Event.last
     listing = Listing.first
+    ticket = Ticket.last
 
     visit event_path(event)
 
     within("#listing-#{listing.id}") do
       select "10", from: "seats"
+      select "11", from: "seats"
       click_on "add to cart!"
     end
 
@@ -29,19 +38,25 @@ RSpec.feature "UserCanPlaceOrderAndViewPreviousOrder", type: :feature do
 
     expect(current_path).to eq("/checkout")
 
-    save_and_open_page
-
     expect(page).to have_content(event.name)
     expect(page).to have_content(listing.tickets.first.format_price)
 
-    click_on "submit order"
+    order1 = user.orders.create(street: "1600 pennslyvania",
+                                city: "washington",
+                                state: "District of Columbia",
+                                zip: "46250",
+                                fullname: "jonathon adams",
+                                first_name: "jonathon",
+                                last_name: "adams",
+                                email: "spam@foundingfathers.biz")
 
-    #click_on "Total: $10"
+    order1.order_tickets.create(ticket_id: ticket.id)
 
-    expect(page).to have_content("thank you for your order! :)")
+    click_on "order history"
 
-    #click_on "order history"
-    #expect(page).to have_content(event.name)
+    save_and_open_page
+
+    expect(page).to have_content(order1.id)
 
   end
 end

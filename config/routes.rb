@@ -15,17 +15,18 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create] do
     resources :orders, only: [:index, :create, :show]
-    get "/orders/:order_id/thanks", to: "orders#thanks", as: "thanks"
+    # get "/orders/:order_id/thanks", to: "orders#thanks", as: "thanks"
     resources :orders, only: [:create] #took out index and show
   end
 
-  get "/orderhistory", to: "orders#index"
+  #get "/orderhistory", to: "orders#index"
 
   get "/ordershow", to: "orders#show"
 
   #get "/thanks", to: "orders#thanks", as: "thanks"
 
   get "/checkout", to: "orders#new"
+  post "/checkout", to: "orders#thanks", as: "thanks"
 
   namespace :admin do
     get "/dashboard", to: "events#index"

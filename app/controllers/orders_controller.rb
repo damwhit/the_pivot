@@ -36,6 +36,7 @@ class OrdersController < ApplicationController
 
   def thanks
     if current_user
+      require "pry"; binding.pry
       @order = current_user.orders.find(params[:order_id])
     else
       redirect_to root_path

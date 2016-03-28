@@ -1,13 +1,15 @@
-class OrderProduct < ActiveRecord::Base
-  belongs_to :product
+class OrderTicket < ActiveRecord::Base
   belongs_to :order
+  belongs_to :ticket
 
-  validates :quantity, presence: true
-  validates :product_id, presence: true
+  validates :ticket_id, presence: true
   validates :order_id, presence: true
 
   def total
-    quantity * product.price
+    # ticket.reduce(0) do |ticket|
+    #   ticket.price
+    # end
+    ticket.price
   end
 
   def self.top_product_revenue
