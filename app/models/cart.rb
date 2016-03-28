@@ -6,8 +6,8 @@ class Cart
   end
 
   def add_tickets(tickets)
-    tickets.map do |ticket|
-      contents << ticket.id.to_s
+    tickets.each do |ticket|
+      contents << ticket.id
     end
   end
 

@@ -111,7 +111,7 @@ listing2.tickets << Ticket.new(price: 1000, seat: "1", row: "1")
 listing1.save
 listing2.save
 
-admin = User.create(
+User.create(
   fullname: "admin",
   email: "admin@ticketcacher.com",
   password: "password",
