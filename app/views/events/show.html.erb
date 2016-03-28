@@ -17,7 +17,7 @@
       <h1>available listings</h1>
     </div>
     <% counter = 0  %>
-    <% @listings.each do |listing| %>
+    <% @event.listings.each do |listing| %>
       <div class="panel panel-default">
         <div class="panel-heading"> Listing: <%= counter += 1 %> </div>
           <div id="listing-<%= listing.id %>", class="panel-body">

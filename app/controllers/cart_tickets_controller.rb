@@ -5,9 +5,10 @@ class CartTicketsController < ApplicationController
     seats = params[:seats]
     if seats.nil?
       flash[:alert] = "please select a seat"
-      redirect_to event_path(listing.event_id)
+      @event = listing.event
+      render "events/show"
     else
-      tickets = get_tickets(seats)
+      tickets = get_tickets(seats, listing)
       @cart.add_tickets(tickets)
       session[:cart] = @cart.contents
       flash[:info] = "listing number #{listing.id} added to cart!"

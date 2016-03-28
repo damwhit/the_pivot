@@ -7,9 +7,9 @@ module CartHelper
     tickets.inject(0) { |sum, ticket| sum + ticket.price }
   end
 
-  def get_tickets(seats)
+  def get_tickets(seats, listing)
     seats.map do |seat|
-      Ticket.find_by(seat: seat)
+      listing.tickets.find_by(seat: seat)
     end
   end
 end
