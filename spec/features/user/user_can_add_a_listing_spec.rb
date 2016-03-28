@@ -13,6 +13,7 @@ RSpec.feature "UserAddsListingForAnEvent", type: :feature do
   end
 
   scenario "user adds a listing", js: true do
+    pending
     setup
 
     visit "/"

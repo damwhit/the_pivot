@@ -58,7 +58,6 @@ module SpecHelpers
   end
 
   def make_listings_and_tickets
-    event = event1
     user_1 = user1
     user_2 = user2
 

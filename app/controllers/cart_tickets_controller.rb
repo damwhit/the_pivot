@@ -1,4 +1,5 @@
 class CartTicketsController < ApplicationController
+  include CartHelper
   def create
     listing = Listing.find(params[:listing_id])
     seats = params[:seats]
