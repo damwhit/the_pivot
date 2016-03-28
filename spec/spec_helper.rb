@@ -58,32 +58,25 @@ module SpecHelpers
   end
 
   def make_listings_and_tickets
-    listing1
-    listing2
-    ticket1
-    ticket2
+    user_1 = user1
+    user_2 = user2
+
+    listing_1 = event1.listings.new(user_id: user_1.id)
+    listing_1.tickets << Ticket.new(price: 800, seat: "10", row: "5")
+    listing_1.tickets << Ticket.new(price: 800, seat: "11", row: "5")
+    listing_1.save
+
+    listing_2 = event1.listings.new(user_id: user_2.id)
+    listing_2.tickets << Ticket.new(price: 1000, seat: "1", row: "1")
+    listing_2.save
   end
 
-  def listing1
-    user1
-    event1.listings.find_or_create_by!(user_id: User.first.id)
-  end
-
-  def listing2
-    user2
-    event1.listings.find_or_create_by!(user_id: User.last.id)
-  end
-
-  def ticket1
-    listing1.tickets.find_or_create_by!(price: 800, seat: "10", row: "2")
-  end
-
-  def ticket2
-    listing1.tickets.find_or_create_by!(price: 800, seat: "11", row: "2")
-  end
-
-  def ticket3
-    listing2.tickets.find_or_create_by!(price: 1000, seat: "1", row: "1")
+  def make_listing
+    user_1 = user1
+    listing = event1.listings.new(user_id: user_1.id)
+    listing.tickets << Ticket.new(price: 800, seat: "10", row: "5")
+    listing.tickets << Ticket.new(price: 800, seat: "11", row: "5")
+    listing.save
   end
 
   def make_events

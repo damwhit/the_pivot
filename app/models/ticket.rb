@@ -11,4 +11,9 @@ class Ticket < ActiveRecord::Base
   def self.formatted_sum
     "$#{sum(:price)}.00"
   end
+
+  def get_event
+    listing = Listing.find(listing_id)
+    listing.event
+  end
 end

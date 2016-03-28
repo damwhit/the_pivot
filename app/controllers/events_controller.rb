@@ -10,6 +10,5 @@ class EventsController < ApplicationController
   def show
     require_user
     @event = Event.find(params[:id])
-    @listings = @event.listings
   end
 end

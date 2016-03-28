@@ -1,11 +1,15 @@
 module CartHelper
-  def cart_total(products)
-    #raw_cart_total(products) / 100
+  def cart_total(tickets)
+    raw_cart_total(tickets) / 100
   end
 
-  def raw_cart_total(products)
-    products.map do |product|
-      product.price * product.quantity
-    end.reduce(:+)
+  def raw_cart_total(tickets)
+    tickets.inject(0) { |sum, ticket| sum + ticket.price }
+  end
+
+  def get_tickets(seats, listing)
+    seats.map do |seat|
+      listing.tickets.find_by(seat: seat)
+    end
   end
 end

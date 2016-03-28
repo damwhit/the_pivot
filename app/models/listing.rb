@@ -52,6 +52,14 @@ class Listing < ActiveRecord::Base
     tickets.first.format_price
   end
 
+  def listing_category
+    event.category.name
+  end
+
+  def seats
+    tickets.where(status: "active").pluck(:seat)
+  end
+
   def format_date
     updated_at.strftime("%Y-%m-%d")
   end
