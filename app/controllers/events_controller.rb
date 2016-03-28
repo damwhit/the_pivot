@@ -8,7 +8,6 @@ class EventsController < ApplicationController
   end
 
   def show
-    require_user
     @event = Event.find(params[:id])
   end
 end

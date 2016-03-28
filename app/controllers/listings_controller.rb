@@ -22,11 +22,21 @@ class ListingsController < ApplicationController
   end
 
   def index
+    require_user
     @listings = Listing.all
   end
 
   def show
+    require_user
     @listing = Listing.find(params[:id])
+  end
+
+  def update
+    require "pry"; binding.pry
+  end
+
+  def destroy
+    require "pry"; binding.pry
   end
 
   private

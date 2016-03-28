@@ -5,6 +5,7 @@
     <thead>
       <tr>
         <th>listing id</th>
+        <th>event name</th>
         <th>row number</th>
         <th>seat number</th>
         <th>price</th>
@@ -14,20 +15,20 @@
     </thead>
     <tbody>
       <% @listings.each do |listing| %>
-      <tr>
-        <th><%= link_to listing.id, listing_path(listing) %></th>
-        <th><input type="text" value="45" name="row number"></th>
-        <th><input type="text" value="45" name="seat number"></th>
-        <th>
-          <input type="text" value="$100" name="price"></th>
-        </th>
-        <th>listed</th>
-        <th>
-          <button class="btn btn-checkout btn-s">update listing</button>
-        </th>
-        <th>
-          <button class="btn btn-danger btn-s">remove listing</button>
-        </th>
+        <% listing.tickets.each do |ticket| %>
+      <tr id="<%= ticket.listing.id %>-listing">
+        <td><%= link_to ticket.listing.id, user_listing_path(current_user, ticket.listing) %></td>
+        <td><%= ticket.listing.event.name %></td>
+        <%= form_tag(user_listing_path(current_user, ticket.listing), method: :patch) do %>
+            <td><%= label_tag :row,  nil, class:"sr-only"  %>
+            <%= text_field_tag :row, nil, placeholder: "#{ticket.row}", class:"form-control text-input" %></td>
+            <td><%= label_tag :seat,  nil, class:"sr-only"  %><%= text_field_tag :seat, nil, placeholder: "#{ticket.seat}", class:"form-control text-input", id: "seat_number_1", name: "seat[0]" %></td>
+            <td><%= label_tag :price,  nil, class:"sr-only"%><%= text_field_tag :price, nil, placeholder: "#{ticket.price}", class:"form-control text-input" %></td>
+            <td><%= ticket.listing.event.status %></td>
+            <td><%= submit_tag "update listing", class:"btn btn-checkout" %></td>
+          <% end %>
+          <td><%= button_to "destroy listing",user_listing_path(current_user, ticket.listing), method: :delete, class:"btn btn-danger" %></td>
+        <% end %>
       </tr>
       <% end %>
     </tbody>

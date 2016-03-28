@@ -1,5 +1,5 @@
-<td><h4><%= link_to listing.id, listing_path(listing) %></h4></td>
+<td><h4><%= link_to listing.id, user_listing_path(current_user, listing) %></h4></td>
 <td><h4><%= listing.format_date %></h4></td>
 <td><h4><%= listing.event.status %></h4></td>
 <td><h4><%= listing.tickets.formatted_sum %></h4></td>
-<td><h4><%= link_to "details", listing_path(listing) %></h4></td>
+<td><h4><%= link_to "details", user_listing_path(current_user, listing) %></h4></td>
