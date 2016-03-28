@@ -95,7 +95,12 @@ module SpecHelpers
         name: "Basketball",
         venue_id: venue2.id,
         time: "July 10, 2016 19:00",
-        status: "active")
+        status: "active"),
+      upcoming_past_event: category1.events.find_or_create_by!(
+        name: "Dusk Festival",
+        venue_id: venue1.id,
+        time: "March 02, 2015 16:00",
+        status: "upcoming")
     }
   end
 
