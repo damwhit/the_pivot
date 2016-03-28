@@ -17,14 +17,13 @@ Rails.application.routes.draw do
     resources :orders, only: [:new, :index, :create, :show]
     get "/orders/:order_id/thanks", to: "orders#thanks", as: "thanks"
     resources :orders, only: [:create] #took out index and show
-    #get "/orders/:order_id/thanks", to: "orders#thanks", as: "thanks"
   end
 
   get "/orderhistory", to: "orders#index"
 
   get "/ordershow", to: "orders#show"
 
-  get "/thanks", to: "orders#thanks", as: "thanks"
+  #get "/thanks", to: "orders#thanks", as: "thanks"
 
   get "/checkout", to: "orders#new"
 

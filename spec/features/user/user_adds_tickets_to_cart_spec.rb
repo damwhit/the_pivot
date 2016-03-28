@@ -30,6 +30,7 @@ RSpec.feature "UserAddsTicketToCart", type: :feature do
       expect(page).to have_content("$8")
     end
   end
+  
   scenario "user does not choose a seat and is redirect to event show" do
     make_listings_and_tickets
 
