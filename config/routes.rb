@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end
 
   resource :cart, only: [:show]
-  resources :cart_products, only: [:create, :destroy, :update]
+  resources :cart_tickets, only: [:create, :destroy, :update]
   resources :mailing_list_emails, only: [:create]
 
   resources :users, only: [:new, :create] do

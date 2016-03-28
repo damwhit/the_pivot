@@ -95,24 +95,24 @@ User.create(
 
 event = Event.find_by(name: "Muppet Rock")
 
-listing1 = Listing.find_or_create_by!(
+listing1 = Listing.new(
              user_id: User.first.id,
              event_id: event.id)
 
-listing2 = Listing.find_or_create_by!(
+listing2 = Listing.new(
              user_id: User.last.id,
              event_id: event.id)
 
-listing1.tickets.find_or_create_by!(price: 800, seat: "10", row: "2")
+listing1.tickets << Ticket.new(price: 800, seat: "10", row: "2")
 
-listing1.tickets.find_or_create_by!(price: 800, seat: "11", row: "2")
+listing1.tickets << Ticket.new(price: 800, seat: "11", row: "2")
 
-listing2.tickets.find_or_create_by!(price: 1000, seat: "1", row: "1")
+listing2.tickets << Ticket.new(price: 1000, seat: "1", row: "1")
+listing1.save
+listing2.save
 
-admin = User.new(
+User.create(
   fullname: "admin",
-  email: "admin@littleowl.com",
+  email: "admin@ticketcacher.com",
   password: "password",
   role: 1)
-
-admin.save

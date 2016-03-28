@@ -14,20 +14,21 @@
 
   <div class="col-md-6">
     <div class="tickets-title">
-      <h1>available tickets</h1>
+      <h1>available listings</h1>
     </div>
     <% counter = 0  %>
-    <% @listings.each do |listing| %>
+    <% @event.listings.each do |listing| %>
       <div class="panel panel-default">
         <div class="panel-heading"> Listing: <%= counter += 1 %> </div>
           <div id="listing-<%= listing.id %>", class="panel-body">
-            <%= form_tag() do %>
-              <div class="col-xs-3 col-sm-3 col-md-3 form-inline">
-                quantity: <%= select_tag "quantity", options_for_select([*1..10]), {class: "form-control form-control-sm"} %>
-              </div>
-          <% end %>
             row: <%= listing.view_row %> <span class="tab-space"> quantity: <%= listing.count_tickets %></span> <span class="tab-space">price: <%= listing.view_price %></span>
-            <button class="btn btn-default btn-success listing-cart">add to cart!</button>
+            <%= form_tag(cart_tickets_path(listing_id: listing.id), method: "post") do %>
+
+              <div class="col-xs-3 col-sm-3 col-md-3 form-inline">
+                 seats: <%= select_tag "seats", options_for_select(listing.seats), {multiple: true, class: "form-control form-control-sm dropdown-toggle"} %>
+               </div>
+              <%= submit_tag "add to cart!", class: "btn btn-default btn-success listing-cart"%>
+            <% end %>
           </div>
       </div>
     <% end %>

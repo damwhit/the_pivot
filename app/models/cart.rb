@@ -2,21 +2,22 @@ class Cart
   attr_reader :contents
 
   def initialize(initial_contents)
-    @contents = initial_contents || {}
+    @contents = initial_contents || []
   end
 
-  def add_product(product_id, quantity)
-    contents[product_id.to_s] ||= 0
-    contents[product_id.to_s] += quantity.to_i
+  def add_tickets(tickets)
+    tickets.each do |ticket|
+      contents << ticket.id
+    end
   end
 
   def count
-    contents.values.sum
+    contents.count
   end
 
-  def products
-    contents.map do |product_id, quantity|
-      CartProduct.new(product_id, quantity)
+  def tickets
+    contents.map do |ticket_id|
+      CartTicket.new(ticket_id)
     end
   end
 
