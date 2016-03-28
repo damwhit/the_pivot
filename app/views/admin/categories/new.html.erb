@@ -7,14 +7,16 @@
   <br>
   <div class="row">
     <div id="new-category" class="form-group has success form-div col-xs-6 col-xs-offset-3">
-      <div class="text-left">
-        <label for="category-name">name</label>
-        <input placeholder="name" class="form-control text-input" type="text" name="category[name]" id="category-name">
-        <br>
-      </div>
-      <div class="text-center">
-        <button class="btn btn-little-owl form-center">create category</button>
-      </div>
+      <%= form_for [:admin, @category] do |f| %>
+        <div class="text-left">
+          <%= f.label :name, "name" %>
+          <%= f.text_field :name, class:"form-control text-input"%>
+          <br>
+        </div>
+        <div class="text-center">
+          <%=f.submit "create category", class: "btn btn-little-owl form-center" %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
