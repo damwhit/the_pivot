@@ -36,7 +36,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :update]
     resources :events, only: [:index, :new]
     resources :venues, only: [:index, :new]
-    resources :categories, only: [:index, :new]
+    resources :categories, only: [:index, :new, :create]
     resources :tags, only: [:index, :new, :show]
   end
 
