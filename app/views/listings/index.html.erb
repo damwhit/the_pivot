@@ -16,20 +16,20 @@
     <tbody>
       <% @listings.each do |listing| %>
         <% listing.tickets.each do |ticket| %>
-      <tr id="<%= ticket.listing.id %>-listing">
-        <td><%= link_to ticket.listing.id, user_listing_path(current_user, ticket.listing) %></td>
-        <td><%= ticket.listing.event.name %></td>
-        <%= form_tag(user_listing_path(current_user, ticket.listing), method: :patch) do %>
+          <tr id="<%= ticket.id %>-ticket">
+          <td><%= link_to ticket.listing.id, user_listing_path(current_user, ticket.listing) %></td>
+          <td><%= ticket.listing.event.name %></td>
+          <%= form_tag(user_listing_path(current_user, ticket.listing), method: :patch) do %>
             <td><%= label_tag :row,  nil, class:"sr-only"  %>
-            <%= text_field_tag :row, nil, placeholder: "#{ticket.row}", class:"form-control text-input" %></td>
-            <td><%= label_tag :seat,  nil, class:"sr-only"  %><%= text_field_tag :seat, nil, placeholder: "#{ticket.seat}", class:"form-control text-input", id: "seat_number_1", name: "seat[0]" %></td>
-            <td><%= label_tag :price,  nil, class:"sr-only"%><%= text_field_tag :price, nil, placeholder: "#{ticket.price}", class:"form-control text-input" %></td>
+            <%= text_field_tag :row, nil, required:true, placeholder: "#{ticket.row}", class:"form-control text-input" %></td>
+            <td><%= label_tag :seat,  nil, class:"sr-only"  %><%= text_field_tag :seat, nil, required:true, placeholder:"#{ticket.seat}", class:"form-control text-input", id: "seat_number_1", name: "seat[0]" %></td>
+            <td><%= label_tag :price,  nil, class:"sr-only"%><%= text_field_tag :price, nil, required:true, placeholder: "#{ticket.price}", class:"form-control text-input" %></td>
             <td><%= ticket.listing.event.status %></td>
             <td><%= submit_tag "update listing", class:"btn btn-checkout" %></td>
           <% end %>
           <td><%= button_to "destroy listing",user_listing_path(current_user, ticket.listing), method: :delete, class:"btn btn-danger" %></td>
+          </tr>
         <% end %>
-      </tr>
       <% end %>
     </tbody>
   </table>

@@ -1,12 +1,12 @@
 <div class="col-md-12">
   <div class="listing-title">
-    <h1>Sun festival</h1>
+    <h1><%= @listing.event.name %></h1>
   </div>
-  <%= image_tag('http://mortenbentzon.com/wp-content/uploads/2014/07/midnightsun_blog161-e1406761557421.jpg', class: "event-image-large") %>
+  <%= image_tag(@listing.event.image(:show), class: "event-image-large") %>
 </div>
 <br>
 <div class="col-md-12">
-    <h1>listing 22</h1>
+    <h1>listing <%= @listing.id %></h1>
   <div class="table-responsive">
     <table class="table table-hover table-condensed table-products">
       <thead>
@@ -22,24 +22,21 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td><%= link_to '22', '#' %></td>
-          <td><input type="text" value="45" name="row number"></td>
-          <td><input type="text" value="45" name="seat number"></td>
-          <td>
-            <button class="btn btn-warning btn-s">change seat</button>
-          </td>
-          <td>
-            <input type="text" value="$100" name="price"></td>
-          </td>
-          <td>listed</td>
-          <td>
-            <button class="btn btn-checkout btn-s">update listing</button>
-          </td>
-          <td>
-            <button class="btn btn-danger btn-s">remove listing</button>
-          </td>
-        </tr>
+        <% @listing.tickets.each do |ticket| %>
+          <tr id="<%= ticket.id %>-ticket">
+          <td><%= link_to ticket.listing.id, user_listing_path(current_user, ticket.listing) %></td>
+          <%= form_tag(user_listing_path(current_user, ticket.listing), method: :patch) do %>
+            <td><%= label_tag :row,  nil, class:"sr-only"  %>
+            <%= text_field_tag :row, nil, required:true, placeholder: "#{ticket.row}", class:"form-control text-input" %></td>
+            <td><%= label_tag :seat,  nil, class:"sr-only"  %><%= text_field_tag :seat, nil, required:true, placeholder:"#{ticket.seat}", class:"form-control text-input", id: "seat_number_1", name: "seat[0]" %></td>
+            <td><%= button_to "add seat", class:"btn btn-warning" %></td>
+            <td><%= label_tag :price,  nil, class:"sr-only"%><%= text_field_tag :price, nil, required:true, placeholder: "#{ticket.price}", class:"form-control text-input" %></td>
+            <td><%= ticket.listing.event.status %></td>
+            <td><%= submit_tag "update listing", class:"btn btn-checkout" %></td>
+          <% end %>
+          <td><%= button_to "destroy listing",user_listing_path(current_user, ticket.listing), method: :delete, class:"btn btn-danger" %></td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
 </div>

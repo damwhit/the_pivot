@@ -24,7 +24,7 @@ RSpec.feature "UserAddsListingForAnEvent", type: :feature do
     expect(page).to have_content(@listing.event.name.to_s)
 
   end
-#   As a logged in user
+# As a logged in user
 # When I visit ‘/users/:user_id/dashboard’
 # And click on ‘My listings’
 # my current page should be '/user/:user_id/listings'
