@@ -57,11 +57,7 @@ class Listing < ActiveRecord::Base
   end
 
   def seats
-    tickets.map do |ticket|
-      if ticket.status == "active"
-        ticket.seat
-      end
-    end
+    tickets.where(status: "active").pluck(:seat)
   end
 
   def format_date
