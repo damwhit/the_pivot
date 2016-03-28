@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :mailing_list_emails, only: [:create]
 
   resources :users, only: [:new, :create] do
-    resources :orders, only: [:new, :index, :create, :show]
+    resources :orders, only: [:index, :create, :show]
     get "/orders/:order_id/thanks", to: "orders#thanks", as: "thanks"
     resources :orders, only: [:create] #took out index and show
   end

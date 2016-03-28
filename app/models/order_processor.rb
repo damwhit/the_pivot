@@ -1,8 +1,8 @@
 class OrderProcessor
-  attr_reader :products
+  attr_reader :tickets
 
   def initialize(cart)
-    @products = cart.products
+    @tickets = cart.tickets
   end
 
   def process_current_user(params, current_user)
@@ -11,9 +11,10 @@ class OrderProcessor
   end
 
   def cart_total
-      @products.map do |product|
-      product.price * product.quantity
-    end.reduce(:+) / 100
+    (tickets.inject(0) { |sum, ticket| sum + ticket.price }) / 100
+    #   @products.map do |product|
+    #   product.price * product.quantity
+    # end.reduce(:+) / 100
   end
 
   def process_user_params(params)

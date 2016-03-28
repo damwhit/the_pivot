@@ -1,14 +1,14 @@
 class OrdersController < ApplicationController
 
   def new
-    # @products = OrderProcessor.new(@cart).products
-    # @order = Order.new
+    @tickets = OrderProcessor.new(@cart).tickets
+    @order = Order.new
   end
 
 
   def checkout_user
-    # login_or_create_user
-    # redirect_to new_user_order_path(current_user)
+    login_or_create_user
+    redirect_to "/checkout"
   end
 
   def create
@@ -27,39 +27,39 @@ class OrdersController < ApplicationController
   end
 
   def show
-    #if current_user
-      #@order = current_user.orders.find(params[:id])
-    #else
-      #redirect_to root_path
-    #end
+    if current_user
+      @order = current_user.orders.find(params[:id])
+    else
+      redirect_to root_path
+    end
   end
 
   def thanks
-    #if current_user
-      #@order = current_user.orders.find(params[:order_id])
-    #else
-      #redirect_to root_path
-    #end
+    if current_user
+      @order = current_user.orders.find(params[:order_id])
+    else
+      redirect_to root_path
+    end
   end
 
   def index
-    #if current_user
-      #@orders = current_user.orders
-    #else
-      #redirect_to root_path
-    #end
+    if current_user
+      @orders = current_user.orders
+    else
+      redirect_to root_path
+    end
   end
 
   def login_or_create_user
-    # @user = User.find_by(email: params[:email])
-    # @user = User.new(user_params) if @user.nil?
-    # if @user.save
-    #   current_user
-    #   session[:user_id] = @user.id
-    # else
-    #   flash.now[:alert] = "Sorry, friend.  Something went wrong :(... Please try again."
-    #   render :checkout_login
-    # end
+    @user = User.find_by(email: params[:email])
+    @user = User.new(user_params) if @user.nil?
+    if @user.save
+      current_user
+      session[:user_id] = @user.id
+    else
+      flash.now[:alert] = "Sorry, friend.  Something went wrong :(... Please try again."
+      render :checkout_login
+    end
   end
 
   def checkout_login
