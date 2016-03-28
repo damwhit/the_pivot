@@ -14,6 +14,6 @@ class Ticket < ActiveRecord::Base
 
   def get_event
     listing = Listing.find(listing_id)
-    Event.find(listing.event_id)
+    listing.event
   end
 end
