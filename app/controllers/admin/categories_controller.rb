@@ -13,7 +13,7 @@ class Admin::CategoriesController < Admin::BaseController
       flash[:info] = "Created category: #{@category.name}"
       redirect_to admin_categories_path
     else
-      flash[:error] = "Sorry, could not create that new category."
+      flash.now[:error] = "Sorry, could not create that new category."
       render "admin/categories/new"
     end
   end
@@ -24,7 +24,7 @@ class Admin::CategoriesController < Admin::BaseController
       flash[:info] = "Updated category: #{@category.name}"
       redirect_to admin_categories_path
     else
-      flash[:error] = "sorry, unable to update category"
+      flash.now[:error] = "sorry, unable to update category"
       @categories = Category.all
       render "admin/categories/index"
     end
