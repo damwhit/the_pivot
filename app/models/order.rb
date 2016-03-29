@@ -45,7 +45,6 @@ class Order < ActiveRecord::Base
   end
 
   def total
-    # order_tickets.inject(0) { |sum, ticket| sum + ticket.price }
     order_tickets.map do |order_ticket|
       order_ticket.total
     end.inject(:+) / 100
@@ -55,9 +54,9 @@ class Order < ActiveRecord::Base
     "$#{total}"
   end
 
-  def process(products)
-    products.each do |product|
-      order_products.create(product_id: product.id, quantity: product.quantity)
+  def process(tickets)
+    tickets.each do |ticket|
+      order_tickets.create(ticket_id: ticket.id)
     end
     process_stripe_payment
     self.update(order_total: total)

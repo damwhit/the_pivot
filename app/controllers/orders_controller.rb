@@ -12,11 +12,11 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order_processor = OrderProcessor.new(@cart)
+    order_processor = OrderProcessor.new(@cart)
     @order = order_processor.process_current_user(stripe_params, current_user)
     if @order.save
-      @order.process(order_processor.products)
-      OrderMailer.order_email(@order).deliver_now
+      @order.process(order_processor.tickets)
+      #OrderMailer.order_email(@order).deliver_now
       flash[:info] = "Thanks for your order! :)"
       session[:cart] = nil
       redirect_to user_thanks_path(current_user, @order.id)
@@ -36,7 +36,6 @@ class OrdersController < ApplicationController
 
   def thanks
     if current_user
-      require "pry"; binding.pry
       @order = current_user.orders.find(params[:order_id])
     else
       redirect_to root_path

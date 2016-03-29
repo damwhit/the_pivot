@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.feature "UserCanPlaceOrderAndViewPreviousOrder", type: :feature do
   include SpecHelpers
-  scenario "user places order and views previous orders" do #, js: true do
+  scenario "user places order and views previous orders", js: true do
     make_listings_and_tickets
 
     user = User.create(
@@ -16,13 +16,12 @@ RSpec.feature "UserCanPlaceOrderAndViewPreviousOrder", type: :feature do
 
     event = Event.last
     listing = Listing.first
-    ticket = Ticket.last
+    ticket = Ticket.first
 
     visit event_path(event)
 
     within("#listing-#{listing.id}") do
       select "10", from: "seats"
-      select "11", from: "seats"
       click_on "add to cart!"
     end
 
@@ -39,7 +38,20 @@ RSpec.feature "UserCanPlaceOrderAndViewPreviousOrder", type: :feature do
     expect(current_path).to eq("/checkout")
 
     expect(page).to have_content(event.name)
-    expect(page).to have_content(listing.tickets.first.format_price)
+    expect(page).to have_content(ticket.format_price)
+
+    # click_on "submit"
+    #
+    # within(".stripe-checkout") do
+    #   fill_in "Email", with: user.email
+    #   fill_in "Name", with: user.name
+    #   fill_in "Address", with: "1510 Blake St"
+    #   fill_in "ZIP", with: "80000"
+    #   fill_in "City", with: "denver"
+    #   click_on "Payment Info"
+    # end
+    #
+    # save_and_open_page
 
     order1 = user.orders.create(street: "1600 pennslyvania",
                                 city: "washington",
@@ -54,25 +66,14 @@ RSpec.feature "UserCanPlaceOrderAndViewPreviousOrder", type: :feature do
 
     click_on "order history"
 
-    save_and_open_page
-
     expect(page).to have_content(order1.id)
 
+    within("#upcoming-order-#{order1.id}") do
+      click_on "details"
+    end
+
+    expect(page).to have_content(event.name)
+    expect(page).to have_content(event.format_date)
+    expect(page).to have_content(ticket.format_price)
   end
 end
-
-
-# Background: an existing user with tickets in the cart
-# As a user
-# When I visit ‘/cart’
-# And click on ‘Checkout’
-# Then I should be required to log in
-# When I am logged in
-# I should see the items in my cart
-# When I click on ‘Check Out’
-# I click on 'Submit Order'
-# I see a form where I enter my name, email, address, and payment info
-# When I click on “Total #{total_price}”
-# And I should see a message ‘Thank you for your order! :)”
-# I click on order history
-# And I should see the order just placed in my order history
