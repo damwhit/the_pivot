@@ -28,6 +28,7 @@ class Cart
 
   def remove_ticket_from_cart(id)
     contents.delete(id)
+    Ticket.find(id).update(status: "active")
   end
 
   def update(params)

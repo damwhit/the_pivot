@@ -62,6 +62,12 @@ class Order < ActiveRecord::Base
     self.update(order_total: total)
   end
 
+  def set_ticket_status
+    tickets.each do |ticket|
+      Ticket.find(ticket.id).update(status: "inactive")
+    end
+  end
+
   def product_quantity
     order_products.count
   end

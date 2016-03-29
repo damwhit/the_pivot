@@ -19,6 +19,8 @@ RSpec.feature "UserEditsCart", type: :feature do
 
     visit "/cart"
 
+    expect(Ticket.find(ticket.id).status).to eq("reserved")
+
     expect(page).to have_content("seat: #{ticket.seat}")
 
     within("#ticket-#{ticket.id}") do
@@ -26,5 +28,7 @@ RSpec.feature "UserEditsCart", type: :feature do
     end
 
     expect(page).to_not have_content("seat #{ticket.seat}")
+
+    expect(ticket.status).to eq("active")
   end
 end

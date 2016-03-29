@@ -13,7 +13,6 @@ class CartTicketsController < ApplicationController
       session[:cart] = @cart.contents
       flash[:info] = "listing number #{listing.id} added to cart!"
       redirect_to "/#{listing.listing_category}"
-      #end
     end
   end
 

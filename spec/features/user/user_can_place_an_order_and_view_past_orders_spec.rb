@@ -70,6 +70,8 @@ RSpec.feature "UserCanPlaceOrderAndViewPreviousOrder", type: :feature do
 
     sleep 10
 
+    expect(Ticket.find(ticket.id).status).to eq("inactive")
+
     click_on "order history"
 
     order = Order.last
