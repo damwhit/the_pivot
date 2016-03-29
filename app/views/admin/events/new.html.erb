@@ -7,53 +7,42 @@
   <br>
   <div class="row">
     <div id="new-product" class="form-group has success form-div col-xs-6 col-xs-offset-3">
-      <div class="text-left">
-        <label for="event-name">name</label>
-        <input placeholder="name" class="form-control text-input" type="text" name="event[name]" id="event-name">
-        <br>
-        <label for="event-description">description</label>
-        <input placeholder="description" class="form-control text-input" type="text" name="event[description]" id="event-description">
-        <br>
-        <label for="event-venue">venue</label>
-        <select id="event-venue" class="form-control" required="required" name="event[venue_id]">
-          <option selected="selected" value="1">Colorado Convention Center</option>
-          <option value="2">Pepsi Center</option>
-          <option value="3">Red Rocks Ampitheatre</option>
-        </select>
-        <br>
-        <label for="event-date">date</label>
-        <input id="event-date" type="date" name="event[date]" value="2016-06-21"; class="form-control form-control-sm search-form">
-        <br>
-        <label for="event-time">time</label>
-        <input id="event-time" type="time" name="event_time" class="form-control form-control-sm" value= "18:30:00">
-        <br>
-        <label for="event-category">category</label>
-        <select id="event-category" class="form-control" required="required" name="event[category_id]">
-          <option selected="selected" value="1">sports</option>
-          <option value="2">concerts</option>
-          <option value="3">conventions</option>
-          <option value="4">popups</option>
-          <option value="5">festivals</option>
-          <option value="6">comedy</option>
-        </select>
-        <br>
-        <label for="event-tags">tags</label>
-        <input id="event-tags"type="text" placeholder="family, basketball" name="event[tags]" class="form-control text-input">
-        <br>
-      </div>
-      <div class="text-center">
-        <div class="form-inline">
-          <div class="form-group">
-            <label class="file">
-            <input id="imageFormCover" class="form-control" type="text" readonly>
-            <a class="btn btn-primary" onclick="$('input[id=file_input]').click();">browse for image</a>
-            </label>
+      <%= form_for [:admin, @event] do |f| %>
+        <div class="text-left">
+          <%= f.label "name", :name %>
+          <%= f.text_field :name, class: "form-control text-input" %>
+          <br>
+          <%= f.label "venue", :venue %>
+          <%= f.collection_select :venue_id, @venues, :id, :name, {}, {class: "form-control" } %>
+          <br>
+          <%= f.label "date", :date %>
+          <%= date_field_tag :date, nil ,class: "form-control text-input" %>
+          <br>
+          <%= f.label "time", :time %>
+          <%= f.time_field :time, class: "form-control text-input" %>
+          <br>
+          <%= f.label "category", :category %>
+          <%= f.collection_select :category_id, @categories, :id, :name, {}, {class: "form-control" } %>
+          <br>
+          <%= f.label "tags", :tags %>
+          <%= text_field_tag :tags, nil ,class: "form-control text-input" %>
+          <br>
         </div>
-        <br>
+
+        <div class="text-center">
+          <div class="form-inline">
+            <div class="form-group">
+              <label class="file">
+              <input id="imageFormCover" class="form-control" type="text" readonly>
+              <a class="btn btn-primary" onclick="$('input[id=file_input]').click();">browse for image</a>
+              </label>
+            </div>
+            <br>
+          </div>
+          <br>
+          <%= f.submit "create event", class: "btn btn-little-owl form-center" %>
         </div>
-        <br>
-        <button class="btn btn-little-owl form-center">create event</button>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>
