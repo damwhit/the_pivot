@@ -8,6 +8,7 @@ class Cart
   def add_tickets(tickets)
     tickets.each do |ticket|
       contents << ticket.id
+      Ticket.find(ticket.id).update(status: "reserved")
     end
   end
 
@@ -25,8 +26,9 @@ class Cart
     contents.empty?
   end
 
-  def remove_product_from_cart(id)
-    contents.reject! {|k| k == id}
+  def remove_ticket_from_cart(id)
+    contents.delete(id)
+    Ticket.find(id).update(status: "active")
   end
 
   def update(params)

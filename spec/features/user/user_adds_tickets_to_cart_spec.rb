@@ -46,4 +46,27 @@ RSpec.feature "UserAddsTicketToCart", type: :feature do
 
     expect(page).to have_content("please select a seat")
   end
+
+  scenario "user cannot add the same ticket twice" do
+    make_listings_and_tickets
+
+    event = Event.last
+    listing = Listing.first
+    ticket = Ticket.first
+
+    visit event_path(event)
+
+    within("#listing-#{listing.id}") do
+      select "10", from: "seats"
+      click_on "add to cart!"
+    end
+
+    expect(page).to have_content("listing number #{listing.id} added to cart!")
+
+    visit event_path(event)
+
+    within("#listing-#{listing.id}") do
+      expect(page).to_not have_content(ticket.seat)
+    end
+  end
 end
