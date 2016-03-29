@@ -90,7 +90,7 @@ module SpecHelpers
   def make_events
     {
       event1: category1.events.create!(
-        name: "ugjghhashdf",
+        name: "Sun Festival",
         venue_id: venue1.id,
         time: "March 02, 2017 16:00",
         status: "active"),
