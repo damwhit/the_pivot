@@ -7,8 +7,8 @@
   <div class="row">
     <div class="col-sm-12">
       <div class="container past-order-review">
-        <h3 class="order-id little">Order 111</h3>
-        <h3 class="order-date">Purchased on: November 20, 2009</h3>
+        <h3 class="order-id little">Order <%= @order.id %></h3>
+        <h3 class="order-date">Purchased on: <%= @order.date %></h3>
       </div>
     </div>
   </div><br>
@@ -29,25 +29,21 @@
               <th class="text-center">row</th>
               <th class="text-center">seat</th>
               <th class="text-center">price</th>
-              <th class="text-center">quantity</th>
-              <th class="text-center">subtotal</th>
             </tr>
           </thead>
-          <% 3.times do %>
+          <% @order.tickets.each do |ticket| %>
             <tr>
-              <td><%= image_tag('http://mortenbentzon.com/wp-content/uploads/2014/07/midnightsun_blog161-e1406761557421.jpg', class: "event-image-sm img-responsive") %></td>
-                <td>Sun Festival</td>
-                <td class="status-text">UPCOMING</td>
-                <td>Outside</td>
-                <td>Cool Place</td>
-                <td>Utah</td>
-                <td>5/6/16</td>
-                <td>8:00 PM</td>
-                <td>26</td>
-                <td>5</td>
-                <td>$100.00</td>
-                <td>3</td>
-                <td>$300.00</td>
+              <td><%= image_tag(ticket.get_event.image.url(:show), class: "event-image-sm img-responsive") %></td>
+                <td><%= ticket.get_event.name %></td>
+                <td class="status-text"><%= ticket.status %></td>
+                <td><%= ticket.get_event.venue.name %></td>
+                <td><%= ticket.get_event.venue.city %></td>
+                <td><%= ticket.get_event.venue.state %></td>
+                <td><%= ticket.get_event.format_date %></td>
+                <td><%= ticket.get_event.format_time %></td>
+                <td><%= ticket.row %></td>
+                <td><%= ticket.seat %></td>
+                <td><%= ticket.format_price %></td>
             </tr>
           <% end %>
             <tfoot>
@@ -60,10 +56,8 @@
               <th></th>
               <th></th>
               <th></th>
-              <th></th>
-              <th></th>
               <th class="order-total">Total:</th>
-              <th class="order-total">$900.00</th>
+              <th class="order-total"><%= @order.display_total %></th>
             </tfoot>
         </table>
       </div>

@@ -3,23 +3,23 @@ class Event < ActiveRecord::Base
   belongs_to :venue
   has_many :listings
 
-  # has_many :order_products
-  # has_many :orders, through: :order_products
-
   # validates :name, presence: true, uniqueness: true
-  # validates :price, presence: true
-  # validates :description, presence: true
-  # validates :category_id, presence: true
+  # validates :category, presence: true
+  # validates :venue, presence: true
 
-  scope :upcoming_events, -> { where("time >= ?", Time.zone.now.beginning_of_day) }
+  scope :upcoming_events, -> do
+    where("time >= ? AND status != 'cancelled'", Time.zone.now.beginning_of_day)
+  end
+  scope :past_events, -> do
+    where("time <= ? AND status != 'cancelled'", Time.zone.now.beginning_of_day)
+  end
+  scope :cancelled, -> { where(status: "cancelled") }
 
   has_attached_file :image,
       styles: { index: '275x175>', show: '550x350<', small: '137.5x87.5>' },
       default_url: "logo.ico"
 
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
-
-  scope :active_products, -> { where(inactive: false) }
 
   def format_date
     time.strftime("%a,%e %b")
@@ -51,5 +51,10 @@ class Event < ActiveRecord::Base
 
   def self.category_distribution
     group(:category).count.map { |k, v| [k.name, v] }
+  end
+
+  def self.filter_by_status(status)
+    status ||= "upcoming_events"
+    send(status)
   end
 end

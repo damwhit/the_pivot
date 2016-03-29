@@ -31,10 +31,8 @@
                   <%= form_tag() do %>
                     <input type="hidden" name="_method" value="patch">
                     <div class="col-xs-6 col-sm-4 col-md-3">
-                      <%#= select_tag "quantity", options_for_select([*1..10]), {class: "form-control form-control-sm"} %>
                     </div>
                     <div class="text-left">
-                      <%#= submit_tag "Update", class:"btn btn-little-owl"%>
                     </div>
                   <% end %>
                 </div>
@@ -55,14 +53,14 @@
           <h1 class="cart-total">$<%= cart_total(@cart.tickets) %></h1>
           <div class="checkout">
             <% if current_user %>
-              <%= link_to "Checkout", '#', class:"btn btn-checkout form-control" %>
+              <%= link_to "Checkout",checkout_path, class:"btn btn-checkout form-control" %>
             <% else %>
-              <%= link_to "Checkout", '#', class:"btn btn-checkout form-control" %>
+              <%= link_to "Checkout", checkout_login_path, class:"btn btn-checkout form-control" %>
             <% end %>
           </div>
           <h4>or</h4>
           <div class="continue-shopping">
-            <%= link_to "Continue Shopping", '#', class:"btn btn-primary form-control" %>
+            <%= link_to "Continue Shopping", root_path, class:"btn btn-primary form-control" %>
           </div>
         </div>
       </div>

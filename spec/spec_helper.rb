@@ -34,11 +34,11 @@ module SpecHelpers
   end
 
   def venue1
-    Venue.find_or_create_by!(name: "Outside", city: "Lima")
+    Venue.find_or_create_by!(name: "Neat Ampitheatre", city: "Des Moines", state: "Iowa")
   end
 
   def venue2
-    Venue.find_or_create_by!(name: "Stadium", city: "Denver")
+    Venue.find_or_create_by!(name: "Stadium", city: "Denver", state: "Colorado")
   end
 
   def event1
@@ -52,6 +52,14 @@ module SpecHelpers
   def event2
     category1.events.find_or_create_by!(
       name: "Moon Festival",
+      venue_id: venue1.id,
+      time: "March 02, 2015 16:00",
+      status: "inactive")
+  end
+
+  def event3
+    category1.events.create!(
+      name: "Old Festival",
       venue_id: venue1.id,
       time: "March 02, 2015 16:00",
       status: "inactive")
@@ -81,17 +89,17 @@ module SpecHelpers
 
   def make_events
     {
-      event1: category1.events.find_or_create_by!(
+      event1: category1.events.create!(
         name: "Sun Festival",
         venue_id: venue1.id,
         time: "March 02, 2017 16:00",
         status: "active"),
-      event2: category1.events.find_or_create_by!(
+      event2: category1.events.create!(
         name: "EDM Spectacular",
         venue_id: venue1.id,
         time: "November 20, 2020 18:00",
         status: "active"),
-      event3: category2.events.find_or_create_by!(
+      event3: category2.events.create!(
         name: "Basketball",
         venue_id: venue2.id,
         time: "July 10, 2016 19:00",

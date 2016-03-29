@@ -2,8 +2,9 @@ class User < ActiveRecord::Base
   has_secure_password
   before_save :build_name
   has_many :orders
-  has_many :order_products, through: :orders
+  has_many :order_tickets, through: :orders
   has_many :listings
+
 
   validates :fullname, presence: true
   validates :email, presence: true, uniqueness: true

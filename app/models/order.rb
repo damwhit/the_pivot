@@ -1,8 +1,8 @@
 class Order < ActiveRecord::Base
   before_save :build_name
   belongs_to :user
-  has_many :order_products
-  has_many :products, through: :order_products
+  has_many :order_tickets
+  has_many :tickets, through: :order_tickets
   has_many :comments
 
   validates :user_id, presence: true
@@ -45,8 +45,8 @@ class Order < ActiveRecord::Base
   end
 
   def total
-    order_products.map do |order_product|
-      order_product.total
+    order_tickets.map do |order_ticket|
+      order_ticket.total
     end.inject(:+) / 100
   end
 
@@ -54,9 +54,9 @@ class Order < ActiveRecord::Base
     "$#{total}"
   end
 
-  def process(products)
-    products.each do |product|
-      order_products.create(product_id: product.id, quantity: product.quantity)
+  def process(tickets)
+    tickets.each do |ticket|
+      order_tickets.create(ticket_id: ticket.id)
     end
     process_stripe_payment
     self.update(order_total: total)

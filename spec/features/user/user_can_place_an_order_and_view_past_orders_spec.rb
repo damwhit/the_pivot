@@ -1,53 +1,87 @@
 require "rails_helper"
 
 RSpec.feature "UserCanPlaceOrderAndViewPreviousOrder", type: :feature do
-  scenario "user places order and views previous orders" do
-    pending
-    # make pass!!!!
-    category = Category.create(name: "coffee")
-    product = category.products.create(name:"Ethiopian", price:1500,
-    description:"Ethiopian coffee is super good")
-    user = User.create(first_name: "John", last_name: "Adams", fullname: "John Adams",
-                       email: "email@example.com", password: "password")
+  include SpecHelpers
+  scenario "user places order and views previous orders", js: true do
+    make_listings_and_tickets
 
-    visit "/products/#{product.id}"
-    click_on "Add to cart"
+    user = User.create(
+      first_name: "Sam",
+      last_name: "White",
+      email: "fodays@example.com",
+      password: "password",
+      role: 0,
+      fullname: "Sam White"
+    )
 
-    visit "/"
+    event = Event.last
+    listing = Listing.first
+    ticket = Ticket.first
 
-    click_on "login"
+    visit event_path(event)
 
-    fill_in "email", with: user.email
-    fill_in "password", with: user.password
-    click_on "login"
+    within("#listing-#{listing.id}") do
+      select "10", from: "seats"
+      click_on "add to cart!"
+    end
 
-    click_on "cart"
+    visit "/cart"
 
     click_on "Checkout"
 
+    fill_in "name", with: user.name
+    fill_in "email", with: user.email
+    fill_in "password", with: user.password
 
-    order1 = user.orders.create(street: "1600 pennslyvania",
-                                city: "washington",
-                                state: "District of Columbia",
-                                zip: "46250",
-                                fullname: "jonathon adams",
-                                first_name: "jonathon",
-                                last_name: "adams",
-                                email: "spam@foundingfathers.biz")
+    click_on "continue"
 
-    order1.order_products.create(product_id: product.id,
-                                 quantity: 10)
+    expect(current_path).to eq("/checkout")
+
+    expect(page).to have_content(event.name)
+    expect(page).to have_content(ticket.format_price)
+
+    click_on "submit"
+
+    stripe_iframe = all("iframe[name=stripe_checkout_app]").last
+    Capybara.within_frame stripe_iframe do
+      page.execute_script(%Q{ $("input#email").val("bob@example.com"); })
+      sleep 1
+      page.execute_script(%Q{ $("input#shipping-name").val("Sam"); })
+      sleep 1
+      page.execute_script(%Q{ $("input#shipping-street").val("1510 Blake St"); })
+      sleep 1
+      page.execute_script(%Q{ $("input#shipping-zip").val("80000"); })
+      sleep 1
+      page.execute_script(%Q{ $("input#shipping-city").val("Denver"); })
+
+      sleep 3
+
+      click_on "Payment Info"
+
+      page.execute_script(%Q{ $("input#card_number").val("4242 4242 4242 4242"); })
+      sleep 1
+      page.execute_script(%Q{ $("input#cc-exp").val("11 2020"); })
+      sleep 1
+      page.execute_script(%Q{ $("input#cc-csc").val("222"); })
+      sleep 1
+
+      click_on "Total $8.00"
+    end
+
+    sleep 5
 
     click_on "order history"
 
-    expect(current_path).to eq("/users/#{user.id}/orders")
+    order = Order.last
 
-    click_on "#{order1.id}"
+    expect(page).to have_content(order.id)
 
-    expect(page).to have_content("#{product.name}")
+    within("#upcoming-order-#{order.id}") do
+      click_on "details"
+    end
 
-    visit "/users/#{user.id}/orders/#{order1.id}/thanks"
-
-    expect(page).to have_content("We've emailed a receipt to #{order1.email}")
+    expect(page).to have_content(event.name)
+    expect(page).to have_content(event.format_date)
+    expect(page).to have_content(ticket.format_price)
   end
 end
