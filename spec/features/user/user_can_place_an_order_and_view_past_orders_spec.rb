@@ -68,7 +68,7 @@ RSpec.feature "UserCanPlaceOrderAndViewPreviousOrder", type: :feature do
       click_on "Total $8.00"
     end
 
-    sleep 5
+    sleep 10
 
     click_on "order history"
 

@@ -9,17 +9,22 @@ class CartTicketsController < ApplicationController
       render "events/show"
     else
       tickets = get_tickets(seats, listing)
-      @cart.add_tickets(tickets)
-      session[:cart] = @cart.contents
-      flash[:info] = "listing number #{listing.id} added to cart!"
-      redirect_to "/#{listing.listing_category}"
+      if @cart.double_click?(tickets)
+        flash[:info] = "You have already added that ticket to the cart. Please try again"
+        redirect_to event_path(listing.event)
+      else
+        @cart.add_tickets(tickets)
+        session[:cart] = @cart.contents
+        flash[:info] = "listing number #{listing.id} added to cart!"
+        redirect_to "/#{listing.listing_category}"
+      end
     end
   end
 
   def destroy
-    product = find_product(params[:id])
-    @cart.remove_product_from_cart(product.id.to_s)
-    flash[:alert] = "You have removed #{view_context.link_to product.name, product_path(product.id)} from your cart."
+    ticket = find_ticket(params[:id])
+    @cart.remove_ticket_from_cart(ticket.id)
+    flash[:alert] = "You have removed #{view_context.link_to ticket.get_event.name, event_path(ticket.get_event.id)} from your cart."
     if @cart.empty?
       redirect_to root_path
     else
@@ -27,14 +32,9 @@ class CartTicketsController < ApplicationController
     end
   end
 
-  def update
-    @cart.update(params)
-    redirect_to cart_path
-  end
-
   private
 
-  def find_product(id)
-    Product.find(id)
+  def find_ticket(id)
+    Ticket.find(id)
   end
 end

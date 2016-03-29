@@ -11,6 +11,16 @@ class Cart
     end
   end
 
+  def double_click?(tickets)
+    tickets.each do |ticket|
+      if contents.include?(ticket.id)
+        return true
+      else
+        return false
+      end
+    end
+  end
+
   def count
     contents.count
   end
@@ -25,8 +35,8 @@ class Cart
     contents.empty?
   end
 
-  def remove_product_from_cart(id)
-    contents.reject! {|k| k == id}
+  def remove_ticket_from_cart(id)
+    contents.delete(id)
   end
 
   def update(params)
