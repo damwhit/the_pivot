@@ -34,7 +34,7 @@ end
 
 group :development do
   gem 'web-console', '~> 2.0'
-
+  gem 'brakeman', :require => false
   gem 'spring'
 end
 
