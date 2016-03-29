@@ -17,39 +17,33 @@
               <th class="text-center">row</th>
               <th class="text-center">seat</th>
               <th class="text-center">price</th>
-              <th class="text-center">quantity</th>
-              <th class="text-center">subtotal</th>
             </tr>
           </thead>
-          <% 3.times do %>
+          <% @tickets.each do |ticket| %>
             <tr>
-              <td><%= image_tag('http://mortenbentzon.com/wp-content/uploads/2014/07/midnightsun_blog161-e1406761557421.jpg', class: "event-image-sm img-responsive") %></td>
-                <td><h4>Sun Festival</h4></td>
-                <td><h4>36</h4></td>
-                <td><h4>5</h4></td>
-                <td><h4>$100.00</h4></td>
-                <td><h4>1</h4></td>
-                <td><h4>$100.00</h4></td>
+              <td><%= image_tag(ticket.get_event.image.url(:show), class: "event-image-sm img-responsive") %></td>
+                <td><h4><%= ticket.get_event.name %></h4></td>
+                <td><h4><%= ticket.row %></h4></td>
+                <td><h4><%= ticket.seat %></h4></td>
+                <td><h4><%= ticket.format_price %></h4></td>
             </tr>
           <% end %>
             <tfoot>
               <th></th>
               <th></th>
               <th></th>
-              <th></th>
-              <th></th>
               <th class="order-total">Total:</th>
-              <th class="order-total">$300.00</th>
+              <th class="order-total"><%= cart_total(@cart.tickets) %></th>
             </tfoot>
         </table>
       </div>
     </div>
     <div class="col-sm-4 text-center checkout-con">
       <div class="cart text-center">
-        <h3>Hey, user!</h3>
-        <h4>Your total is $300.00</h4><br>
+        <h3>Hey, <%= current_user.fullname %></h3>
+        <h4>Your total is $<%= cart_total(@cart.tickets) %></h4><br>
         <p>Click "submit order" below and you'll be asked all billing and shipping questions. Then bask in the knowledge that you will soon be attending a kick-ass event.</p>
-          <%= render partial: "checkout_form", locals: {amount: 300 } %>
+          <%= render partial: "checkout_form", locals: {amount: raw_cart_total(@cart.tickets) } %>
       </div>
     </div>
   </div>

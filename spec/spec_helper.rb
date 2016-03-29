@@ -34,11 +34,11 @@ module SpecHelpers
   end
 
   def venue1
-    Venue.find_or_create_by!(name: "Outside", city: "Lima")
+    Venue.find_or_create_by!(name: "Neat Ampitheatre", city: "Des Moines", state: "Iowa")
   end
 
   def venue2
-    Venue.find_or_create_by!(name: "Stadium", city: "Denver")
+    Venue.find_or_create_by!(name: "Stadium", city: "Denver", state: "Colorado")
   end
 
   def event1
