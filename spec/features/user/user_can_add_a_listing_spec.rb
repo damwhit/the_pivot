@@ -15,6 +15,12 @@ RSpec.feature "UserAddsListingForAnEvent", type: :feature do
   scenario "user adds a listing", js: true do
     setup
 
+    visit "/events"
+    expect(page).to have_content("Hey person, stop trying to hack our shit.")
+
+    visit "/sell"
+    expect(page).to have_content("Hey person, stop trying to hack our shit.")
+
     visit "/"
 
     expect(page).to_not have_content("sell tickets")

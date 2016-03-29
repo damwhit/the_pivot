@@ -21,6 +21,7 @@ gem 'chartkick'
 gem 'groupdate'
 gem 'will_paginate', '~> 3.0.6'
 gem 'bootstrap-will_paginate'
+gem 'annotate'
 
 group :development, :test do
   gem 'rspec'

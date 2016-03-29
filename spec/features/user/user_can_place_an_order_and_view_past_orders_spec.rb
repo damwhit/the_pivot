@@ -19,7 +19,6 @@ RSpec.feature "UserCanPlaceOrderAndViewPreviousOrder", type: :feature do
     ticket = Ticket.first
 
     visit event_path(event)
-
     within("#listing-#{listing.id}") do
       select "10", from: "seats"
       click_on "add to cart!"

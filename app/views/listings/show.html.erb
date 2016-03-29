@@ -1,47 +1,13 @@
 <div class="col-md-12">
   <div class="listing-title">
-    <h1>Sun festival</h1>
+    <h1><%= @listing.event.name %></h1>
   </div>
-  <%= image_tag('http://mortenbentzon.com/wp-content/uploads/2014/07/midnightsun_blog161-e1406761557421.jpg', class: "event-image-large") %>
+  <%= image_tag(@listing.event.image(:show), class: "event-image-large") %>
 </div>
 <br>
 <div class="col-md-12">
-    <h1>listing 22</h1>
-  <div class="table-responsive">
-    <table class="table table-hover table-condensed table-products">
-      <thead>
-        <tr>
-          <th>listing id</th>
-          <th>row number</th>
-          <th>seat number</th>
-          <th></th>
-          <th>price</th>
-          <th>status</th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><%= link_to '22', '#' %></td>
-          <td><input type="text" value="45" name="row number"></td>
-          <td><input type="text" value="45" name="seat number"></td>
-          <td>
-            <button class="btn btn-warning btn-s">change seat</button>
-          </td>
-          <td>
-            <input type="text" value="$100" name="price"></td>
-          </td>
-          <td>listed</td>
-          <td>
-            <button class="btn btn-checkout btn-s">update listing</button>
-          </td>
-          <td>
-            <button class="btn btn-danger btn-s">remove listing</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <h1>listing <%= @listing.id %></h1>
+  <%= render 'edit_form', {listing: @listing} %>
 </div>
 
 <%= render partial: "shared/mailing_list" %>

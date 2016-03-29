@@ -1,7 +1,7 @@
 
 <div class="textContainer order-hero-unit user-dashboard-hero-unit">
   <div class="text-container hero-container">
-    <h1>Dis is yo dashboard, <%= @user.first_name %></h1>
+    <h1>Dis is yo dashboard, <%= current_user.first_name %></h1>
   </div>
 </div><br>
 <div id="orders">
@@ -40,7 +40,7 @@
     <div class="col-sm-8 col-sm-offset-2 outline" >
       <h1>listings</h1>
       <h5 class="ljust"><%= link_to "Create new listing", sell_path %></h5>
-      <h5 class="rjust"> <%= link_to "view all listings", listings_path %> </h5>
+      <h5 class="rjust"> <%= link_to "my listings", user_listings_path(current_user) %> </h5>
       <div class="table-responsive">
         <table class="table table-hover table-condensed table-listings table-bordered">
           <thead>
