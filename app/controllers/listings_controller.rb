@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: listings
+#
+#  id         :integer          not null, primary key
+#  user_id    :integer
+#  event_id   :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class ListingsController < ApplicationController
 
   def new
@@ -32,6 +43,22 @@ class ListingsController < ApplicationController
   end
 
   def update
+    #delete all active tickets
+    #recreate new active tickets
+    @listing = Listing.find(params[:id])
+    @listing.destroy_active_tickets
+    params[:seat].each do |seat_number|
+      @listing.tickets << Ticket.create(price: ticket_params[:price],
+                                        row: ticket_params[:row],
+                                        seat: seat_number)
+    end
+    if @listing.save
+      flash[:info] = "You're listing has been updated"
+      redirect_to user_dashboard_path
+    else
+      flash.now[:alert] = "Sorry, boss lolololololololol.  Something went wrong ;>(... Please try again."
+      render :index
+    end
     require "pry"; binding.pry
   end
 

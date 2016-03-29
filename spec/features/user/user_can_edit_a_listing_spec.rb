@@ -2,26 +2,16 @@ require "rails_helper"
 
 RSpec.feature "UserAddsListingForAnEvent", type: :feature do
   include SpecHelpers
-  def setup
-    @user = user1
-    @event = event1
-    @listing = make_listing
-  end
-
   scenario "user edits a listing", js: true do
-    setup
-
-    visit "/"
-    click_on "sign in"
-    fill_in "email", with: @user.email
-    fill_in "password", with: @user.password
-    click_on "login"
+    make_listings_and_tickets
 
     click_on "my listings"
 
     expect(current_path).to eq("/users/#{@user.id}/listings")
 
-    expect(page).to have_content(@listing.event.name.to_s)
+    save_and_open_page
+
+    expect(page).to have_content("Sun Festival")
 
   end
 # As a logged in user

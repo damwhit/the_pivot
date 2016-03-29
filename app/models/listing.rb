@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: listings
+#
+#  id         :integer          not null, primary key
+#  user_id    :integer
+#  event_id   :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Listing < ActiveRecord::Base
   belongs_to :user
   belongs_to :event
@@ -62,5 +73,9 @@ class Listing < ActiveRecord::Base
 
   def format_date
     updated_at.strftime("%Y-%m-%d")
+  end
+
+  def destroy_active_tickets
+    tickets.active.destroy_all
   end
 end
