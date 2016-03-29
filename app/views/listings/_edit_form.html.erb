@@ -28,13 +28,13 @@
 
         <% listing.tickets.active.each do |ticket| %>
 
-            <tr class="seat_number_1", class="ticket">
+            <tr class="seat-row-1">
               <td>
                 <%= label_tag :seat,  nil, class:"sr-only"  %>
-                <%= text_field_tag :seat, ticket.seat, required:true, class:"form-control text-input", name: "seat[]" %>
+                <%= text_field_tag :seat, ticket.seat, required:true, class:"form-control text-input", name: "seat[]", id: "seat_number_1" %>
               </td>
               <td class="remove-seat">
-                <%= link_to("Remove Seat", '#', class: "btn btn-danger") %>
+                <%= link_to("remove seat", '#', class: "btn btn-danger", id: "remove_1") %>
               </td>
             </tr>
         <% end %>

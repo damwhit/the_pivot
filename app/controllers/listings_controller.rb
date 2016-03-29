@@ -51,7 +51,7 @@ class ListingsController < ApplicationController
                                         seat: seat_number)
     end
     if @listing.save
-      flash[:info] = "Your listing has been updated!"
+      flash[:info] = "Listing number #{@listing.id} has been updated!"
       redirect_to user_dashboard_path
     else
       flash.now[:alert] = "Sorry, boss lolololololololol.  Something went wrong ;>(... Please try again."
