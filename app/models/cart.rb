@@ -8,16 +8,7 @@ class Cart
   def add_tickets(tickets)
     tickets.each do |ticket|
       contents << ticket.id
-    end
-  end
-
-  def double_click?(tickets)
-    tickets.each do |ticket|
-      if contents.include?(ticket.id)
-        return true
-      else
-        return false
-      end
+      Ticket.find(ticket.id).update(status: "reserved")
     end
   end
 

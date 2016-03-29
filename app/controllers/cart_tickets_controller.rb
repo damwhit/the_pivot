@@ -9,15 +9,11 @@ class CartTicketsController < ApplicationController
       render "events/show"
     else
       tickets = get_tickets(seats, listing)
-      if @cart.double_click?(tickets)
-        flash[:info] = "You have already added that ticket to the cart. Please try again"
-        redirect_to event_path(listing.event)
-      else
-        @cart.add_tickets(tickets)
-        session[:cart] = @cart.contents
-        flash[:info] = "listing number #{listing.id} added to cart!"
-        redirect_to "/#{listing.listing_category}"
-      end
+      @cart.add_tickets(tickets)
+      session[:cart] = @cart.contents
+      flash[:info] = "listing number #{listing.id} added to cart!"
+      redirect_to "/#{listing.listing_category}"
+      #end
     end
   end
 

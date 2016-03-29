@@ -66,10 +66,7 @@ RSpec.feature "UserAddsTicketToCart", type: :feature do
     visit event_path(event)
 
     within("#listing-#{listing.id}") do
-      select "10", from: "seats"
-      click_on "add to cart!"
+      expect(page).to_not have_content(ticket.seat)
     end
-
-    expect(page).to have_content("You have already added that ticket to the cart. Please try again")
   end
 end
