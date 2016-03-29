@@ -45,6 +45,5 @@ RSpec.feature "UserAddsListingForAnEvent", type: :feature do
     within".alert" do
       expect(page).to have_content("Listing number 2 has been updated!")
     end
-
   end
 end

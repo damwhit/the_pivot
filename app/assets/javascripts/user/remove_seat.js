@@ -12,7 +12,6 @@ $( document ).ready(function() {
     if ($(this).parent().siblings().length > 0) {
       $(this).parent().remove();
     } else {
-      console.log("help me");
       alert("you can't delete the last seat!");
     }
   })

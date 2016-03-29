@@ -47,7 +47,6 @@ class ListingsController < ApplicationController
   end
 
   def destroy
-    require "pry"; binding.pry
   end
 
   private
