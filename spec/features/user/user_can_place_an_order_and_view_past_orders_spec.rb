@@ -40,29 +40,29 @@ RSpec.feature "UserCanPlaceOrderAndViewPreviousOrder", type: :feature do
     expect(page).to have_content(event.name)
     expect(page).to have_content(ticket.format_price)
 
-      click_on "submit"
+    click_on "submit"
 
-    stripe_iframe = all('iframe[name=stripe_checkout_app]').last
+    stripe_iframe = all("iframe[name=stripe_checkout_app]").last
     Capybara.within_frame stripe_iframe do
-      page.execute_script(%Q{ $('input#email').val('bob@example.com'); })
+      page.execute_script(%Q{ $("input#email").val("bob@example.com"); })
       sleep 1
-      page.execute_script(%Q{ $('input#shipping-name').val('Sam'); })
+      page.execute_script(%Q{ $("input#shipping-name").val("Sam"); })
       sleep 1
-      page.execute_script(%Q{ $('input#shipping-street').val('1510 Blake St'); })
+      page.execute_script(%Q{ $("input#shipping-street").val("1510 Blake St"); })
       sleep 1
-      page.execute_script(%Q{ $('input#shipping-zip').val('80000'); })
+      page.execute_script(%Q{ $("input#shipping-zip").val("80000"); })
       sleep 1
-      page.execute_script(%Q{ $('input#shipping-city').val('Denver'); })
+      page.execute_script(%Q{ $("input#shipping-city").val("Denver"); })
 
       sleep 3
 
       click_on "Payment Info"
 
-      page.execute_script(%Q{ $('input#card_number').val('4242 4242 4242 4242'); })
+      page.execute_script(%Q{ $("input#card_number").val("4242 4242 4242 4242"); })
       sleep 1
-      page.execute_script(%Q{ $('input#cc-exp').val('11 2020'); })
+      page.execute_script(%Q{ $("input#cc-exp").val("11 2020"); })
       sleep 1
-      page.execute_script(%Q{ $('input#cc-csc').val('222'); })
+      page.execute_script(%Q{ $("input#cc-csc").val("222"); })
       sleep 1
 
       click_on "Total $8.00"
