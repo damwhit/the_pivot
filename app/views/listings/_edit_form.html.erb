@@ -1,6 +1,7 @@
 <div class="row">
   <div class="col-sm-8 col-sm-offset-2 outline" id="listing-<%= listing.id %>">
-    <h2><%= link_to listing.event.name, user_listing_path(current_user, listing) %></h2>
+    <h2><%= listing.event.name %></h2>
+    <h3>Listing #: <%= link_to listing.id, user_listing_path(current_user, listing) %></h3>
     <%= form_tag(user_listing_path(current_user, listing), method: :patch) do %>
       <div class="row">
         <div class="col-sm-6">
@@ -27,7 +28,7 @@
 
         <% listing.tickets.active.each do |ticket| %>
 
-            <tr id="seat_number_1", class="ticket">
+            <tr class="seat_number_1", class="ticket">
               <td>
                 <%= label_tag :seat,  nil, class:"sr-only"  %>
                 <%= text_field_tag :seat, ticket.seat, required:true, class:"form-control text-input", name: "seat[]" %>
@@ -36,11 +37,10 @@
                 <%= link_to("Remove Seat", '#', class: "btn btn-danger") %>
               </td>
             </tr>
-
         <% end %>
         </table>
       </div>
-      <button id="add-seat-edit", class="btn btn-primary">add seat</button>      <br>
+      <%= link_to("add seat", '#', class: "btn btn-primary add-seat-edit") %>
     <% end %>
   </div>
 </div>
