@@ -17,7 +17,7 @@ class CartTicketsController < ApplicationController
   end
 
   def destroy
-    ticket = find_ticket(params[:id])
+    ticket = Ticket.find(params[:id])
     @cart.remove_ticket_from_cart(ticket.id)
     flash[:alert] = "You have removed #{view_context.link_to ticket.get_event.name, event_path(ticket.get_event.id)} from your cart."
     if @cart.empty?
@@ -25,11 +25,5 @@ class CartTicketsController < ApplicationController
     else
       redirect_to cart_path
     end
-  end
-
-  private
-
-  def find_ticket(id)
-    Ticket.find(id)
   end
 end
