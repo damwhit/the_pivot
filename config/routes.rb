@@ -19,11 +19,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:create] #took out index and show
   end
 
-  #get "/orderhistory", to: "orders#index"
-
   get "/ordershow", to: "orders#show"
-
-  #get "/thanks", to: "orders#thanks", as: "thanks"
 
   get "/checkout", to: "orders#new"
   post "/checkout", to: "orders#create"

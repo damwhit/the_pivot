@@ -40,35 +40,43 @@ RSpec.feature "UserCanPlaceOrderAndViewPreviousOrder", type: :feature do
     expect(page).to have_content(event.name)
     expect(page).to have_content(ticket.format_price)
 
-    # click_on "submit"
-    #
-    # within(".stripe-checkout") do
-    #   fill_in "Email", with: user.email
-    #   fill_in "Name", with: user.name
-    #   fill_in "Address", with: "1510 Blake St"
-    #   fill_in "ZIP", with: "80000"
-    #   fill_in "City", with: "denver"
-    #   click_on "Payment Info"
-    # end
-    #
-    # save_and_open_page
+      click_on "submit"
 
-    order1 = user.orders.create(street: "1600 pennslyvania",
-                                city: "washington",
-                                state: "District of Columbia",
-                                zip: "46250",
-                                fullname: "jonathon adams",
-                                first_name: "jonathon",
-                                last_name: "adams",
-                                email: "spam@foundingfathers.biz")
+    stripe_iframe = all('iframe[name=stripe_checkout_app]').last
+    Capybara.within_frame stripe_iframe do
+      page.execute_script(%Q{ $('input#email').val('bob@example.com'); })
+      sleep 1
+      page.execute_script(%Q{ $('input#shipping-name').val('Sam'); })
+      sleep 1
+      page.execute_script(%Q{ $('input#shipping-street').val('1510 Blake St'); })
+      sleep 1
+      page.execute_script(%Q{ $('input#shipping-zip').val('80000'); })
+      sleep 1
+      page.execute_script(%Q{ $('input#shipping-city').val('Denver'); })
 
-    order1.order_tickets.create(ticket_id: ticket.id)
+      sleep 3
+
+      click_on "Payment Info"
+
+      page.execute_script(%Q{ $('input#card_number').val('4242 4242 4242 4242'); })
+      sleep 1
+      page.execute_script(%Q{ $('input#cc-exp').val('11 2020'); })
+      sleep 1
+      page.execute_script(%Q{ $('input#cc-csc').val('222'); })
+      sleep 1
+
+      click_on "Total $8.00"
+    end
+
+    sleep 5
 
     click_on "order history"
 
-    expect(page).to have_content(order1.id)
+    order = Order.last
 
-    within("#upcoming-order-#{order1.id}") do
+    expect(page).to have_content(order.id)
+
+    within("#upcoming-order-#{order.id}") do
       click_on "details"
     end
 
