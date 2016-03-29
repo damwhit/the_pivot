@@ -1,16 +1,5 @@
-# == Schema Information
-#
-# Table name: listings
-#
-#  id         :integer          not null, primary key
-#  user_id    :integer
-#  event_id   :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#
-
 class ListingsController < ApplicationController
-
+  before_action :require_user, only: [:index, :show]
   def new
     @event = Event.find(params[:event_id])
   end
@@ -33,12 +22,10 @@ class ListingsController < ApplicationController
   end
 
   def index
-    require_user
     @listings = Listing.all
   end
 
   def show
-    require_user
     @listing = Listing.find(params[:id])
   end
 
