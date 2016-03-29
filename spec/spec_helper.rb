@@ -57,6 +57,14 @@ module SpecHelpers
       status: "inactive")
   end
 
+  def event3
+    category1.events.create!(
+      name: "Old Festival",
+      venue_id: venue1.id,
+      time: "March 02, 2015 16:00",
+      status: "inactive")
+  end
+
   def make_listings_and_tickets
     user_1 = user1
     user_2 = user2
@@ -81,17 +89,17 @@ module SpecHelpers
 
   def make_events
     {
-      event1: category1.events.find_or_create_by!(
+      event1: category1.events.create!(
         name: "Sun Festival",
         venue_id: venue1.id,
         time: "March 02, 2017 16:00",
         status: "active"),
-      event2: category1.events.find_or_create_by!(
+      event2: category1.events.create!(
         name: "EDM Spectacular",
         venue_id: venue1.id,
         time: "November 20, 2020 18:00",
         status: "active"),
-      event3: category2.events.find_or_create_by!(
+      event3: category2.events.create!(
         name: "Basketball",
         venue_id: venue2.id,
         time: "July 10, 2016 19:00",
