@@ -12,9 +12,6 @@ class OrderProcessor
 
   def cart_total
     (tickets.inject(0) { |sum, ticket| sum + ticket.price }) / 100
-    #   @products.map do |product|
-    #   product.price * product.quantity
-    # end.reduce(:+) / 100
   end
 
   def process_user_params(params)

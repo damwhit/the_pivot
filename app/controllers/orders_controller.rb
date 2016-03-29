@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
 
   def checkout_user
     login_or_create_user
-    redirect_to "/checkout"
+    redirect_to checkout_path
   end
 
   def create

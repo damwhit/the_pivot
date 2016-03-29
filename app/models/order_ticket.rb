@@ -6,9 +6,6 @@ class OrderTicket < ActiveRecord::Base
   validates :order_id, presence: true
 
   def total
-    # ticket.reduce(0) do |ticket|
-    #   ticket.price
-    # end
     ticket.price
   end
 
