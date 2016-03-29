@@ -43,7 +43,7 @@ RSpec.feature "UserCanPlaceOrderAndViewPreviousOrder", type: :feature do
 
     stripe_iframe = all("iframe[name=stripe_checkout_app]").last
     Capybara.within_frame stripe_iframe do
-      page.execute_script(%Q{ $("input#email").val("bob@example.com"); })
+      page.execute_script(%Q{ $("input#email").val("fodays@example.com"); })
       sleep 1
       page.execute_script(%Q{ $("input#shipping-name").val("Sam"); })
       sleep 1
@@ -67,7 +67,9 @@ RSpec.feature "UserCanPlaceOrderAndViewPreviousOrder", type: :feature do
       click_on "Total $8.00"
     end
 
-    sleep 5
+    sleep 10
+
+    expect(Ticket.find(ticket.id).status).to eq("purchased")
 
     click_on "order history"
 

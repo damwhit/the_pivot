@@ -38,6 +38,7 @@ class OrdersController < ApplicationController
     @order = order_processor.process_current_user(stripe_params, current_user)
     if @order.save
       @order.process(order_processor.tickets)
+      @order.set_ticket_status
       # OrderMailer.order_email(@order).deliver_now
       flash[:info] = "Thanks for your order! :)"
       session[:cart] = nil
