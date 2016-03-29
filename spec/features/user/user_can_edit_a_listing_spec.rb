@@ -4,14 +4,38 @@ RSpec.feature "UserAddsListingForAnEvent", type: :feature do
   include SpecHelpers
   scenario "user edits a listing", js: true do
     make_listings_and_tickets
+    user = User.first
+    listing = Listing.first
+
+    visit "/"
+
+    click_on "sign in"
+    fill_in "email", with: user.email
+    fill_in "password", with: "password"
+
+    click_on "login"
 
     click_on "my listings"
 
-    expect(current_path).to eq("/users/#{@user.id}/listings")
-
-    save_and_open_page
-
     expect(page).to have_content("Sun Festival")
+    save_and_open_page
+    within("#listing-1") do
+      fill_in "price", with: "10"
+      fill_in "row", with: "5"
+
+      click_on "update listing"
+    end
+
+    expect(current_path).to eq("/dashboard")
+
+    within(".table-listings") do
+      expect(page).to have_content("$1000.00")
+      expect(page).to have_content(listing.format_date.to_s)
+      expect(page).to have_content("upcoming")
+    end
+    within".alert" do
+      expect(page).to have_content("Your listing has been updated!")
+    end
 
   end
 # As a logged in user
