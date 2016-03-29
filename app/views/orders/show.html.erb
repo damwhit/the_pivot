@@ -35,7 +35,7 @@
             <tr>
               <td><%= image_tag(ticket.get_event.image.url(:show), class: "event-image-sm img-responsive") %></td>
                 <td><%= ticket.get_event.name %></td>
-                <td class="status-text"><%= ticket.status %></td>
+                <td class="status-text"><%= ticket.get_event.status %></td>
                 <td><%= ticket.get_event.venue.name %></td>
                 <td><%= ticket.get_event.venue.city %></td>
                 <td><%= ticket.get_event.venue.state %></td>

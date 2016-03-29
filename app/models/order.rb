@@ -64,7 +64,7 @@ class Order < ActiveRecord::Base
 
   def set_ticket_status
     tickets.each do |ticket|
-      Ticket.find(ticket.id).update(status: "inactive")
+      Ticket.find(ticket.id).update(status: "purchased")
     end
   end
 
