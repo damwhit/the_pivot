@@ -22,11 +22,11 @@ class Event < ActiveRecord::Base
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
   def format_date
-    time.strftime("%a,%e %b")
+    time.strftime("%a, %-d %b")
   end
 
   def format_time
-    time.strftime("%I:%M%P")
+    time.strftime("%-l:%M %P")
   end
 
   def time_venue
