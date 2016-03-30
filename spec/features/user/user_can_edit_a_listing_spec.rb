@@ -40,7 +40,7 @@ RSpec.feature "UserAddsListingForAnEvent", type: :feature do
       expect(page).to have_content("$1600.00")
       expect(page).to_not have_content("$30.00")
       expect(page).to have_content(listing.format_date.to_s)
-      expect(page).to have_content("upcoming")
+      expect(page).to have_content("active")
     end
     within".alert" do
       expect(page).to have_content("Listing number 2 has been updated!")

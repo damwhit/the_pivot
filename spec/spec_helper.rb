@@ -46,7 +46,7 @@ module SpecHelpers
       name: "Sun Festival",
       venue_id: venue1.id,
       time: "March 02, 2017 16:00",
-      status: "upcoming")
+      status: "active")
   end
 
   def event2

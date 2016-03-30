@@ -21,6 +21,7 @@
 #
 
 class OrdersController < ApplicationController
+  before_action :require_user, only: [:show, :thanks, :index]
 
   def new
     @tickets = OrderProcessor.new(@cart).tickets
@@ -50,27 +51,16 @@ class OrdersController < ApplicationController
   end
 
   def show
-    if current_user
-      @order = current_user.orders.find(params[:id])
-    else
-      redirect_to root_path
-    end
+    @order = current_user.orders.find(params[:id])
+    @order_tickets = @order.sort_tickets
   end
 
   def thanks
-    if current_user
-      @order = current_user.orders.find(params[:order_id])
-    else
-      redirect_to root_path
-    end
+    @order = current_user.orders.find(params[:order_id])
   end
 
   def index
-    if current_user
-      @orders = current_user.orders
-    else
-      redirect_to root_path
-    end
+    @orders = current_user.orders
   end
 
   def login_or_create_user

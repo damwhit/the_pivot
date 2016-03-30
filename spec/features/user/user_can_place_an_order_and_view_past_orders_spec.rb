@@ -77,7 +77,7 @@ RSpec.feature "UserCanPlaceOrderAndViewPreviousOrder", type: :feature do
 
     expect(page).to have_content(order.id)
 
-    within("#upcoming-order-#{order.id}") do
+    within("#order-#{order.id}") do
       click_on "details"
     end
 

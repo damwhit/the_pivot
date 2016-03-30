@@ -18,4 +18,8 @@ class Ticket < ActiveRecord::Base
     listing = Listing.find(listing_id)
     listing.event
   end
+
+  def event_status
+    get_event.status
+  end
 end

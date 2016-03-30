@@ -14,7 +14,7 @@
   padding: 0;
 }
 
-.push-right{
+.push-right {
   float: right;
 }
 
@@ -38,12 +38,16 @@
   color: green;
 }
 
-.upcoming-text{
+.upcoming-text {
   color: green;
 }
 
-.past-text{
+.past-text {
   color: blue;
+}
+
+.cancelled-text {
+  color: #ff0000;
 }
 
 #order-comments {
