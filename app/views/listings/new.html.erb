@@ -26,7 +26,7 @@
             <%= label_tag :row,  nil, class:"sr-only"  %>
             <%= text_field_tag :row, nil, required:true, placeholder: "row number", class:"form-control text-input" %><br>
             <%= label_tag :seat,  nil, class:"sr-only"  %>
-            <%= text_field_tag :seat, nil, required:true, placeholder: "seat number 1", class:"form-control text-input", id: "seat_number_1", name: "seat[0]" %><br>
+            <%= text_field_tag :seat, nil, required:true, placeholder: "seat number 1", class:"form-control text-input", id: "seat_number_1", name: "seat[]" %><br>
             <button id="add-seat", class="btn btn-primary">add seat</button>
             <%= submit_tag "create listing", class:"btn btn-checkout" %>
         <% end %>

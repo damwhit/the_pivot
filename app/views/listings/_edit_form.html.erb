@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2 outline" id="listing-<%= listing.id %>">
+    <h2><%= listing.event.name %></h2>
+    <h3>Listing #: <%= link_to listing.id, user_listing_path(current_user, listing) %></h3>
+    <%= form_tag(user_listing_path(current_user, listing), method: :patch) do %>
+      <div class="row">
+        <div class="col-sm-6">
+          <%= submit_tag "update listing", class:"btn btn-checkout" %>
+        </div>
+        <div class="col-sm-6">
+          <%= link_to "destroy listing",user_listing_path(current_user, listing), method: :delete, class:"btn btn-danger" %>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-6" id="<%= listing.id %>-row">
+          <%= label_tag :row,  nil, class:"sr-only"  %>
+          <%= text_field_tag :row, listing.view_row, required:true, class:"form-control text-input" %>
+        </div>
+        <div class="col-sm-6" id="<%= listing.id %>-price">
+          <%= label_tag :price,  nil, class:"sr-only"%>
+          <%= text_field_tag :price, listing.view_price, required:true, class:"form-control text-input" %>
+        </div>
+      </div>
+      <div class="row">
+        <h3>Seats</h3>
+        <table class="table table-hover table-condensed table-products table-bordered">
+
+        <% listing.tickets.active.each do |ticket| %>
+
+            <tr class="seat-row-1">
+              <td>
+                <%= label_tag :seat,  nil, class:"sr-only"  %>
+                <%= text_field_tag :seat, ticket.seat, required:true, class:"form-control text-input", name: "seat[]", id: "seat_number_1" %>
+              </td>
+              <td class="remove-seat">
+                <%= link_to("remove seat", '#', class: "btn btn-danger", id: "remove_1") %>
+              </td>
+            </tr>
+        <% end %>
+        </table>
+      </div>
+      <%= link_to("add seat", '#', class: "btn btn-primary add-seat-edit") %>
+    <% end %>
+  </div>
+</div>
+<br>

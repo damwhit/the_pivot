@@ -63,4 +63,8 @@ class Listing < ActiveRecord::Base
   def format_date
     updated_at.strftime("%Y-%m-%d")
   end
+
+  def destroy_active_tickets
+    tickets.active.destroy_all
+  end
 end

@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   get '/sell', to: 'events#index', as: 'sell'
   get "/dashboard", to: "users#show", as: "user_dashboard"
 
-  resources :listings, only: [:index, :show]
   resources :events, only: [:index, :show] do
     resources :listings, only: [:new, :create]
   end
@@ -17,6 +16,8 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :create, :show]
     get "/orders/:order_id/thanks", to: "orders#thanks", as: "thanks"
     resources :orders, only: [:create] #took out index and show
+    # get "/orders/:order_id/thanks", to: "orders#thanks", as: "thanks"
+    resources :listings, only: [:index, :show, :update, :destroy]
   end
 
   get "/ordershow", to: "orders#show"
