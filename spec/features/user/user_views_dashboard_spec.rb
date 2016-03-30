@@ -125,7 +125,7 @@ RSpec.feature "UserViewsDashboard", type: :feature do
     end
 
     within(".user-events") do
-      expect(page).to have_content(event.name)
+      expect(page).to have_content(event2.name)
       expect(page).to have_content(event2.name)
       expect(page).to have_content(event3.name)
       expect(page).to_not have_content(event4.name)

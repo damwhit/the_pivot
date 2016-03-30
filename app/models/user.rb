@@ -45,6 +45,6 @@ class User < ActiveRecord::Base
         end
       end
     end
-    events.uniq.last(3)
+    events.uniq.first(3)
   end
 end
