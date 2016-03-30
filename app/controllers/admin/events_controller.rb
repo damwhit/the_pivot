@@ -41,7 +41,7 @@ class Admin::EventsController < Admin::BaseController
     end
 
     def parse_date_time(params)
-      merged = "#{params[:date]} #{params[:event][:time]}"
+      merged = "#{params[:date]} #{params[:event][:time]}".downcase
       if merged.include?("-")
         DateTime.parse(merged).strftime("%Y-%m-%d %H:%M:%S")
       elsif merged.include?("m")
