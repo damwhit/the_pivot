@@ -49,6 +49,14 @@ class Event < ActiveRecord::Base
     inactive
   end
 
+  def cancelled?
+    status == "cancelled"
+  end
+
+  def deactivate_listings
+    listings.each { |listing| listing.deactivate }
+  end
+
   def self.category_distribution
     group(:category).count.map { |k, v| [k.name, v] }
   end

@@ -4,8 +4,8 @@ class Ticket < ActiveRecord::Base
   validates :row, presence: true
   validates :seat, presence: true
   validates :price, presence: true
-  validates :status, inclusion: { in: %w(active purchased reserved),
-      message: "%{value} is not a valid size" }
+  validates :status, inclusion: { in: %w(active purchased reserved inactive),
+      message: "%{value} is not a valid status" }
 
   scope :active, -> { where(status: "active") }
 

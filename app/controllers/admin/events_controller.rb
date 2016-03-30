@@ -25,11 +25,21 @@ class Admin::EventsController < Admin::BaseController
   def update
     @event = Event.find(params[:id])
     if @event.update(event_params)
-      flash[:info] = "Updated event: #{@event.name}"
-      redirect_to admin_events_path
-    else
-      flash.now[:error] = "Sorry, could not create that event. Please try again"
-      render :new
+      if params[:event][:status] == "cancelled"
+        cancel
+      else
+        flash[:info] = "Updated event: #{@event.name}"
+        redirect_to admin_events_path
+      end
+    end
+  end
+
+  def cancel
+    @event = Event.find(params[:id])
+    if @event.update(status: "cancelled")
+      @event.deactivate_listings
+      flash[:info] = "#{@event.name} has been cancelled"
+      redirect_to admin_events_path(status: "cancelled")
     end
   end
 
@@ -37,7 +47,7 @@ class Admin::EventsController < Admin::BaseController
 
     def event_params
       params[:event][:time] = parse_date_time(params)
-      params.require(:event).permit(:name, :venue_id, :time, :category_id, :status)
+      params.require(:event).permit(:name, :venue_id, :time, :category_id)
     end
 
     def parse_date_time(params)

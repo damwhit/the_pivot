@@ -10,19 +10,29 @@
     <div class="event-description">
       <%= @event.venue.city %>, <%= @event.venue.state %> at <%= @event.venue.name %>
     </div>
+    <% if @event.cancelled? %>
+      <div class="event-cancelled">
+        <h1 class="cancelled-text">CANCELLED</h1>
+      </div>
+    <% end %>
+    <% if current_admin? && !@event.cancelled? %>
+      <div class="event-description">
+        <%= button_to "cancel event", admin_event_cancel_path(@event.id), method: "patch", class:"btn btn-danger btn-s text-center" %>
+      </div>
+    <% end %>
   </div>
-
+  <% unless @event.cancelled? %>
   <div class="col-md-6">
     <div class="tickets-title">
       <h1>available listings</h1>
     </div>
-    <% counter = 0  %>
     <% @event.listings.each do |listing| %>
       <% if listing.seats.any? %>
         <%= render partial: "shared/view_listing", locals: { listing: listing }%>
       <% end %>
     <% end %>
   </div>
+  <% end %>
 </div>
 
 <%= render partial: "shared/mailing_list" %>
