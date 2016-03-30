@@ -52,6 +52,7 @@ class OrdersController < ApplicationController
   def show
     if current_user
       @order = current_user.orders.find(params[:id])
+      @order_tickets = @order.sort_tickets
     else
       redirect_to root_path
     end
@@ -60,6 +61,7 @@ class OrdersController < ApplicationController
   def thanks
     if current_user
       @order = current_user.orders.find(params[:order_id])
+
     else
       redirect_to root_path
     end

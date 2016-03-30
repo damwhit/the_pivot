@@ -67,6 +67,20 @@ class Order < ActiveRecord::Base
     end
   end
 
+  def sort_tickets
+    sorted ={}
+    sorted[:upcoming] = tickets.find_all do |ticket|
+      ticket.event_status == "active"
+    end
+    sorted[:past] = tickets.find_all do |ticket|
+      ticket.event_status == "inactive"
+    end
+    sorted[:cancelled] = tickets.find_all do |ticket|
+      ticket.event_status == "cancelled"
+    end
+    sorted
+  end
+
   def product_quantity
     order_products.count
   end

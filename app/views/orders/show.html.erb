@@ -3,64 +3,30 @@
     <h1>look at this order.</h1>
   </div>
 </div><br>
+
+
 <div class="container">
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="container past-order-review">
-        <h3 class="order-id little">Order <%= @order.id %></h3>
-        <h3 class="order-date">Purchased on: <%= @order.date %></h3>
-      </div>
-    </div>
-  </div><br>
-  <div class="row">
-    <div class="col-sm-13">
-      <div class="table-responsive">
-        <table class="table table-hover table-condensed table-products">
-          <thead>
-            <tr>
-              <th></th>
-              <th class="text-center">event</th>
-              <th class="text-center">status</th>
-              <th class="text-center">venue</th>
-              <th class="text-center">city</th>
-              <th class="text-center">state</th>
-              <th class="text-center">date</th>
-              <th class="text-center">time</th>
-              <th class="text-center">row</th>
-              <th class="text-center">seat</th>
-              <th class="text-center">price</th>
-            </tr>
-          </thead>
-          <% @order.tickets.each do |ticket| %>
-            <tr>
-              <td><%= image_tag(ticket.get_event.image.url(:show), class: "event-image-sm img-responsive") %></td>
-                <td><%= ticket.get_event.name %></td>
-                <td class="status-text"><%= ticket.get_event.status %></td>
-                <td><%= ticket.get_event.venue.name %></td>
-                <td><%= ticket.get_event.venue.city %></td>
-                <td><%= ticket.get_event.venue.state %></td>
-                <td><%= ticket.get_event.format_date %></td>
-                <td><%= ticket.get_event.format_time %></td>
-                <td><%= ticket.row %></td>
-                <td><%= ticket.seat %></td>
-                <td><%= ticket.format_price %></td>
-            </tr>
-          <% end %>
-            <tfoot>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th class="order-total">Total:</th>
-              <th class="order-total"><%= @order.display_total %></th>
-            </tfoot>
-        </table>
-      </div>
+  <div class="col-sm-12">
+    <div class="container past-order-review">
+      <h3>order <%= @order.id %></h3>
+      <h4 class="order-date">purchased on: <%= @order.date %></h4>
+      <h4>total: <%= @order.display_total %></th></h4> <br><br>
     </div>
   </div>
+  <h3 class="upcoming-text">upcoming</h3>
+
+  <% if @order_tickets[:upcoming].any? %>
+    <%= render partial:  "upcoming_events"%>
+  <% else %>
+    <h4>no upcoming events :(</h4>
+  <% end %>
+
+  <% if @order_tickets[:past].any? %>
+    <%= render partial:  "past_events"%>
+  <% end %>
+
+  <% if @order_tickets[:cancelled].any? %>
+    <%= render partial:  "cancelled_events"%>
+  <% end %>
+
 </div>

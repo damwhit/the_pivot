@@ -1,0 +1,37 @@
+<h3 class="past-text">past</h3>
+<div class="row past-events">
+  <div class="col-sm-13">
+    <div class="table-responsive">
+      <table class="table table-hover table-condensed table-products">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="text-center">event</th>
+            <th class="text-center">venue</th>
+            <th class="text-center">city</th>
+            <th class="text-center">state</th>
+            <th class="text-center">date</th>
+            <th class="text-center">time</th>
+            <th class="text-center">row</th>
+            <th class="text-center">seat</th>
+            <th class="text-center">price</th>
+          </tr>
+        </thead>
+        <% @order_tickets[:past].each do |ticket| %>
+          <tr>
+            <td><%= image_tag(ticket.get_event.image.url(:show), class: "event-image-sm img-responsive") %></td>
+              <td><%= ticket.get_event.name %></td>
+              <td><%= ticket.get_event.venue.name %></td>
+              <td><%= ticket.get_event.venue.city %></td>
+              <td><%= ticket.get_event.venue.state %></td>
+              <td><%= ticket.get_event.format_date %></td>
+              <td><%= ticket.get_event.format_time %></td>
+              <td><%= ticket.row %></td>
+              <td><%= ticket.seat %></td>
+              <td><%= ticket.format_price %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
