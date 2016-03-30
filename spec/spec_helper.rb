@@ -29,6 +29,17 @@ module SpecHelpers
     )
   end
 
+  def suspended_user
+    User.create(
+      first_name: "Monica",
+      last_name: "Whooo",
+      email: "monice@example.com",
+      password: "password",
+      role: 0,
+      fullname: "Monica Whooo",
+      status: "suspended")
+  end
+
   def category2
     Category.find_or_create_by!(name: "sports")
   end
