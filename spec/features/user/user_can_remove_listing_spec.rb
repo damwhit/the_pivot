@@ -1,5 +1,5 @@
 require "rails_helper"
-RSpec.feature "UserRemovesLIsting", type: :feature do
+RSpec.feature "UserRemovesListing", type: :feature do
   include SpecHelpers
   scenario "user removes a listing" do
     make_listings_and_tickets
