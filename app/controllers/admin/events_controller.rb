@@ -33,6 +33,14 @@ class Admin::EventsController < Admin::BaseController
     end
   end
 
+  def cancel
+    @event = Event.find(params[:id])
+    if @event.update(status: "cancelled")
+      flash[:info] = "#{@event.name} has been cancelled"
+      redirect_to admin_events_path(status: 'cancelled')
+    end
+  end
+
   private
 
     def event_params

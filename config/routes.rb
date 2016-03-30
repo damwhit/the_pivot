@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     #resources :orders, only: [:index, :show, :update]
     resources :comments, only: [:create]
     resources :users, only: [:index, :update]
+    patch "/events/:id/cancel", to: "events#cancel", as: "event_cancel"
     resources :events, only: [:index, :new, :create, :update]
     resources :venues, only: [:index, :new]
     resources :categories, only: [:index, :new, :create, :update]

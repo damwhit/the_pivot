@@ -14,6 +14,9 @@
             <div class="sm-product-info">
               <p id="event-#{event.id}"><%= link_to "#{event.name}, #{event.venue.city}", event_path(event) %></p>
               <p> <%= event.format_date %> | <%= event.format_time %></p>
+              <% if current_admin?  %>
+                <p><%= button_to "cancel", admin_event_cancel_path(event.id), method: "patch" %></p>
+              <% end %>
             </div>
           </div>
           <div class="product-info">
