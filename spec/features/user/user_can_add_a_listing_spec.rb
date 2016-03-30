@@ -18,7 +18,7 @@ RSpec.feature "UserAddsListingForAnEvent", type: :feature do
     visit "/events"
 
     expect(current_path).to eq(root_path)
-    
+
     visit "/sell"
 
     expect(current_path).to eq(root_path)

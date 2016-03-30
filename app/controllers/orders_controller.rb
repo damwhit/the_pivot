@@ -21,7 +21,7 @@
 #
 
 class OrdersController < ApplicationController
-  before_action :require_user, only: [:show, :thanks, :user, :index]
+  before_action :require_user, only: [:show, :thanks, :index]
 
   def new
     @tickets = OrderProcessor.new(@cart).tickets
