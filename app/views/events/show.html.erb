@@ -26,20 +26,10 @@
     <div class="tickets-title">
       <h1>available listings</h1>
     </div>
-    <% @event.listings.each_with_index do |listing, counter| %>
-      <div class="panel panel-default">
-        <div class="panel-heading"> Listing: <%= counter += 1 %> </div>
-          <div id="listing-<%= listing.id %>", class="panel-body">
-            row: <%= listing.view_row %> <span class="tab-space"> quantity: <%= listing.count_tickets %></span> <span class="tab-space">price: <%= listing.view_price %></span>
-            <%= form_tag(cart_tickets_path(listing_id: listing.id), method: "post") do %>
-
-              <div class="col-xs-3 col-sm-3 col-md-3 form-inline">
-                 seats: <%= select_tag "seats", options_for_select(listing.seats), {multiple: true, class: "form-control form-control-sm dropdown-toggle"} %>
-               </div>
-              <%= submit_tag "add to cart!", class: "btn btn-default btn-success listing-cart"%>
-            <% end %>
-          </div>
-      </div>
+    <% @event.listings.each do |listing| %>
+      <% if listing.seats.any? %>
+        <%= render partial: "shared/view_listing", locals: { listing: listing }%>
+      <% end %>
     <% end %>
   </div>
   <% end %>

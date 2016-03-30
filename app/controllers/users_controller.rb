@@ -37,6 +37,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @events = current_user.get_active_events
     @listings = current_user.listings.order(updated_at: :desc).take(3)
   end
 
