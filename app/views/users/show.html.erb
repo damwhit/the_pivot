@@ -4,84 +4,29 @@
     <h1>Dis is yo dashboard, <%= current_user.first_name %></h1>
   </div>
 </div><br>
-<div id="orders">
-  <div class="row">
-    <div class="col-sm-8 col-sm-offset-2 outline" >
-      <h1>upcoming events</h1>
-      <h5 class="rjust"> <%= link_to "view all orders", '#' %> </h5>
-      <div class="table-responsive">
-        <table class="table table-hover table-condensed table-products table-bordered">
-          <thead>
-            <tr>
-              <th class="text-center">order</th>
-              <th class="text-center">date</th>
-              <th class="text-center">status</th>
-              <th class="text-center">total</th>
-              <th></th>
-            </tr>
-          </thead>
-          <% 3.times do %>
-            <tr>
-              <td><h4><%= link_to '22', '#' %></h4></td>
-              <td><h4>2016-06-21</h4></td>
-              <td><h4>paid</h4></td>
-              <td><h4>$200</h4></td>
-              <td><h4><%= link_to "details", '#' %></h4></td>
-            </tr>
-          <% end %>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
+
+<% if @events.any? %>
+  <%= render partial: "shared/upcoming_events" %>
+<% end %>
 <br>
-<div id="listings">
-  <div class="row">
-    <div class="col-sm-8 col-sm-offset-2 outline" >
-      <h1>listings</h1>
-      <h5 class="ljust"><%= link_to "Create new listing", sell_path %></h5>
-      <h5 class="rjust"> <%= link_to "my listings", user_listings_path(current_user) %> </h5>
-      <div class="table-responsive">
-        <table class="table table-hover table-condensed table-listings table-bordered">
-          <thead>
-            <tr>
-              <th class="text-center">listing</th>
-              <th class="text-center">date</th>
-              <th class="text-center">status</th>
-              <th class="text-center">total</th>
-              <th></th>
-            </tr>
-          </thead>
-          <% @listings.each do |listing| %>
-            <tr>
-              <%= render partial: "shared/listing_info", locals: {listing: listing} %>
-            </tr>
-          <% end %>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
+
+<% if @listings.any? %>
+  <%= render partial: "shared/view_listings" %>
+<% end %>
 <br>
+
 <div id="listings">
   <div class="row">
     <div class="col-sm-8 col-sm-offset-2 outline" >
       <h1>contact info</h1>
       <h5 class="rjust"> <%= link_to "edit contact info", '#' %> </h5>
       <div class="table-responsive">
-        <table class="table table-hover table-condensed table-products table-bordered">
+        <table class="table table-hover table-condensed table-products table-bordered user-info">
             <tr>
               <td>
                 <h4 class="text-center">
-                  David Whitaker <br>
-                  1510 Blake St. <br>
-                  Denver, CO 80205
-                </h4>
-              </td>
-              <td>
-                <h4 class="text-center">
-                  317 695 9721 <br>
-                  damwhit@gmail.com
+                  <%= current_user.name %> <br>
+                  <%= current_user.email %> <br>
                 </h4>
               </td>
             </tr>
