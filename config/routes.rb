@@ -27,11 +27,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get "/dashboard", to: "events#index"
-    #resources :products, only: [:new, :create, :index, :update]
     #resources :orders, only: [:index, :show, :update]
     resources :comments, only: [:create]
     resources :users, only: [:index, :update]
-    resources :events, only: [:index, :new]
+    resources :events, only: [:index, :new, :create, :update]
     resources :venues, only: [:index, :new]
     resources :categories, only: [:index, :new, :create, :update]
     resources :tags, only: [:index, :new, :show]
