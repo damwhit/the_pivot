@@ -16,10 +16,12 @@ RSpec.feature "UserAddsListingForAnEvent", type: :feature do
     setup
 
     visit "/events"
-    expect(page).to have_content("Hey person, stop trying to hack our shit.")
 
+    expect(current_path).to eq(root_path)
+    
     visit "/sell"
-    expect(page).to have_content("Hey person, stop trying to hack our shit.")
+
+    expect(current_path).to eq(root_path)
 
     visit "/"
 
