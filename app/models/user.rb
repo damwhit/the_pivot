@@ -45,6 +45,6 @@ class User < ActiveRecord::Base
         end
       end
     end
-    events.uniq
+    events.uniq.take(3)
   end
 end
