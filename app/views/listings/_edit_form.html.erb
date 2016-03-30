@@ -8,7 +8,7 @@
           <%= submit_tag "update listing", class:"btn btn-checkout" %>
         </div>
         <div class="col-sm-6">
-          <%= link_to "destroy listing",user_listing_path(current_user, listing), method: :delete, class:"btn btn-danger" %>
+          <%= link_to "remove listing",user_listing_path(current_user, listing), method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-danger" %>
         </div>
       </div>
       <br>

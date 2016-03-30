@@ -1,11 +1,11 @@
 require "rails_helper"
 
-RSpec.feature "UserAddsListingForAnEvent", type: :feature do
+RSpec.feature "UserEditsListingForAnEvent", type: :feature do
   include SpecHelpers
   scenario "user edits a listing", js: true do
     make_listings_and_tickets
     user = User.first
-    listing = Listing.first
+    listing = Listing.last
 
     visit "/"
 

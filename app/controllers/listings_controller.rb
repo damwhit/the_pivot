@@ -1,5 +1,6 @@
 class ListingsController < ApplicationController
   before_action :require_user, only: [:index, :show]
+
   def new
     @event = Event.find(params[:event_id])
   end
@@ -47,6 +48,12 @@ class ListingsController < ApplicationController
   end
 
   def destroy
+    @listing = Listing.find(params[:id])
+    @listing.destroy_active_tickets
+    if @listing.tickets.exist?
+
+    else
+    end
   end
 
   private
