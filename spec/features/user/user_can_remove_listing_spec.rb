@@ -12,7 +12,6 @@ RSpec.feature "UserRemovesLIsting", type: :feature do
     fill_in "password", with: "password"
 
     click_on "login"
-
     click_on "my listings"
 
     expect(page).to have_content("Listing #: 1")

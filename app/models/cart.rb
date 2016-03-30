@@ -18,7 +18,7 @@ class Cart
 
   def tickets
     contents.map do |ticket_id|
-      CartTicket.new(ticket_id)
+      Ticket.find(ticket_id)
     end
   end
 

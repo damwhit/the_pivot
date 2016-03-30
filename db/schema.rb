@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160330011913) do
+ActiveRecord::Schema.define(version: 20160330044312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,9 +91,11 @@ ActiveRecord::Schema.define(version: 20160330011913) do
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.string   "status",     default: "active"
+    t.integer  "order_id"
   end
 
   add_index "tickets", ["listing_id"], name: "index_tickets_on_listing_id", using: :btree
+  add_index "tickets", ["order_id"], name: "index_tickets_on_order_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
@@ -120,4 +122,5 @@ ActiveRecord::Schema.define(version: 20160330011913) do
   add_foreign_key "listings", "users"
   add_foreign_key "orders", "users"
   add_foreign_key "tickets", "listings"
+  add_foreign_key "tickets", "orders"
 end
