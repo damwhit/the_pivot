@@ -1,77 +1,62 @@
 require "rails_helper"
 
-RSpec.feature "AdminCanViewAndCancelEventsbyCategory", type: :feature do
+RSpec.feature "AdminCanViewAndCancelEventsbyVenue", type: :feature do
   include SpecHelpers
   scenario "cancelled event no longer on category show page" do
     create_and_stub_admin
-    category1
-    category2
+    venue = venue1
     event1
 
     visit "/admin/dashboard"
-    click_on "categories"
+    click_on "venues"
 
-    expect(current_path).to eq "/admin/categories"
+    expect(current_path).to eq "/admin/venues"
 
-    within(".categories") do
-      expect(page).to have_content "festivals"
+    within(".venues") do
+      expect(page).to have_content "Neat Ampitheatre"
+      expect(page).to have_content "Des Moines"
+      expect(page).to have_content "Iowa"
     end
 
-    within(".categories") do
-      click_on "festivals"
-    end
+    click_on "Neat Ampitheatre"
 
-    expect(current_path).to eq "/festivals"
+    expect(current_path).to eq "/admin/venues/#{venue.id}"
     expect(page).to have_content "Sun Festival, Des Moines"
     click_on "cancel"
     expect(current_path).to eq admin_events_path
 
     expect(page).to have_content "Sun Festival has been cancelled"
     visit "/festivals"
+    save_and_open_page
+    expect(page).to_not have_content "Sun Festival, Des Moines"
   end
 
   context "guest user" do
     scenario "gets 404 page" do
-      visit "/admin/categories"
+      venue = venue1
 
+      visit "/admin/venues"
       expect(page).to have_content "The page you were looking for doesn't exist (404)"
-    end
 
-    scenario "does not see cancel link" do
-      category1
-      event1
-
-      visit "/festivals"
-
-      expect(page).to_not have_button "cancel"
+      visit "/admin/venues/#{venue.id}"
+      expect(page).to have_content "The page you were looking for doesn't exist (404)"
     end
   end
 
   context "logged in user" do
     scenario "gets 404 page" do
+      venue = venue1
       user1
       visit "/login"
       fill_in "email", with: "mustachefodays@example.com"
       fill_in "password", with: "password"
       click_on "login"
 
-      visit "/admin/categories"
-
+      visit "/admin/venues"
       expect(page).to have_content "The page you were looking for doesn't exist (404)"
-    end
 
-    scenario "does not see cancel link" do
-      user1
-      visit "/login"
-      fill_in "email", with: "mustachefodays@example.com"
-      fill_in "password", with: "password"
-      click_on "login"
-      category1
-      event1
-
-      visit "/festivals"
-
-      expect(page).to_not have_button "cancel"
+      visit "/admin/venues/#{venue.id}"
+      expect(page).to have_content "The page you were looking for doesn't exist (404)"
     end
   end
 end
