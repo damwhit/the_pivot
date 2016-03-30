@@ -112,6 +112,15 @@ listing1.save
 listing2.save
 
 User.create(
+  first_name: "Monica",
+  last_name: "Whooo",
+  email: "monica@example.com",
+  password: "password",
+  role: 0,
+  fullname: "Monica Whooo",
+  status: "suspended")
+
+User.create(
   fullname: "admin",
   email: "admin@ticketcacher.com",
   password: "password",

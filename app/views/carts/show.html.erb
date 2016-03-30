@@ -42,7 +42,7 @@
           <h1 class="cart-total">$<%= cart_total(@cart.tickets) %></h1>
           <div class="checkout">
             <% if current_user %>
-              <%= link_to "Checkout",checkout_path, class:"btn btn-checkout form-control" %>
+                <%= link_to "Checkout",checkout_path, class:"btn btn-checkout form-control" %>
             <% else %>
               <%= link_to "Checkout", checkout_login_path, class:"btn btn-checkout form-control" %>
             <% end %>
