@@ -98,13 +98,7 @@ RSpec.feature "AdminCanEditAnEvent", type: :feature do
 
       select "cancelled", from: "event[status]"
       click_on "update event details"
-      expect(page).to have_content("Updated event: Sun Festival")
-      within(".events") do
-        expect(page).to_not have_css("input[value='Sun Festival']")
-      end
-
-      click_on "cancelled events"
-
+      expect(page).to have_content("Sun Festival has been cancelled")
       within(".events") do
         expect(page).to have_css("input[value='Sun Festival']")
       end
@@ -145,20 +139,3 @@ RSpec.feature "AdminCanEditAnEvent", type: :feature do
     end
   end
 end
-
-# select "Neat Ampitheatre", from: "event[venue_id]"
-# fill_in "date", with: date.strftime("%m/%d/%Y")
-# fill_in "time", with: time
-# select "sports", from: "event[category_id]"
-# fill_in "tags", with: "family, fringe"
-#
-# click_on "create event"
-#
-# event = Event.last
-# expect(current_path).to eq("/events/#{event.id}")
-#
-# expect(page).to have_content("Created new event: Curling: USA vs. Canada")
-# expect(page).to have_content("Curling: USA vs. Canada")
-#
-# expect(page).to have_content("#{date.strftime('%a, %-d %b')} at 7:00 pm")
-# expect(page).to have_content("Des Moines, Iowa at Neat Ampitheatre")

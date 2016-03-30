@@ -24,8 +24,8 @@ RSpec.feature "UserAddsTicketToCart", type: :feature do
 
     expect(current_path).to eq("/cart")
 
-    expect(Ticket.find(1).status).to eq("reserved")
-    expect(Ticket.find(2).status).to eq("reserved")
+    expect(listing.tickets.first.status).to eq("reserved")
+    expect(listing.tickets.last.status).to eq("reserved")
 
     expect(page).to have_content(event.name)
     expect(page).to have_content(listing.tickets.first.format_price)
