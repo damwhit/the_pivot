@@ -1,5 +1,6 @@
 class ListingsController < ApplicationController
-  before_action :require_user, only: [:index, :show]
+  before_action :require_user
+
   def new
     @event = Event.find(params[:event_id])
   end
@@ -26,11 +27,11 @@ class ListingsController < ApplicationController
   end
 
   def show
-    @listing = Listing.find(params[:id])
+    @listing = current_user.listings.find(params[:id])
   end
 
   def update
-    @listing = Listing.find(params[:id])
+    @listing = current_user.listings.find(params[:id])
     @listing.destroy_active_tickets
     params[:seat].each do |seat_number|
       @listing.tickets << Ticket.create(price: ticket_params[:price],
@@ -47,6 +48,17 @@ class ListingsController < ApplicationController
   end
 
   def destroy
+    @listing = current_user.listings.find(params[:id])
+    @listing.destroy_active_tickets
+    if @listing.has_tickets
+      @listing.update(status: "inactive")
+      flash[:alert] = "Listing #{@listing.id} has been deactivated"
+      redirect_to user_dashboard_path
+    else
+      @listing.destroy
+      flash[:alert] = "Listing #{@listing.id} has been cancelled"
+      redirect_to user_dashboard_path
+    end
   end
 
   private

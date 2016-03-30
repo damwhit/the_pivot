@@ -1,8 +1,11 @@
 class Ticket < ActiveRecord::Base
   belongs_to :listing
+  belongs_to :order
   validates :row, presence: true
   validates :seat, presence: true
   validates :price, presence: true
+  validates :status, inclusion: { in: %w(active purchased reserved),
+      message: "%{value} is not a valid size" }
 
   scope :active, -> { where(status: "active") }
 
