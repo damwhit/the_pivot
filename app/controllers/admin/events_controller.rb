@@ -1,6 +1,8 @@
 class Admin::EventsController < Admin::BaseController
   def index
     @events = Event.filter_by_status(params[:status])
+    @venues = Venue.all
+    @categories = Category.all
   end
 
   def new
@@ -20,12 +22,34 @@ class Admin::EventsController < Admin::BaseController
     end
   end
 
+  def update
+    @event = Event.find(params[:id])
+    if @event.update(event_params)
+      flash[:info] = "Updated event: #{@event.name}"
+      redirect_to admin_events_path
+    else
+      flash.now[:error] = "Sorry, could not create that event. Please try again"
+      render :new
+    end
+  end
+
   private
 
     def event_params
+      params[:event][:time] = parse_date_time(params)
+      params.require(:event).permit(:name, :venue_id, :time, :category_id, :status)
+    end
+
+    def parse_date_time(params)
       merged = "#{params[:date]} #{params[:event][:time]}"
-      params[:event][:time] = DateTime.strptime(merged, "%m/%d/%Y %I:%M %p").
-                                       strftime("%Y-%m-%d %H:%M:%S")
-      params.require(:event).permit(:name, :venue_id, :time, :category_id)
+      if merged.include?("-")
+        DateTime.parse(merged).strftime("%Y-%m-%d %H:%M:%S")
+      elsif merged.include?("m")
+        DateTime.strptime(merged, "%m/%d/%Y %I:%M %p").
+                 strftime("%Y-%m-%d %H:%M:%S")
+      else
+        DateTime.strptime(merged, "%m/%d/%Y %H:%M:%S").
+                 strftime("%Y-%m-%d %H:%M:%S")
+      end
     end
 end
