@@ -16,6 +16,7 @@ RSpec.feature "UserRemovesLIsting", type: :feature do
     click_on "my listings"
 
     expect(page).to have_content("Listing #: 1")
+    expect(page).to have_content("Listing #: 3")
 
     within("#listing-1") do
       click_on "remove listing"
@@ -28,7 +29,7 @@ RSpec.feature "UserRemovesLIsting", type: :feature do
     click_on "my listings"
 
     expect(page).to_not have_content("$8")
-    expect(page).to_not have_content("listing #1")
+    expect(page).to_not have_content("Listing #: 1")
 
     within("#listing-3") do
       click_on "remove listing"
@@ -39,6 +40,7 @@ RSpec.feature "UserRemovesLIsting", type: :feature do
     end
 
     click_on "my listings"
-    require "pry"; binding.pry
+    expect(page).to_not have_content("Listing #: 1")
+    expect(page).to have_content("Listing #: 3")
   end
 end

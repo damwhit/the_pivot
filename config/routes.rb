@@ -12,11 +12,14 @@ Rails.application.routes.draw do
   resources :cart_tickets, only: [:create, :destroy, :update]
   resources :mailing_list_emails, only: [:create]
 
-  resources :users, only: [:new, :create] do
+  # resources :users, only: [:new, :create] do
+  #   resources :orders, only: [:index, :create, :show]
+  #   get "/orders/:order_id/thanks", to: "orders#thanks", as: "thanks"
+  #   resources :listings, only: [:index, :show, :update, :destroy]
+  # end
+  resource :user, only: [:new, :create] do
     resources :orders, only: [:index, :create, :show]
     get "/orders/:order_id/thanks", to: "orders#thanks", as: "thanks"
-    resources :orders, only: [:create] #took out index and show
-    # get "/orders/:order_id/thanks", to: "orders#thanks", as: "thanks"
     resources :listings, only: [:index, :show, :update, :destroy]
   end
 

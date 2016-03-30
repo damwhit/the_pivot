@@ -18,7 +18,7 @@ RSpec.feature "UserEditsListingForAnEvent", type: :feature do
     click_on "my listings"
 
     expect(page).to have_content("Sun Festival")
-    within("#listing-2") do
+    within("#listing-4") do
       fill_in "price", with: "10"
       fill_in "row", with: "5"
       fill_in "seat_number_1", with: "1"
@@ -43,7 +43,7 @@ RSpec.feature "UserEditsListingForAnEvent", type: :feature do
       expect(page).to have_content("upcoming")
     end
     within".alert" do
-      expect(page).to have_content("Listing number 2 has been updated!")
+      expect(page).to have_content("Listing number 4 has been updated!")
     end
   end
 end

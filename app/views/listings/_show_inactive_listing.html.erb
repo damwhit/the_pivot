@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-sm-8 col-sm-offset-2 outline" id="listing-<%= listing.id %>">
     <h2><%= listing.event.name %></h2>
-    <h3>Listing #: <%= link_to listing.id, user_listing_path(current_user, listing) %></h3>
-    <%= form_tag(user_listing_path(current_user, listing), method: :patch) do %>
+    <h3>Listing #: <%= link_to listing.id, user_listing_path(listing) %></h3>
+    <%= form_tag(user_listing_path(listing), method: :patch) do %>
       <br>
       <div class="row">
         <div class="col-sm-6" id="<%= listing.id %>-row">

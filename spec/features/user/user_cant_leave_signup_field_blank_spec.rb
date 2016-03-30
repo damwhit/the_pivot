@@ -7,7 +7,7 @@ RSpec.feature "UserCantLeaveSignupFieldBlank", type: :feature do
     click_on "sign in"
     click_on "signup"
 
-    expect(current_path).to eq("/users/new")
+    expect(current_path).to eq("/user/new")
     fill_in "email", with: "test@test.com"
     fill_in "password", with: "password"
 

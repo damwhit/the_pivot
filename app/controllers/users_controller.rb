@@ -15,6 +15,7 @@
 #
 
 class UsersController < ApplicationController
+  before_action :require_user, only: [:show]
   def new
     @user = User.new
   end
@@ -36,7 +37,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    require_user
     @listings = current_user.listings.order(updated_at: :desc).take(3)
   end
 

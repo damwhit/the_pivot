@@ -4,7 +4,7 @@
       <h>hi <%= current_user.first_name.downcase %></p>
     </li>
     <li class="divider"></li>
-    <li><%= link_to "dashboard", user_dashboard_path(current_user) %></li>
+    <li><%= link_to "dashboard", user_dashboard_path %></li>
     <li><%= link_to "order history", user_orders_path(current_user) %></li>
     <li><%= link_to "listings", user_listings_path(current_user) %></li>
     <li><%= link_to "profile", "#" %></li>
