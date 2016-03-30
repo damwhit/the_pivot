@@ -17,11 +17,9 @@ RSpec.feature "SuspendedUserCannotPurchaseTickets", type: :feature do
       click_on "add to cart!"
     end
 
-    expect(current_path).to eq("/#{event.category.name}")
-
-    expect(page).to have_content("listing number #{listing.id} added to cart!")
-
     click_on "cart"
+
+    expect(Ticket.find(1).status).to eq("reserved")
 
     click_on "Checkout"
 
@@ -32,5 +30,9 @@ RSpec.feature "SuspendedUserCannotPurchaseTickets", type: :feature do
     click_on "continue"
 
     expect(page).to have_content("sorry, you cannot purchase tickets :(")
+
+    expect(page).to have_content("cart(0)")
+
+    expect(Ticket.find(1).status).to eq("active")
   end
 end

@@ -30,6 +30,8 @@ class OrdersController < ApplicationController
       render :new
     else
       flash[:info] = "sorry, you cannot purchase tickets :("
+      @cart.empty_cart
+      session[:cart] = @cart.contents
       redirect_to root_path
     end
   end
