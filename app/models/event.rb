@@ -8,7 +8,7 @@ class Event < ActiveRecord::Base
   # validates :venue, presence: true
 
   scope :upcoming_events, -> do
-    where("time >= ? AND status != 'cancelled'", Time.zone.now.beginning_of_day)
+    where("time >= ? AND status != 'cancelled'", Time.zone.now.beginning_of_day).order(:time)
   end
   scope :past_events, -> do
     where("time <= ? AND status != 'cancelled'", Time.zone.now.beginning_of_day)

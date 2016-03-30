@@ -4,38 +4,14 @@
   <td>
     <button class="btn btn btn-primary btn-s">update image</button>
   </td>
-  <td><input type="text" value="<%="#{event.name}"%>"" name="event_name"></td>
-  <td>
-    <select>
-      <option value="venue-pepsi-center">Pepsi Center</option>
-      <option value="venue-red-rocks-ampitheatre">Red Rocks Ampitheatre</option>
-      <option selected="selected" value="venue-colorado-convention-center">Colorado Convention Center</option>
-    </select>
-  </td>
-  <td>
-    <input type="date" name="event_date" value="2016-06-21"; class="form-control form-control-sm search-form">
-  </td>
-  <td>
-    <input type="time" name="event_time" class="form-control form-control-sm" value = "08:30:00">
-  </td>
-  <td>
-    <select>
-      <option value="category-sports">sports</option>
-      <option value="category-concerts">concerts</option>
-      <option selected="selected" value="category-conventions">conventions</option>
-      <option value="category-popups">popups</option>
-      <option value="category-festivals">festivals</option>
-      <option value="category-comedy">comedy</option>
-    </select>
-  </td>
-  <td><input type="text" value="tech, multi-day" name="event_tags"></td>
-  <td>
-    <select>
-      <option value="upcoming">upcoming</option>
-      <option selected="selected" value="cancelled">cancelled</option>
-    </select>
-  </td>
-  <td>
-    <button class="btn btn-checkout btn-s">update event details</button>
-  </td>
+  <%= form_for [:admin, event] do |f| %>
+    <td><%= f.text_field :name, class: "form-control text-input" %></td>
+    <td><%= f.collection_select :venue_id, @venues, :id, :name %></td>
+    <td><%= date_field_tag :date, event.time.strftime("%Y-%m-%d"), class: "form-control form-control-sm" %></td>
+    <td><%= f.time_field :time, class: "form-control form-control-sm" %></td>
+    <td><%= f.collection_select :category_id, @categories, :id, :name %></td>
+    <td><%= text_field_tag :tags, nil ,class: "form-control text-input" %></td>
+    <td><%= f.select :status, ["upcoming", "cancelled"] %></td>
+    <td><%= f.submit "update event details", class: "btn btn-checkout btn-s" %></td>
+  <% end %>
 </tr>
