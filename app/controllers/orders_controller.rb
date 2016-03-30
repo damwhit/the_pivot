@@ -24,8 +24,16 @@ class OrdersController < ApplicationController
   before_action :require_user, only: [:show, :thanks, :index]
 
   def new
-    @tickets = OrderProcessor.new(@cart).tickets
-    @order = Order.new
+    if active_user?
+      @tickets = OrderProcessor.new(@cart).tickets
+      @order = Order.new
+      render :new
+    else
+      flash[:info] = "sorry, you cannot purchase tickets :("
+      @cart.empty_cart
+      session[:cart] = @cart.contents
+      redirect_to root_path
+    end
   end
 
 
@@ -43,7 +51,7 @@ class OrdersController < ApplicationController
       # OrderMailer.order_email(@order).deliver_now
       flash[:info] = "Thanks for your order! :)"
       session[:cart] = nil
-      redirect_to user_thanks_path(current_user, @order.id)
+      redirect_to thanks_user_path(@order.id)
     else
       flash.now[:alert] = "Sorry, friend.  Something went wrong :(... Please try again."
       render :new

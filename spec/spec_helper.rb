@@ -29,6 +29,17 @@ module SpecHelpers
     )
   end
 
+  def suspended_user
+    User.create(
+      first_name: "Monica",
+      last_name: "Whooo",
+      email: "monice@example.com",
+      password: "password",
+      role: 0,
+      fullname: "Monica Whooo",
+      status: "suspended")
+  end
+
   def category2
     Category.find_or_create_by!(name: "sports")
   end
@@ -77,6 +88,15 @@ module SpecHelpers
     listing_2 = event1.listings.new(user_id: user_2.id)
     listing_2.tickets << Ticket.new(price: 1000, seat: "1", row: "1")
     listing_2.save
+
+    listing_3 = event1.listings.new(user_id: user_1.id)
+    listing_3.tickets << Ticket.new(price: 2000, seat: "10", row: "5", status: "purchased")
+    listing_3.tickets << Ticket.new(price: 2000, seat: "11", row: "5")
+    listing_3.save
+
+    listing_4 = event1.listings.new(user_id: user_1.id)
+    listing_4.tickets << Ticket.new(price: 1000, seat: "1", row: "1")
+    listing_4.save
   end
 
   def make_listing

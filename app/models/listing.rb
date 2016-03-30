@@ -1,13 +1,15 @@
 class Listing < ActiveRecord::Base
   belongs_to :user
   belongs_to :event
-  has_many :tickets
+  has_many :tickets, dependent: :destroy
 
   validates :tickets, presence: true
   validates :user_id, presence: true
   validates :event_id, presence: true
 
   validate :ticket_row_matches?, :ticket_price_matches?
+
+  scope :inactive, -> { where(status: "inactive") }
 
   def ticket_row_matches?
     return unless has_tickets?
@@ -66,5 +68,13 @@ class Listing < ActiveRecord::Base
 
   def destroy_active_tickets
     tickets.active.destroy_all
+  end
+
+  def has_tickets
+    tickets.any?
+  end
+
+  def active?
+    status == "active"
   end
 end

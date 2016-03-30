@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2 outline" id="listing-<%= listing.id %>">
+    <h2><%= listing.event.name %></h2>
+    <h3>Listing #: <%= link_to listing.id, user_listing_path(listing) %></h3>
+    <%= form_tag(user_listing_path(listing), method: :patch) do %>
+      <br>
+      <div class="row">
+        <div class="col-sm-6" id="<%= listing.id %>-row">
+          <%= listing.view_row %>
+        </div>
+        <div class="col-sm-6" id="<%= listing.id %>-price">
+          <%= listing.view_price %>
+        </div>
+      </div>
+      <div class="row">
+        <h3>Seats</h3>
+        <table class="table table-hover table-condensed table-bordered">
+        <% listing.tickets.each do |ticket| %>
+            <tr class="seat-row-1">
+              <td>
+                <%= ticket.seat %>
+              </td>
+            </tr>
+        <% end %>
+        </table>
+      </div>
+    <% end %>
+  </div>
+</div>
+<br>

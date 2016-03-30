@@ -77,12 +77,12 @@ RSpec.feature "UserViewsPastAndUpcomingTickets", type: :feature do
                                 last_name: "adams",
                                 email: "spam@foundingfathers.biz")
 
-    order1.order_tickets.create(ticket_id: ticket1.id)
-    order1.order_tickets.create(ticket_id: ticket2.id)
-    order1.order_tickets.create(ticket_id: ticket4.id)
-    order1.order_tickets.create(ticket_id: ticket5.id)
+    order1.tickets << ticket1
+    order1.tickets << ticket2
+    order1.tickets << ticket4
+    order1.tickets << ticket5
 
-    order2.order_tickets.create(ticket_id: ticket3.id)
+    order2.tickets << ticket3
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
