@@ -27,7 +27,6 @@ RSpec.feature "AdminCanViewAndCancelEventsbyVenue", type: :feature do
 
     expect(page).to have_content "Sun Festival has been cancelled"
     visit "/festivals"
-    save_and_open_page
     expect(page).to_not have_content "Sun Festival, Des Moines"
   end
 

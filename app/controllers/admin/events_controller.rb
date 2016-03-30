@@ -27,9 +27,6 @@ class Admin::EventsController < Admin::BaseController
     if @event.update(event_params)
       flash[:info] = "Updated event: #{@event.name}"
       redirect_to admin_events_path
-    else
-      flash.now[:error] = "Sorry, could not create that event. Please try again"
-      render :new
     end
   end
 
@@ -37,7 +34,7 @@ class Admin::EventsController < Admin::BaseController
     @event = Event.find(params[:id])
     if @event.update(status: "cancelled")
       flash[:info] = "#{@event.name} has been cancelled"
-      redirect_to admin_events_path(status: 'cancelled')
+      redirect_to admin_events_path(status: "cancelled")
     end
   end
 
