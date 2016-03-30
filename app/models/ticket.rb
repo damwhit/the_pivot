@@ -4,7 +4,6 @@ class Ticket < ActiveRecord::Base
   validates :seat, presence: true
   validates :price, presence: true
 
-
   def format_price
     "$#{price / 100}"
   end
