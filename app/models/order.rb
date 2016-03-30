@@ -68,14 +68,14 @@ class Order < ActiveRecord::Base
   end
 
   def sort_tickets
-    sorted ={}
-    sorted[:upcoming] = tickets.find_all do |ticket|
+    sorted = {}
+    sorted[:upcoming] = tickets.select do |ticket|
       ticket.event_status == "active"
     end
-    sorted[:past] = tickets.find_all do |ticket|
+    sorted[:past] = tickets.select do |ticket|
       ticket.event_status == "inactive"
     end
-    sorted[:cancelled] = tickets.find_all do |ticket|
+    sorted[:cancelled] = tickets.select do |ticket|
       ticket.event_status == "cancelled"
     end
     sorted

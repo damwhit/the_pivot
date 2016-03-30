@@ -8,7 +8,6 @@ class Ticket < ActiveRecord::Base
 
   scope :active, -> { where(status: "active") }
 
-
   def format_price
     "$#{price / 100}"
   end

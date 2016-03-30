@@ -1,40 +1,40 @@
 require "rails_helper"
 
-RSpec.feature "UserViewsPassedAndUpcomingTickets", type: :feature do
+RSpec.feature "UserViewsPastAndUpcomingTickets", type: :feature do
   include SpecHelpers
   scenario "user views order history and sees upcoming and passed tickets" do
     seller1 = user1
     seller2 = user2
 
     event1 = category1.events.create!(
-              name: "Sun Festival",
-              venue_id: venue1.id,
-              time: "March 02, 2017 16:00",
-              status: "active")
+      name: "Sun Festival",
+      venue_id: venue1.id,
+      time: "March 02, 2017 16:00",
+      status: "active")
 
     event2 = category1.events.create!(
-              name: "EDM Spectacular",
-              venue_id: venue1.id,
-              time: "November 20, 2020 18:00",
-              status: "active")
+      name: "EDM Spectacular",
+      venue_id: venue1.id,
+      time: "November 20, 2020 18:00",
+      status: "active")
 
     event3 = category1.events.create!(
-              name: "Donuts Make Noise",
-              venue_id: venue1.id,
-              time: "July 20, 2017 18:00",
-              status: "inactive")
+      name: "Donuts Make Noise",
+      venue_id: venue1.id,
+      time: "July 20, 2017 18:00",
+      status: "inactive")
 
     event4 = category1.events.create!(
-              name: "Hello",
-              venue_id: venue1.id,
-              time: "June 02, 2018 18:00",
-              status: "cancelled")
+      name: "Hello",
+      venue_id: venue1.id,
+      time: "June 02, 2018 18:00",
+      status: "cancelled")
 
     ticket1 = Ticket.new(price: 800, seat: "80", row: "20")
     ticket2 = Ticket.new(price: 800, seat: "81", row: "20")
     ticket3 = Ticket.new(price: 1000, seat: "56", row: "23")
     ticket4 = Ticket.new(price: 4000, seat: "5", row: "4")
-    ticket5 = Ticket.new(price: 10000, seat: "9", row: "2")
+    ticket5 = Ticket.new(price: 9000, seat: "9", row: "2")
 
     listing_1 = event1.listings.new(user_id: seller1.id)
     listing_1.tickets << ticket1
@@ -53,26 +53,29 @@ RSpec.feature "UserViewsPassedAndUpcomingTickets", type: :feature do
     listing_4.tickets <<  ticket5
     listing_4.save
 
-    user = User.create(first_name: "John", last_name: "Adams", fullname: "John Adams",
-                       email: "email@example.com", password: "password")
+    user = User.create(first_name: "John",
+                       last_name: "Adams",
+                       fullname: "John Adams",
+                       email: "email@example.com",
+                       password: "password")
 
     order1 = user.orders.create(street: "1600 pennslyvania",
-                                   city: "washington",
-                                   state: "District of Columbia",
-                                   zip: "46250",
-                                   fullname: "jonathon adams",
-                                   first_name: "jonathon",
-                                   last_name: "adams",
-                                   email: "spam@foundingfathers.biz")
+                                city: "washington",
+                                state: "District of Columbia",
+                                zip: "46250",
+                                fullname: "jonathon adams",
+                                first_name: "jonathon",
+                                last_name: "adams",
+                                email: "spam@foundingfathers.biz")
 
     order2 = user.orders.create(street: "1600 pennslyvania",
-                                   city: "washington",
-                                   state: "District of Columbia",
-                                   zip: "46250",
-                                   fullname: "jonathon adams",
-                                   first_name: "jonathon",
-                                   last_name: "adams",
-                                   email: "spam@foundingfathers.biz")
+                                city: "washington",
+                                state: "District of Columbia",
+                                zip: "46250",
+                                fullname: "jonathon adams",
+                                first_name: "jonathon",
+                                last_name: "adams",
+                                email: "spam@foundingfathers.biz")
 
     order1.order_tickets.create(ticket_id: ticket1.id)
     order1.order_tickets.create(ticket_id: ticket2.id)
