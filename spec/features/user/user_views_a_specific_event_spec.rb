@@ -63,10 +63,9 @@ RSpec.feature "UserViewsASpecificEvent", type: :feature do
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-
     visit event_path(event)
 
-    expect(page).to have_css(("#listing-#{listing.id}"))
+    expect(page).to have_css("#listing-#{listing.id}")
 
     order = user.orders.create(street: "1600 pennslyvania",
                                city: "washington",
@@ -84,6 +83,6 @@ RSpec.feature "UserViewsASpecificEvent", type: :feature do
 
     visit event_path(event)
 
-    expect(page).to_not have_css(("#listing-#{listing.id}"))
+    expect(page).to_not have_css("#listing-#{listing.id}")
   end
 end

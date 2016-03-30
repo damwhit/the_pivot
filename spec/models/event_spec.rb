@@ -37,7 +37,7 @@ RSpec.describe Event, type: :model do
   context "formats date" do
     it "formats the date" do
       event = make_events[:event1]
-      expect(event.format_date).to eq("Thu, 2 Mar")
+      expect(event.format_date).to eq("Thu, 2 Mar 2017")
     end
   end
 end

@@ -29,7 +29,7 @@ RSpec.feature "AdminCanCreateAnEvent", type: :feature do
     expect(page).to have_content("Created new event: Curling: USA vs. Canada")
     expect(page).to have_content("Curling: USA vs. Canada")
 
-    expect(page).to have_content("#{date.strftime('%a, %-d %b')} at 7:00 pm")
+    expect(page).to have_content("#{date.strftime('%a, %-d %b %Y')} at 7:00 pm")
     expect(page).to have_content("Des Moines, Iowa at Neat Ampitheatre")
   end
 end

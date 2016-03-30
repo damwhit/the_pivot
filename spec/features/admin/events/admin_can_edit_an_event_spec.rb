@@ -124,7 +124,7 @@ RSpec.feature "AdminCanEditAnEvent", type: :feature do
       expect(page).to have_content("Updated event: Sun Festival")
 
       visit "/events/#{event.id}"
-      expect(page).to have_content(new_date.strftime("%a, %-d %b"))
+      expect(page).to have_content(new_date.strftime("%a, %-d %b %Y"))
       expect(page).to_not have_content("Thu, 2 Mar")
     end
   end
@@ -141,7 +141,7 @@ RSpec.feature "AdminCanEditAnEvent", type: :feature do
       expect(page).to have_content("Updated event: Sun Festival")
 
       visit "/events/#{event.id}"
-      expect(page).to have_content("Thu, 2 Mar at 8:00 pm")
+      expect(page).to have_content("Thu, 2 Mar 2017 at 8:00 pm")
     end
   end
 end
