@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160328220337) do
+ActiveRecord::Schema.define(version: 20160330011913) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,8 +51,9 @@ ActiveRecord::Schema.define(version: 20160328220337) do
   create_table "listings", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "event_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "status",     default: "active"
   end
 
   add_index "listings", ["event_id"], name: "index_listings_on_event_id", using: :btree
@@ -61,16 +62,6 @@ ActiveRecord::Schema.define(version: 20160328220337) do
   create_table "mailing_list_emails", force: :cascade do |t|
     t.string "email"
   end
-
-  create_table "order_tickets", force: :cascade do |t|
-    t.integer  "order_id"
-    t.integer  "ticket_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "order_tickets", ["order_id"], name: "index_order_tickets_on_order_id", using: :btree
-  add_index "order_tickets", ["ticket_id"], name: "index_order_tickets_on_ticket_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.string   "street"
@@ -127,8 +118,6 @@ ActiveRecord::Schema.define(version: 20160328220337) do
   add_foreign_key "events", "venues"
   add_foreign_key "listings", "events"
   add_foreign_key "listings", "users"
-  add_foreign_key "order_tickets", "orders"
-  add_foreign_key "order_tickets", "tickets"
   add_foreign_key "orders", "users"
   add_foreign_key "tickets", "listings"
 end

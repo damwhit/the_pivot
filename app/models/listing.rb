@@ -9,6 +9,8 @@ class Listing < ActiveRecord::Base
 
   validate :ticket_row_matches?, :ticket_price_matches?
 
+  scope :inactive, -> { where(status: "inactive") }
+
   def ticket_row_matches?
     return unless has_tickets?
     row = tickets.first.row
@@ -66,5 +68,13 @@ class Listing < ActiveRecord::Base
 
   def destroy_active_tickets
     tickets.active.destroy_all
+  end
+
+  def has_tickets
+    tickets.any?
+  end
+
+  def active?
+    status == "active"
   end
 end

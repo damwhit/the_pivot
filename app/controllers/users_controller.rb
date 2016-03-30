@@ -37,7 +37,7 @@ class UsersController < ApplicationController
 
   def show
     require_user
-    @listings = Listing.order(updated_at: :desc).take(3)
+    @listings = current_user.listings.order(updated_at: :desc).take(3)
   end
 
 private

@@ -77,6 +77,11 @@ module SpecHelpers
     listing_2 = event1.listings.new(user_id: user_2.id)
     listing_2.tickets << Ticket.new(price: 1000, seat: "1", row: "1")
     listing_2.save
+
+    listing_3 = event1.listings.new(user_id: user_1.id)
+    listing_3.tickets << Ticket.new(price: 2000, seat: "10", row: "5", status: "purchased")
+    listing_3.tickets << Ticket.new(price: 2000, seat: "11", row: "5")
+    listing_3.save
   end
 
   def make_listing
