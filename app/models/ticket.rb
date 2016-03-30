@@ -4,6 +4,7 @@ class Ticket < ActiveRecord::Base
   validates :seat, presence: true
   validates :price, presence: true
 
+
   def format_price
     "$#{price / 100}"
   end
@@ -15,5 +16,9 @@ class Ticket < ActiveRecord::Base
   def get_event
     listing = Listing.find(listing_id)
     listing.event
+  end
+
+  def event_status
+    get_event.status
   end
 end

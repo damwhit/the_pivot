@@ -62,8 +62,8 @@ RSpec.feature "UserAddsListingForAnEvent", type: :feature do
       expect(page).to have_content("$30.00")
 
       expect(page).to have_content(Time.now.utc.strftime "%Y-%m-%d")
-      
-      expect(page).to have_content("upcoming")
+
+      expect(page).to have_content("active")
     end
     within".alert" do
       expect(page).to have_content("Your tickets are up for sale!")
