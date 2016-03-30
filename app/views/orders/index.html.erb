@@ -21,7 +21,7 @@
               <td><h4><%= order.id %></h4></td>
               <td><h4><%= order.date %></h4></td>
               <td><h4><%= order.display_total %></h4></td>
-              <td><h4 id="order-<%= order.id %>"><%= link_to "details", user_order_path(current_user, order) %></h4></td>
+              <td><h4 id="order-<%= order.id %>"><%= link_to "details", user_order_path(order) %></h4></td>
             </tr>
           <% end %>
         </table>

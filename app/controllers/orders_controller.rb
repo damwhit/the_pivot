@@ -51,7 +51,7 @@ class OrdersController < ApplicationController
       # OrderMailer.order_email(@order).deliver_now
       flash[:info] = "Thanks for your order! :)"
       session[:cart] = nil
-      redirect_to user_thanks_path(current_user, @order.id)
+      redirect_to thanks_user_path(@order.id)
     else
       flash.now[:alert] = "Sorry, friend.  Something went wrong :(... Please try again."
       render :new

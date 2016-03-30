@@ -12,11 +12,14 @@ Rails.application.routes.draw do
   resources :cart_tickets, only: [:create, :destroy, :update]
   resources :mailing_list_emails, only: [:create]
 
-  resources :users, only: [:new, :create] do
+  # resources :users, only: [:new, :create] do
+  #   resources :orders, only: [:index, :create, :show]
+  #   get "/orders/:order_id/thanks", to: "orders#thanks", as: "thanks"
+  #   resources :listings, only: [:index, :show, :update, :destroy]
+  # end
+  resource :user, only: [:new, :create] do
     resources :orders, only: [:index, :create, :show]
     get "/orders/:order_id/thanks", to: "orders#thanks", as: "thanks"
-    resources :orders, only: [:create] #took out index and show
-    # get "/orders/:order_id/thanks", to: "orders#thanks", as: "thanks"
     resources :listings, only: [:index, :show, :update, :destroy]
   end
 
@@ -27,11 +30,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get "/dashboard", to: "events#index"
-    #resources :products, only: [:new, :create, :index, :update]
     #resources :orders, only: [:index, :show, :update]
     resources :comments, only: [:create]
     resources :users, only: [:index, :update]
-    resources :events, only: [:index, :new]
+    resources :events, only: [:index, :new, :create, :update]
     resources :venues, only: [:index, :new]
     resources :categories, only: [:index, :new, :create, :update]
     resources :tags, only: [:index, :new, :show]

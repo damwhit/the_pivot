@@ -30,7 +30,7 @@ RSpec.describe Event, type: :model do
   context "formats time" do
     it "formats the time" do
       event = make_events[:event1]
-      expect(event.format_time).to eq("04:00pm")
+      expect(event.format_time).to eq("4:00 pm")
     end
   end
 
