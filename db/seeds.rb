@@ -19,42 +19,71 @@ conventions = Category.find_or_create_by!(name:"conventions")
               state: state)
 end
 
-event_time = Faker::Time.between(DateTime.now, DateTime.now + 365)
-
+@event_times = []
+365.times do
+  @event_times << Faker::Time.between(DateTime.now, DateTime.now + 365)
+end
 festivals.events.create(
   name: "Balloon Fun",
   venue_id: @venues.sample.id,
   image: open("https://s3.amazonaws.com/ticket-cacher/categories/air_balloons.jpg"),
-  time: event_time,
+  time: @event_times.sample,
   status: "active")
 
 festivals.events.create(
-  name: "Balloon Fun",
+  name: "Giant Bubbles",
   venue_id: @venues.sample.id,
-  image: open("https://s3.amazonaws.com/ticket-cacher/categories/air_balloons.jpg"),
-  time: event_time,
+  image: open("https://s3.amazonaws.com/ticket-cacher/categories/bubble+boy+festival.jpg"),
+  time: @event_times.sample,
   status: "active")
 
 festivals.events.create(
-  name: "Balloon Fun",
+  name: "Cooking Is Kewl",
   venue_id: @venues.sample.id,
-  image: open("https://s3.amazonaws.com/ticket-cacher/categories/air_balloons.jpg"),
-  time: event_time,
+  image: open("https://s3.amazonaws.com/ticket-cacher/categories/cooking+festival.jpg"),
+  time: @event_times.sample,
   status: "active")
 
+festivals.events.create(
+  name: "Fun Festival",
+  venue_id: @venues.sample.id,
+  image: open("https://s3.amazonaws.com/ticket-cacher/categories/fun+festival.jpg"),
+  time: @event_times.sample,
+  status: "active")
+
+festivals.events.create(
+  name: "River Boat festival",
+  venue_id: @venues.sample.id,
+  image: open("https://s3.amazonaws.com/ticket-cacher/categories/river+boat+festival.jpeg"),
+  time: @event_times.sample,
+  status: "active")
+
+festivals.events.create(
+  name: "Sunset Music Festival",
+  venue_id: @venues.sample.id,
+  image: open("https://s3.amazonaws.com/ticket-cacher/categories/sunset+festival.jpg"),
+  time: @event_times.sample,
+  status: "active")
+
+festivals.events.create(
+  name: "Computer Music Festival",
+  venue_id: @venues.sample.id,
+  image: open("https://s3.amazonaws.com/ticket-cacher/categories/computer+music.jpg"),
+  time: @event_times.sample,
+  status: "active") 
 
 concerts.events.create(
   name: "Muppet Rock",
   venue_id: @venues.sample.id,
   image: open("https://s3.amazonaws.com/ticket-cacher/categories/muppets_rocking.jpg"),
-  time: "November 20, 2020 18:00", status: "active")
+  time: @event_times.sample)
 
 9.times do
   sports.events.create(
     name: "Basketball Gurlz",
     venue_id: @venues.sample.id,
     image: open("https://s3.amazonaws.com/ticket-cacher/categories/olympic_basketball.jpg"),
-    time: "July 10, 2016 19:00",
+    time: @event_times.sample,
     status: "active")
 end
 
@@ -63,7 +92,7 @@ end
     name: "Veggie Means Healthy",
     venue_id: @venues.sample.id,
     image: open("https://s3.amazonaws.com/ticket-cacher/categories/green_beans_and_carrots.jpg"),
-    time: "July 10, 2016 19:00",
+    time: @event_times.sample,
     status: "active")
 end
 
@@ -72,7 +101,7 @@ end
     name: "Louis C.K.",
     venue_id: @venues.sample.id,
     image: open("https://s3.amazonaws.com/ticket-cacher/categories/louis_ck.jpg"),
-    time: "July 10, 2016 19:00",
+    time: @event_times.sample,
     status: "active")
 end
 
@@ -81,7 +110,7 @@ end
     name: "Cosplay Extravaganza",
     venue_id: @venues.sample.id,
     image: open("https://s3.amazonaws.com/ticket-cacher/categories/comicon.jpg"),
-    time: "July 10, 2016 19:00",
+    time: @event_times.sample,
     status: "active")
 end
 
