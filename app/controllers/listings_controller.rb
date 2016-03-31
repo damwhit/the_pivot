@@ -23,7 +23,7 @@ class ListingsController < ApplicationController
   end
 
   def index
-    @listings = Listing.all
+    @listings = current_user.listings
   end
 
   def show
