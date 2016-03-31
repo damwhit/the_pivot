@@ -2,7 +2,13 @@ class ListingsController < ApplicationController
   before_action :require_user
 
   def new
-    @event = Event.find(params[:event_id])
+    if active_user?
+      @event = Event.find(params[:event_id])
+      render :new
+    else
+      flash[:info] = "sorry, you cannot add a listing :("
+      redirect_to root_path
+    end
   end
 
   def create
