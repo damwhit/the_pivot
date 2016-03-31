@@ -1,7 +1,7 @@
 <h3 class="inactive-<%= params[:inactive] %> admin-product-index-header">my listings</h3>
 <br>
 <div id="listings">
-      <% @listings.each do |listing| %>
-        <%= render 'edit_form', {listing: listing} %>
-      <% end %>
+  <% @listings.each do |listing| %>
+    <%= render 'edit_form', {listing: listing} %>
+  <% end %>
 </div>

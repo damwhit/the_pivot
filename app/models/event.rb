@@ -53,6 +53,12 @@ class Event < ActiveRecord::Base
     "#{venue.city}, #{venue.state}"
   end
 
+  def status_formatted
+    return "upcoming" if upcoming?
+    return "cancelled" if cancelled?
+    "past"
+  end
+
   def deactivate_listings
     listings.each { |listing| listing.deactivate }
   end
