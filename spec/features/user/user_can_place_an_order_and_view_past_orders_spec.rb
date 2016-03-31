@@ -1,8 +1,10 @@
 require "rails_helper"
 
 RSpec.feature "UserCanPlaceOrderAndViewPreviousOrder", type: :feature do
+  pending
   include SpecHelpers
   scenario "user places order and views previous orders", js: true do
+    pending
     make_listings_and_tickets
     user = User.create(
       first_name: "Sam",

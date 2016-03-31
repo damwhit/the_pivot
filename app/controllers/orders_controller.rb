@@ -68,7 +68,12 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @orders = current_user.orders
+    if !current_user.orders == nil
+      @orders = current_user.orders
+    else
+      flash[:info] = "You don't have any orders!"
+      redirect_to user_dashboard_path
+    end
   end
 
   def login_or_create_user
