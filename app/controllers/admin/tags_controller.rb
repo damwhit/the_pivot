@@ -16,7 +16,7 @@ class Admin::TagsController < Admin::BaseController
       flash[:info] = "created new tag: #{@tag.name}!!!"
       redirect_to admin_tags_path
     else
-      flash.now[:alert] = "couldn't create tag... try again!!!"
+      flash.now[:error] = "couldn't create tag... try again!!!"
       render :new
     end
   end
