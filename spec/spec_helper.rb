@@ -90,12 +90,12 @@ module SpecHelpers
     listing_2.save
 
     listing_3 = event1.listings.new(user_id: user_1.id)
-    listing_3.tickets << Ticket.new(price: 2000, seat: "10", row: "5", status: "purchased")
-    listing_3.tickets << Ticket.new(price: 2000, seat: "11", row: "5")
+    listing_3.tickets << Ticket.new(price: 2000, seat: "90", row: "5", status: "purchased")
+    listing_3.tickets << Ticket.new(price: 2000, seat: "91", row: "5")
     listing_3.save
 
     listing_4 = event1.listings.new(user_id: user_1.id)
-    listing_4.tickets << Ticket.new(price: 1000, seat: "1", row: "1")
+    listing_4.tickets << Ticket.new(price: 1000, seat: "7", row: "1")
     listing_4.save
   end
 
