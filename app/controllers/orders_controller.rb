@@ -48,7 +48,7 @@ class OrdersController < ApplicationController
     if @order.save
       @order.process(order_processor.tickets)
       @order.set_ticket_status
-      # OrderMailer.order_email(@order).deliver_now
+      OrderMailer.order_email(@order).deliver_now
       flash[:info] = "Thanks for your order! :)"
       session[:cart] = nil
       redirect_to thanks_user_path(@order.id)
