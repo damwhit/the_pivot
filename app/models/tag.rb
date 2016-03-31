@@ -2,7 +2,7 @@ class Tag < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
   validate :name_is_not_a_category
 
-  has_many :taggings
+  has_many :taggings, dependent: :destroy
   has_many :events, through: :taggings, source: :taggable, source_type: "Event"
   has_many :venues, through: :taggings, source: :taggable, source_type: "Venue"
 

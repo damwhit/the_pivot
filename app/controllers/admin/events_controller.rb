@@ -45,6 +45,16 @@ class Admin::EventsController < Admin::BaseController
     end
   end
 
+  def remove_tag
+    event = Event.find(params[:id])
+    tag = event.tags.find(params[:tag_id])
+    if tag
+      event.tags.delete(tag)
+      flash[:info] = "Removed #{tag.name} from #{event.name}"
+      redirect_to admin_tag_path(tag.id)
+    end
+  end
+
   private
 
     def event_params
