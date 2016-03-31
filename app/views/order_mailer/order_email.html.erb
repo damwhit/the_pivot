@@ -6,7 +6,7 @@
     <tr align="center" style="text-align:center">
       <td style="font-size:18px">
         <p style="margin-bottom:35px">
-          We received your order and it'll ship shortly fam.<br><br>
+          Here is yo receipt.<br><br>
             🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉
         </p>
       </td>
@@ -18,20 +18,27 @@
     </tr>
     <tr>
       <td style="width:100%">
-        <table bgcolor="#fff" style="background:#fff;border-collapse:collapse;border-top-color:#e5e5e5;border-top-style:solid;border-top-width:1px;font-size:18px;margin:20px 0 30px;max-width:768px;padding:20px 0;width:100%">
+        <table bgcolor="#fff">
           <tbody>
-            <% @order.tickets.each do |ticket| %>
-            <tr style="border-bottom-color:#e5e5e5;border-bottom-style:solid;border-bottom-width:1px;border-collapse:separate">
-              <td style="padding:20px 0;width:30%">
-                <%= ticket.get_event.name %><span style="color:#999999;padding:0 10px">x</span>
-                <%= image_tag(ticket.get_event.image.url(:small), class:"product-image img-rounded") %>
-               </td>
-              <td style="padding:20px 0 20px 10px;width:70%">
-                <%= ticket.row %>
-                <%= ticket.seat %>
-                <span style="float:right"><%= ticket.format_price %></span>
-              </td>
-            </tr>
+            <% @order.tickets.each_with_index do |ticket, counter| %>
+            <table>
+              <thead>
+                <tr style="border-bottom-color:#e5e5e5;border-bottom-style:solid;border-bottom-width:1px;border-collapse:separate">
+                  <td style="padding:20px 0;width:30%">
+                    Ticket <%= counter + 1 %>: <span style="color:#999999;padding:0 10px"></span>
+                   </td>
+                </tr>
+              </thead>
+              <tr>
+                <td style> Event: <%= ticket.get_event.name %> </td>
+              </tr>
+              <tr>
+                <td> Row: <%= ticket.row %> </td>
+              </tr>
+              <tr>
+                <td> Seat: <%= ticket.seat %></td>
+              </tr>
+            </table>
             <% end %>
             <tr style="border-bottom-color:#e5e5e5;border-bottom-style:solid;border-bottom-width:1px;border-collapse:separate">
               <td style="padding:20px 0;width:30%">

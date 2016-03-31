@@ -35,9 +35,9 @@ Rails.application.configure do
     }
   }
   ActionMailer::Base.smtp_settings = {
-    :user_name => ENV['SENDGRID_USERNAME'],
+    :user_name => ENV['SENDGRID_USER_NAME'],
     :password => ENV['SENDGRID_PASSWORD'],
-    :domain => 'littleowl.herokuapp.com',
+    :domain => 'ticketcacher.herokuapp.com',
     :address => 'smtp.sendgrid.net',
     :port => 587,
     :authentication => :plain,

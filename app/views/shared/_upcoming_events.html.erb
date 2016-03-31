@@ -1,0 +1,28 @@
+<div id="orders">
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2 outline" >
+      <h1>upcoming events</h1>
+      <h5 class="rjust"> <%= link_to "view all orders", user_orders_path(current_user) %> </h5>
+      <div class="table-responsive">
+        <table class="table table-hover table-condensed table-products table-bordered">
+          <thead>
+            <tr>
+              <th class="text-center">event</th>
+              <th class="text-center">date</th>
+              <th class="text-center">city</th>
+              <th class="text-center">venue</th>
+            </tr>
+          </thead>
+          <% @events.each do |event|%>
+            <tr class="user-events">
+              <td><h4><%= link_to event.name, event_path(event) %></h4></td>
+              <td><h4><%= event.format_date %></h4></td>
+              <td><h4><%= event.venue.city %></h4></td>
+              <td><h4><%= event.venue.name %></h4></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -3,18 +3,6 @@ require "rails_helper"
 RSpec.feature "UserViewsASpecificEvent", type: :feature do
   include SpecHelpers
   scenario "user views a specific event" do
-    # event = event1
-    # user_1 = user1
-    # user_2 = user2
-    #
-    # listing_1 = event1.listings.new(user_id: user_1.id)
-    # listing_1.tickets << Ticket.new(price: 900, seat: "8", row: "5")
-    # listing_1.tickets << Ticket.new(price: 900, seat: "9", row: "5")
-    # listing_1.save
-    #
-    # listing_2 = event1.listings.new(user_id: user_2.id)
-    # listing_2.tickets << Ticket.new(price: 1000, seat: "3", row: "7")
-    # listing_2.save
     make_listings_and_tickets
 
     event = Event.last
@@ -62,5 +50,39 @@ RSpec.feature "UserViewsASpecificEvent", type: :feature do
       expect(page).to have_content("8")
       expect(page).to_not have_content("9")
     end
+  end
+
+  scenario "a listing disappears if all the tickets are bought" do
+    make_listing
+
+    user = User.last
+
+    listing = Listing.last
+
+    event = Event.last
+
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+    visit event_path(event)
+
+    expect(page).to have_css("#listing-#{listing.id}")
+
+    order = user.orders.create(street: "1600 pennslyvania",
+                               city: "washington",
+                               state: "District of Columbia",
+                               zip: "46250",
+                               fullname: "jonathon adams",
+                               first_name: "jonathon",
+                               last_name: "adams",
+                               email: "spam@foundingfathers.biz")
+
+    order.tickets << Ticket.find_by(seat: "10")
+    order.tickets << Ticket.find_by(seat: "11")
+
+    order.set_ticket_status
+
+    visit event_path(event)
+
+    expect(page).to_not have_css("#listing-#{listing.id}")
   end
 end

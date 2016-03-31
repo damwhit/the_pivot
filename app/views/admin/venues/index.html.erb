@@ -1,64 +1,18 @@
-<h3 class="<%= params[:status] %> admin-order-index-header">active venues</h3>
-<br>
-<p><a href="#">all venues</a> &bull; <a href="#">active venues</a> &bull; <a href="#">retired venues</a> &bull; <%= link_to "new venue", new_admin_venue_path %></p>
-<br>
-<div class="row">
-  <div class="col-sm-3">
-    <%= form_tag "#", method: 'get' do %>
-      <div class="form-group">
-        <%= text_field_tag :search, params[:search], placeholder: "search by name", class: "form-control form-control-sm search-form"%>
-        <button class="btn btn-little-owl btn-sm">search by name</button>
-      </div>
-    <% end %>
-  </div>
-  <div class="col-sm-3">
-    <%= form_tag "#", method: 'get' do %>
-    <div class="form-group">
-      <%= text_field_tag :id_search, params[:id], placeholder: "search by city", class: "form-control form-control-sm search-form"%>
-      <button class="btn btn-little-owl btn-sm">search by city</button>
-    </div>
-    <% end %>
-  </div>
-  <div class="col-sm-3">
-    <%= form_tag "#", method: 'get' do %>
-    <div class="form-group">
-      <%= text_field_tag :id_search, params[:id], placeholder: "search by state", class: "form-control form-control-sm search-form"%>
-      <button class="btn btn-little-owl btn-sm">search by state</button>
-    </div>
-    <% end %>
-  </div>
-</div>
+<h3 class="<%= params[:status] %> admin-order-index-header">all venues</h3>
 <br>
 <div class="table-responsive">
-  <table class="table table-hover table-condensed table-bordered table-striped order-index-table">
+  <table class="table table-hover table-condensed">
     <thead>
       <tr>
-        <th>id</th>
         <th>name</th>
-        <th>street address</th>
         <th>city</th>
         <th>state</th>
-        <th>status</th>
+        <th>tags</th>
         <th></th>
       </tr>
     </thead>
-    <% 2.times do |n| %>
-      <tr id="venue-<%= n %>">
-        <td class="col-md-1"><%= link_to "#{n}","#"%></td>
-        <td class="text-nowrap col-md-2"><input type="text" value="<%="Venue ##{n}"%>" name="venue[name]"></td>
-        <td class="col-md-3"><input type="text" value="1111 Main Street" name="venue[address]"></td>
-        <td class="col-md-2"><input type="text" value="Denver" name="venue[city]"></td>
-        <td class="col-md-1"><input type="text" value="CO" name="venue[state]"></td>
-        <td class="col-md-2">
-          <select>
-            <option selected="selected" value="1">active</option>
-            <option value="2">retired</option>
-          </select>
-        </td>
-        <td class="col-md-1">
-          <button class="btn btn-checkout btn-s">update status</button>
-        </td>
-      </tr>
-    <% end %>
+    <tbody class="venues">
+      <%= render partial: "admin/venues/venue", collection: @venues%>
+    </tbody>
   </table>
 </div>

@@ -1,0 +1,27 @@
+<div id="listings">
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2 outline" >
+      <h1>listings</h1>
+      <h5 class="ljust"><%= link_to "Create new listing", sell_path %></h5>
+      <h5 class="rjust"> <%= link_to "my listings", user_listings_path(current_user) %> </h5>
+      <div class="table-responsive">
+        <table class="table table-hover table-condensed table-listings table-bordered">
+          <thead>
+            <tr>
+              <th class="text-center">listing</th>
+              <th class="text-center">date</th>
+              <th class="text-center">status</th>
+              <th class="text-center">total</th>
+              <th></th>
+            </tr>
+          </thead>
+          <% @listings.each do |listing| %>
+            <tr>
+              <%= render partial: "shared/listing_info", locals: {listing: listing} %>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

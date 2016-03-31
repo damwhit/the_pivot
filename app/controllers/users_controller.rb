@@ -37,7 +37,23 @@ class UsersController < ApplicationController
   end
 
   def show
+    @events = current_user.get_active_events
     @listings = current_user.listings.order(updated_at: :desc).take(3)
+  end
+
+  def edit
+    @user = current_user
+  end
+
+  def update
+    @user = current_user
+    if @user.update(user_params)
+      flash[:alert] = "yo info has been updated!!"
+      redirect_to user_dashboard_path
+    else
+      flash.now[:alert] = "please enter all information"
+      render :edit
+    end
   end
 
 private
