@@ -1,0 +1,9 @@
+<tr>
+  <td><%= link_to event.name, event_path(event.id) %></td>
+  <td><%= event.venue.name %></td>
+  <td><%= event.format_date %></td>
+  <td><%= event.format_time %></td>
+  <td class="col-md-2">
+    <button class="btn btn-danger btn-s text-center">remove <%= tag.name %> tag</button>
+  </td>
+</tr>

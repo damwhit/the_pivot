@@ -6,6 +6,9 @@ RSpec.feature "AdminCanCreateAnEvent", type: :feature do
     create_and_stub_admin
     category2
     venue1
+    tag1
+    tag2
+    tag3
     date = Date.today + 25
     time = "07:00 PM"
 
@@ -19,7 +22,7 @@ RSpec.feature "AdminCanCreateAnEvent", type: :feature do
     fill_in "date", with: date.strftime("%m/%d/%Y")
     fill_in "time", with: time
     select "sports", from: "event[category_id]"
-    fill_in "tags", with: "family, fringe"
+    fill_in "tags", with: "family, death metal"
 
     click_on "create event"
 
@@ -28,7 +31,8 @@ RSpec.feature "AdminCanCreateAnEvent", type: :feature do
 
     expect(page).to have_content("Created new event: Curling: USA vs. Canada")
     expect(page).to have_content("Curling: USA vs. Canada")
-
+    expect(page).to have_content("family")
+    expect(page).to have_content("death metal")
     expect(page).to have_content("#{date.strftime('%a, %-d %b %Y')} at 7:00 pm")
     expect(page).to have_content("Des Moines, Iowa at Neat Ampitheatre")
   end
