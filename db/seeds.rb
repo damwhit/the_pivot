@@ -1,3 +1,4 @@
+puts "Creating categories"
 sports = Category.find_or_create_by!(name:"sports")
 festivals = Category.find_or_create_by!(name:"festivals")
 concerts = Category.find_or_create_by!(name:"concerts")
@@ -5,6 +6,7 @@ popups = Category.find_or_create_by!(name:"popups")
 comedy = Category.find_or_create_by!(name:"comedy")
 conventions = Category.find_or_create_by!(name:"conventions")
 
+puts "Adding venues"
 @venues = []
 100. times do
   venue_names = ["Arena", "Stadium", "Center", "Theatre", "Palace", "Center for Children Who Can't Read Good"]
@@ -19,11 +21,21 @@ conventions = Category.find_or_create_by!(name:"conventions")
               state: state)
 end
 
+puts "Hold on for those times"
 @event_times = []
-365.times do
-  @event_times << Faker::Time.between(DateTime.now, DateTime.now + 365)
+250.times do
+  @event_times << Faker::Time.between(DateTime.now-60, DateTime.now + 365)
+end
+@event_times = @event_times.uniq
+
+puts "MMMM tags"
+@tags = []
+40.times do
+  name = Faker::Hipster.words(rand(1..3))
+  @tags << Tag.find_or_create_by!(name: name)
 end
 
+puts "Time for the festivities"
 6.times do
   festivals.events.create(
     name: "Yazz Festival",
@@ -105,6 +117,7 @@ end
     status: "active")
 end
 
+puts "Is live music more your deal?"
 6.times do
 concerts.events.create(
   name: "The Beetles",
@@ -163,6 +176,7 @@ concerts.events.create(
   time: @event_times.sample)
 end
 
+puts "Joust!"
 6.times do
   sports.events.create(
     name: "USA Basketball",
@@ -226,9 +240,10 @@ end
     status: "active")
 end
 
+puts "Grow out yours mustaches for charities"
 6.times do
   popups.events.create(
-    name: "Arugla Time",
+    name: "Arugula Time",
     venue_id: @venues.sample.id,
     image: open("https://s3.amazonaws.com/ticket-cacher/categories/pop-ups/arugula+time.jpg"),
     time: @event_times.sample,
@@ -289,6 +304,7 @@ end
     status: "active")
 end
 
+puts "HA!"
 9.times do
   comedy.events.create(
     name: "Louis C.K.",
@@ -298,6 +314,7 @@ end
     status: "active")
 end
 
+puts "Dig out those costumes"
 9.times do
   conventions.events.create(
     name: "Cosplay Extravaganza",
@@ -307,6 +324,27 @@ end
     status: "active")
 end
 
+puts "TAG you're it!"
+event_count = Event.count
+
+rand(150..250).times do
+  @event = Event.find(rand(1..event_count))
+  rand(0..5).times do
+    @event.tags << @tags.sample
+  end
+  @event.save
+end
+
+venue_count = Venue.count
+rand(50..100).times do
+  @venue = Venue.find(rand(1..venue_count))
+  rand(0..5).times do
+    @venue.tags << @tags.sample
+  end
+  @venue.save
+end
+
+puts "Almost there"
 User.create(
   first_name: "Dave",
   last_name: "Whit",
