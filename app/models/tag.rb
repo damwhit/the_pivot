@@ -11,4 +11,26 @@ class Tag < ActiveRecord::Base
       errors.add(:tag, "must not have the same name as a category")
     end
   end
+
+  def self.names
+    pluck(:name)
+  end
+
+  def self.valid_tag_name?(tag_name)
+    names.include?(tag_name)
+  end
+
+  def self.valid_tags(tags)
+    valid_tags = []
+    tags.split(',').each do |tag|
+      if valid_tag_name?(tag.strip)
+        valid_tags << Tag.find_by(name: tag.strip)
+      end
+    end
+    valid_tags
+  end
+
+  def self.tag_string
+    pluck(:name).join(", ")
+  end
 end

@@ -2,6 +2,8 @@ class Event < ActiveRecord::Base
   belongs_to :category
   belongs_to :venue
   has_many :listings
+  has_many :taggings, as: :taggable
+  has_many :tags, through: :taggings
 
   # validates :name, presence: true, uniqueness: true
   # validates :category, presence: true
@@ -14,6 +16,7 @@ class Event < ActiveRecord::Base
     where("time <= ? AND status != 'cancelled'", Time.zone.now.beginning_of_day)
   end
   scope :cancelled, -> { where(status: "cancelled") }
+
 
   has_attached_file :image,
       styles: { index: '275x175>', show: '550x350<', small: '137.5x87.5>' },
