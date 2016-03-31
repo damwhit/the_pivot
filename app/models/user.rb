@@ -4,7 +4,6 @@ class User < ActiveRecord::Base
   has_many :orders
   has_many :listings
 
-
   validates :fullname, presence: true
   validates :email, presence: true, uniqueness: true
   validates :password_digest, presence: true
@@ -40,7 +39,7 @@ class User < ActiveRecord::Base
     events = []
     orders.each do |order|
       order.tickets.each do |ticket|
-        if ticket.listing.event.status == "active"
+        if ticket.listing.event.upcoming?
           events << ticket.listing.event
         end
       end

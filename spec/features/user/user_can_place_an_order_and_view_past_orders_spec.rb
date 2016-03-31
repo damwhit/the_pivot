@@ -52,7 +52,7 @@ RSpec.feature "UserCanPlaceOrderAndViewPreviousOrder", type: :feature do
       sleep 1
       page.execute_script(%Q{ $("input#shipping-city").val("Denver"); })
 
-      sleep 3
+      sleep 5
 
       click_on "Payment Info"
 
@@ -83,5 +83,30 @@ RSpec.feature "UserCanPlaceOrderAndViewPreviousOrder", type: :feature do
     expect(page).to have_content(event.name)
     expect(page).to have_content(event.format_date)
     expect(page).to have_content(ticket.format_price)
+  end
+
+  scenario "new user can create account when checking out" do
+    make_listings_and_tickets
+
+    event = Event.last
+    listing = Listing.first
+
+    visit event_path(event)
+    within("#listing-#{listing.id}") do
+      select "10", from: "seats"
+      click_on "add to cart!"
+    end
+
+    visit "/cart"
+
+    click_on "Checkout"
+
+    fill_in "name", with: "Hello"
+    fill_in "email", with: "sup@example.com"
+    fill_in "password", with: "password"
+
+    click_on "continue"
+
+    expect(current_path).to eq(checkout_path)
   end
 end

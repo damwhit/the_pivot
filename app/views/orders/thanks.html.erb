@@ -1,7 +1,7 @@
 <div class="container-fluid text-center">
   <h1>Hey <%= current_user.first_name %>! 💖💖💖</h1>
   <h3>We've emailed a receipt to <%= @order.email %>!</h3>
-  <h4>You can check out your order details <%= link_to 'here', '#' %></h4><br>
+  <h4>You can check out your order details <%= link_to 'here', user_order_path(@order) %></h4><br>
   <h4>Here at ticketcacher we aim to please!<br>If you have any questions or concerns, please don't hesitate to <a href="mailto:ticketcacherturing@gmail.com?Subject=hello%20again" target="_top">contact us</a>.</h4>
 </div>
 <br>

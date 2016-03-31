@@ -50,7 +50,7 @@ RSpec.feature "UserAddsListingForAnEvent", type: :feature do
 
     expect(current_path).to eq("/events/#{@event1.id}/listings/new")
 
-    fill_in "price", with: "10"
+    fill_in "price", with: "100"
     fill_in "row", with: "5"
     fill_in "seat_number_1", with: "10"
 
@@ -67,7 +67,7 @@ RSpec.feature "UserAddsListingForAnEvent", type: :feature do
     expect(current_path).to eq("/dashboard")
 
     within(".table-listings") do
-      expect(page).to have_content("$30.00")
+      expect(page).to have_content("$3.00")
 
       expect(page).to have_content(Time.now.utc.strftime "%Y-%m-%d")
 

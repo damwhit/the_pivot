@@ -8,6 +8,8 @@ class Event < ActiveRecord::Base
   validates :name, presence: true
   validates :category, presence: true
   validates :venue, presence: true
+  validates :status, presence: true, inclusion: { in: %w(active cancelled upcoming),
+                                                  message: "%{value} is not a valid status" }
 
   scope :upcoming_events, -> do
     where("time >= ? AND status != 'cancelled'", Time.zone.now.beginning_of_day).order(:time)
@@ -22,6 +24,18 @@ class Event < ActiveRecord::Base
       default_url: "logo.ico"
 
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+
+  def upcoming?
+    Time.zone.now < time && status != "cancelled"
+  end
+
+  def past?
+    Time.zone.now > time && status != "cancelled"
+  end
+
+  def cancelled?
+    status == "cancelled"
+  end
 
   def format_date
     time.strftime("%a, %-d %b %Y")
@@ -39,18 +53,6 @@ class Event < ActiveRecord::Base
     "#{venue.city}, #{venue.state}"
   end
 
-  def upcoming?
-    Time.zone.now < time && status != "cancelled"
-  end
-
-  def past?
-    Time.zone.now > time && status != "cancelled"
-  end
-
-  def cancelled?
-    status == "cancelled"
-  end
-
   def status_formatted
     return "upcoming" if upcoming?
     return "cancelled" if cancelled?
@@ -59,10 +61,6 @@ class Event < ActiveRecord::Base
 
   def deactivate_listings
     listings.each { |listing| listing.deactivate }
-  end
-
-  def self.category_distribution
-    group(:category).count.map { |k, v| [k.name, v] }
   end
 
   def self.filter_by_status(status)

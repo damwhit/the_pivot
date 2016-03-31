@@ -65,7 +65,7 @@ module SpecHelpers
       name: "Moon Festival",
       venue_id: venue1.id,
       time: "March 02, 2015 16:00",
-      status: "inactive")
+      status: "active")
   end
 
   def event3
@@ -73,7 +73,7 @@ module SpecHelpers
       name: "Old Festival",
       venue_id: venue1.id,
       time: "March 02, 2015 16:00",
-      status: "inactive")
+      status: "active")
   end
 
   def make_listings_and_tickets
@@ -97,6 +97,32 @@ module SpecHelpers
     listing_4 = event1.listings.new(user_id: user_1.id)
     listing_4.tickets << Ticket.new(price: 1000, seat: "7", row: "1")
     listing_4.save
+  end
+
+  def make_listings
+    user_1 = user1
+    user_2 = user2
+    
+    listing_1 = event1.listings.new(user_id: user_1.id)
+    listing_1.tickets << Ticket.new(price: 800, seat: "10", row: "5")
+    listing_1.tickets << Ticket.new(price: 800, seat: "11", row: "5")
+    listing_1.save
+
+    listing_3 = event1.listings.new(user_id: user_1.id)
+    listing_3.tickets << Ticket.new(price: 2000, seat: "90", row: "5", status: "purchased")
+    listing_3.tickets << Ticket.new(price: 2000, seat: "91", row: "5")
+    listing_3.save
+  end
+
+  def create_order(user)
+    user.orders.create(street: "1600 pennslyvania",
+                       city: "washington",
+                       state: "District of Columbia",
+                       zip: "46250",
+                       fullname: "jonathon adams",
+                       first_name: "jonathon",
+                       last_name: "adams",
+                       email: "spam@foundingfathers.biz")
   end
 
   def make_listings_and_tickets_dashboard
