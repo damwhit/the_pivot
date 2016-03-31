@@ -442,6 +442,48 @@ end
 
 puts "Almost there"
 
+100.times do
+  fullname = Faker::Name.name
+  email = Faker::Internet.free_email(fullname.split[0])
+  user = User.new(fullname: fullname, email: email, password: "password")
+
+  if user.save
+    date = Faker::Time.between(DateTime.now - 700, DateTime.now - 2)
+    user.update(created_at: date, updated_at: date)
+
+    5.times do
+      user.listings.new(event_id: Event.order("RANDOM()").first.id)
+    end
+
+    user.listings.each do |listing|
+      starting_seat = rand(1..25)
+      rand(1..8).times do |n|
+        listing.tickets << Ticket.new(price: 3000, row: 10.to_s, seat: (starting_seat + n).to_s)
+      end
+      listing.save
+    end
+
+    11.times do
+      order = user.orders.new(street: Faker::Address.street_address, city: Faker::Address.city, state: Faker::Address.state, zip: Faker::Address.zip, fullname: fullname, email: email)
+
+      if order.save
+        order_date = Faker::Time.between(date, DateTime.now - 1)
+        order.update(created_at: order_date, updated_at: order_date)
+        order = Order.find(order.id)
+        rand(1..7).times do
+          order.tickets << Ticket.create(price: 3000, row: 7.to_s, seat: rand(1..10).to_s, listing_id: Listing.order("RANDOM()").first.id)
+        end
+        order.save
+        statuses = ["paid","paid","paid","paid","paid","completed","completed","completed","completed","completed", "completed","completed","completed","completed","completed","cancelled"]
+        order = Order.find(order.id)
+        order.update(status: statuses.sample)
+        order = Order.find(order.id)
+        order.update(order_total: order.total)
+      end
+    end
+  end
+end
+
 User.create(
 first_name: "Dave",
 last_name: "Whit",
@@ -458,69 +500,26 @@ password: "password",
 role: 0,
 fullname: "Whitney Whit")
 
-User.create(
+josh = User.create(
 email: "josh@turing.io",
 password: "password",
 role: 0,
 fullname: "Josh")
 
-User.create(
+andrew = User.create(
 email: "andrew@turing.io",
 password: "password",
 role: 0,
 fullname: "Andrew")
 
-#   # 20 total businesses
-#   # 6 categories
-#   # 50 items per category
-#   # 100 registered customers
-#   # 10 orders per registered customer
-
-100.times do
-  fullname = Faker::Name.name
-  email = Faker::Internet.free_email(fullname.split[0])
-  user = User.new(fullname: fullname, email: email, password: "password")
-
-  if user.save
-    date = Faker::Time.between(DateTime.now - 700, DateTime.now - 2)
-    user.update(created_at: date, updated_at: date)
-
-    11.times do
-
-      listing = "poop"
-    end
-
-    11.times do
-      order = user.orders.new(street: Faker::Address.street_address, city: Faker::Address.city, state: Faker::Address.state, zip: Faker::Address.zip, fullname: fullname, email: email)
-
-      if order.save
-        order_date = Faker::Time.between(date, DateTime.now - 1)
-        order.update(created_at: order_date, updated_at: order_date)
-
-        rand(1..7).times do
-          order.tickets << order.tickets.create(ticket_id: Ticket.order("RANDOM()").first.id, quantity: rand(1..10))
-
-          order_product.update(created_at: order_date, updated_at: order_date)
-        end
-        total = order.total
-        order.update(order_total: total)
-
-        statuses = ["paid","paid","paid","paid","paid","completed","completed","completed","completed","completed", "completed","completed","completed","completed","completed","cancelled"]
-
-        order.update(status: statuses.sample)
-      end
-    end
-  end
-end
-
 event = Event.find_by(name: "Muppet Rock")
 
 listing1 = Listing.new(
-             user_id: User.first.id,
+             user_id: josh.id,
              event_id: event.id)
 
 listing2 = Listing.new(
-             user_id: User.last.id,
+             user_id: andrew.id,
              event_id: event.id)
 
 listing1.tickets << Ticket.new(price: 800, seat: "10", row: "2")
