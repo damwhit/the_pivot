@@ -2,7 +2,6 @@ class Order < ActiveRecord::Base
   before_save :build_name
   belongs_to :user
   has_many :tickets
-  has_many :comments
 
   validates :user_id, presence: true
   validates :fullname, presence:true
