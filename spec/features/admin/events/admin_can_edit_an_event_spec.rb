@@ -100,7 +100,7 @@ RSpec.feature "AdminCanEditAnEvent", type: :feature do
       click_on "update event details"
       expect(page).to have_content("Sun Festival has been cancelled")
       within(".events") do
-        expect(page).to have_css("input[value='Sun Festival']")
+        expect(page).to have_content "Sun Festival"
       end
     end
   end

@@ -1,17 +1,5 @@
-<tr>
-  <td><%= link_to "#{event.id}", event_path(event.id)%></td>
-  <td><%= image_tag event.image.url(:small), class:"admin-product-image" %></td>
-  <td>
-    <button class="btn btn btn-primary btn-s">update image</button>
-  </td>
-  <%= form_for [:admin, event] do |f| %>
-    <td><%= f.text_field :name %></td>
-    <td><%= f.collection_select :venue_id, @venues, :id, :name %></td>
-    <td><%= date_field_tag :date, event.time.strftime("%Y-%m-%d"), class: "form-control form-control-sm" %></td>
-    <td><%= f.time_field :time, class: "form-control form-control-sm" %></td>
-    <td><%= f.collection_select :category_id, @categories, :id, :name %></td>
-    <td><%= text_field_tag :tags, event.tags.tag_string %></td>
-    <td><%= f.select :status, ["upcoming", "cancelled"] %></td>
-    <td><%= f.submit "update event details", class: "btn btn-checkout btn-s" %></td>
-  <% end %>
-</tr>
+<% if event.upcoming? %>
+  <%= render partial: "event_active", locals: {event: event} %>
+<% else %>
+  <%= render partial: "event_inactive", locals: {event: event} %>
+<% end %>

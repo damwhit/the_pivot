@@ -39,8 +39,22 @@ class Event < ActiveRecord::Base
     "#{venue.city}, #{venue.state}"
   end
 
+  def upcoming?
+    Time.zone.now < time && status != "cancelled"
+  end
+
+  def past?
+    Time.zone.now > time && status != "cancelled"
+  end
+
   def cancelled?
     status == "cancelled"
+  end
+
+  def status_formatted
+    return "upcoming" if upcoming?
+    return "cancelled" if cancelled?
+    "past"
   end
 
   def deactivate_listings

@@ -9,13 +9,14 @@ RSpec.feature "AdminViewsEventsByStatus", type: :feature do
     upcoming = events[:event1]
     past = event3
     visit "/admin/dashboard"
-
+    save_and_open_page
+    
     within(".events") do
       expect(page).to have_content upcoming.id
       expect(page).to have_css "input[value='#{upcoming.name}']"
 
       expect(page).to_not have_content past.id
-      expect(page).to_not have_css "input[value='#{past.name}']"
+      expect(page).to_not have_content past.name
     end
   end
 
