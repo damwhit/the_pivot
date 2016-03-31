@@ -3,7 +3,8 @@ class Tag < ActiveRecord::Base
   validate :name_is_not_a_category
 
   has_many :taggings
-  has_many :events, through: :taggings
+  has_many :events, through: :taggings, source: :taggable, source_type: "Event"
+  has_many :venues, through: :taggings, source: :taggable, source_type: "Venue"
 
   def name_is_not_a_category
     names = Category.all.pluck(:name)

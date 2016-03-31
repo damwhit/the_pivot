@@ -2,4 +2,8 @@
   <td class="text-nowrap"><%=link_to venue.name, admin_venue_path(venue.id) %></td>
   <td class="text-nowrap"><%=venue.city %></td>
   <td class="text-nowrap"><%=venue.state %></td>
+  <%= form_for [:admin, venue] do |f| %>
+    <td><%= text_field_tag :tags, venue.tags.tag_string %></td>
+    <td><%= f.submit "update tags", class: "btn btn-checkout btn-s" %></td>
+  <% end %>
 </tr>

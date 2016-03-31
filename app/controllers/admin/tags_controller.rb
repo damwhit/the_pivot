@@ -8,6 +8,9 @@ class Admin::TagsController < Admin::BaseController
   end
 
   def show
+    @tag = Tag.find(params[:id])
+    @events = @tag.events
+    @venues = @tag.venues
   end
 
   def create
