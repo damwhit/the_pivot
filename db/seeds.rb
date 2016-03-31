@@ -26,7 +26,7 @@ puts "Hold on for those times"
 @event_times = []
 
 250.times do
-  @event_times << Faker::Time.between(DateTime.now-60, DateTime.now + 365)
+  @event_times << Faker::Time.between(DateTime.now-60, DateTime.now + 365).to_s
 end
 @event_times = @event_times.uniq
 
@@ -39,12 +39,13 @@ end
 
 puts "Time for the festivities"
 5.times do
-  festivals.events.create(
+  festival = festivals.events.create(
     name: "Yazz Festival",
     venue_id: @venues.sample.id,
     image: ("http://s3.amazonaws.com/ticket-cacher/categories/festival/Beaches-Jazz-Festival-Toronto.jpg"),
     time: @event_times.sample,
     status: "active")
+
   festivals.events.create(
     name: "Bumba-meu-boi Festival",
     venue_id: @venues.sample.id,
