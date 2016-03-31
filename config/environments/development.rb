@@ -6,10 +6,6 @@ Rails.application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
-  config.action_mailer.raise_delivery_errors = false
-
-  ActionMailer::Base.delivery_method = :smtp
-
   config.active_support.deprecation = :log
 
   config.active_record.migration_error = :page_load
@@ -28,6 +24,7 @@ Rails.application.configure do
       secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
     }
   }
+  ActionMailer::Base.delivery_method = :smtp
 
   config.action_mailer.raise_delivery_errors = true
 

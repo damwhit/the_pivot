@@ -1,34 +1,57 @@
-require 'spec_helper'
+require 'rails_helper'
 
-RSpec.describe OrderMailer do
+
+RSpec.describe "OrderMailer" do
   describe 'email' do
     before :each do
       @user = User.create(fullname: "Lucas Jones", password: "password", email: "lucas@email.com")
 
-      Category.create(name: "coffee")
+      seller = User.create(fullname: "Bob Poo", password: "password", email: "bob@email.com")
 
-      Product.create(name: "test", price: 23, description: "test", category_id: Category.last.id)
+      venue = Venue.find_or_create_by!(name: "Neat Ampitheatre", city: "Des Moines", state: "Iowa")
 
-      @order = Order.create(first_name: 'Lucas', last_name: "Jones", street: "123 St.", city: "Denver", state: "CO", zip: "80209", user_id: User.last.id, email: 'lucas@email.com', fullname: "Lucas Jones", order_total: "40")
+      category = Category.create(name: "concerts")
 
-      @order.order_products.create(product_id: Product.last.id, order_id: Order.last.id, quantity: 1)
+      event = category.events.create!(
+        name: "Sun Festival",
+        venue_id: venue.id,
+        time: "March 02, 2017 16:00",
+        status: "active")
+
+      ticket1 = Ticket.new(price: 800, seat: "80", row: "20")
+
+      listing_1 = event.listings.new(user_id: seller.id)
+      listing_1.tickets << ticket1
+      listing_1.save
+
+      @order = @user.orders.create(street: "1600 pennslyvania",
+                                  city: "washington",
+                                  state: "District of Columbia",
+                                  zip: "46250",
+                                  fullname: "Lucas Jones",
+                                  first_name: "jonathon",
+                                  last_name: "adams",
+                                  email: @user.email)
+
+      @order.tickets << ticket1
+
     end
 
     let(:mail) { OrderMailer.order_email(@order) }
 
-    xit 'renders the subject' do
-      expect(mail.subject).to eql('🎉Alright, Alright, Alright. Your joe is on the way!🎉')
+    it 'renders the subject' do
+      expect(mail.subject).to eql('🎉Here is your ticket receipt!🎉')
     end
 
-    xit 'renders the receiver email' do
+    it 'renders the receiver email' do
       expect(mail.to).to eql([@user.email])
     end
 
-    xit 'renders the sender email' do
-      expect(mail.from).to eql(['littleowlturing@gmail.com'])
+    it 'renders the sender email' do
+      expect(mail.from).to eql(['no-reply@example.com'])
     end
 
-    xit 'assigns @order.fullname' do
+    it 'assigns @order.fullname' do
       expect(mail.body.encoded).to match(@user.fullname)
     end
   end
