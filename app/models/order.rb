@@ -14,32 +14,9 @@ class Order < ActiveRecord::Base
 
   scope :cancelled_orders, -> { where(status: "cancelled") }
 
-  def self.total_revenue
-    processed_orders.sum(:order_total)
-  end
-
-  def self.daily_average_revenue
-    return if Order.count == 0
-    total_revenue / processed_orders.group(:created_at).count.length
-  end
-
-  def self.weekly_average_revenue
-    return if Order.count == 0
-    total_revenue / processed_orders.group_by_week(:created_at).count.length
-  end
-
-  def self.search(search)
-    where('first_name || last_name || fullname ILIKE ?', "%#{search}%").uniq
-  end
-
-  def self.search_by_date(search)
-    date = Date.parse(search)
-    where(updated_at: date.beginning_of_day..date.end_of_day)
-  end
-
   def build_name
-    self.first_name = fullname.split[0]
-    self.last_name = fullname.split[1..-1].join(" ")
+    first_name = fullname.split[0]
+    last_name = fullname.split[1..-1].join(" ")
   end
 
   def total
@@ -69,36 +46,19 @@ class Order < ActiveRecord::Base
   def sort_tickets
     sorted = {}
     sorted[:upcoming] = tickets.select do |ticket|
-      ticket.event_status == "active"
+      ticket.get_event.upcoming?
     end
     sorted[:past] = tickets.select do |ticket|
-      ticket.event_status == "inactive"
+      ticket.get_event.past?
     end
     sorted[:cancelled] = tickets.select do |ticket|
-      ticket.event_status == "cancelled"
+      ticket.get_event.cancelled?
     end
     sorted
   end
 
-  def product_quantity
-    order_products.count
-  end
-
-  def name
-    "#{first_name} #{last_name}"
-  end
-
-  def self.by_date
-    order(updated_at: :desc)
-  end
-
   def date
     updated_at.strftime("%B %-d, %Y")
-  end
-
-  def self.top_state
-    return if Order.count == 0
-    group(:state).count.sort_by { |state, n| n }.last[0]
   end
 
   def process_stripe_payment

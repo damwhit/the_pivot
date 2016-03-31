@@ -23,6 +23,18 @@ class Event < ActiveRecord::Base
 
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
+  def upcoming?
+    Time.zone.now < time && status != "cancelled"
+  end
+
+  def past?
+    Time.zone.now > time && status != "cancelled"
+  end
+
+  def cancelled?
+    status == "cancelled"
+  end
+
   def format_date
     time.strftime("%a, %-d %b %Y")
   end
@@ -39,16 +51,8 @@ class Event < ActiveRecord::Base
     "#{venue.city}, #{venue.state}"
   end
 
-  def cancelled?
-    status == "cancelled"
-  end
-
   def deactivate_listings
     listings.each { |listing| listing.deactivate }
-  end
-
-  def self.category_distribution
-    group(:category).count.map { |k, v| [k.name, v] }
   end
 
   def self.filter_by_status(status)

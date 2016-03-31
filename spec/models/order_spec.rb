@@ -23,6 +23,7 @@
 require 'rails_helper'
 
 RSpec.describe Order, :type => :model do
+  include SpecHelpers
 
   it { should validate_presence_of :user_id}
   it { should validate_presence_of :fullname}
@@ -33,4 +34,33 @@ RSpec.describe Order, :type => :model do
 
   it { should belong_to :user }
 
+  it "builds the name" do
+    user = user1
+    order = create_order(user)
+    expect(order.first_name).to eq("jonathon")
+    expect(order.last_name).to eq("adams")
+  end
+
+  it "totals the order price" do
+    user = user1
+    order = create_order(user)
+    order.tickets << Ticket.new(price: 800, seat: "10", row: "5")
+    order.tickets << Ticket.new(price: 800, seat: "11", row: "5")
+    expect(order.total).to eq(16)
+  end
+
+  it "formats the date" do
+    user = user1
+    order = create_order(user)
+    expect(order.date).to eq("March 31, 2016")
+  end
+
+  it "sets ticket status" do
+    user = user1
+    order = create_order(user)
+    ticket = Ticket.new(price: 800, seat: "10", row: "5")
+    order.tickets << ticket
+    order.set_ticket_status
+    expect(Ticket.find_by(seat: "10").status).to eq("purchased")
+  end
 end
