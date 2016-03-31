@@ -2,6 +2,8 @@ class Event < ActiveRecord::Base
   belongs_to :category
   belongs_to :venue
   has_many :listings
+  has_many :taggings, as: :taggable
+  has_many :tags, through: :taggings
 
   # validates :name, presence: true, uniqueness: true
   # validates :category, presence: true
