@@ -99,6 +99,17 @@ module SpecHelpers
     listing_4.save
   end
 
+  def create_order(user)
+    user.orders.create(street: "1600 pennslyvania",
+                       city: "washington",
+                       state: "District of Columbia",
+                       zip: "46250",
+                       fullname: "jonathon adams",
+                       first_name: "jonathon",
+                       last_name: "adams",
+                       email: "spam@foundingfathers.biz")
+  end
+
   def make_listings_and_tickets_dashboard
     user_1 = user1
     user_2 = user2

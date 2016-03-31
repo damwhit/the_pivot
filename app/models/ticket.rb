@@ -14,7 +14,7 @@ class Ticket < ActiveRecord::Base
   end
 
   def self.formatted_sum
-    "$#{sum(:price)}.00"
+    "$#{(sum(:price))/100}.00"
   end
 
   def get_event

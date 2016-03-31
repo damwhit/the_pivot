@@ -4,7 +4,6 @@ class User < ActiveRecord::Base
   has_many :orders
   has_many :listings
 
-
   validates :fullname, presence: true
   validates :email, presence: true, uniqueness: true
   validates :password_digest, presence: true
