@@ -14,6 +14,7 @@ class Admin::EventsController < Admin::BaseController
   def create
     @event = Event.new(event_params)
     if @event.save
+      save_valid_tags
       flash[:info] = "Created new event: #{@event.name}"
       redirect_to event_path(@event.id)
     else
@@ -28,6 +29,7 @@ class Admin::EventsController < Admin::BaseController
       if params[:event][:status] == "cancelled"
         cancel
       else
+        save_valid_tags
         flash[:info] = "Updated event: #{@event.name}"
         redirect_to admin_events_path
       end
@@ -61,5 +63,13 @@ class Admin::EventsController < Admin::BaseController
         DateTime.strptime(merged, "%m/%d/%Y %H:%M:%S").
                  strftime("%Y-%m-%d %H:%M:%S")
       end
+    end
+
+    def save_valid_tags
+      @event.tags.clear
+      Tag.valid_tags(params[:tags]).each do |tag|
+        @event.tags << tag
+      end
+      @event.save
     end
 end

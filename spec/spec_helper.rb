@@ -161,6 +161,18 @@ module SpecHelpers
     }
   end
 
+  def tag1
+    Tag.find_or_create_by(name: "family")
+  end
+
+  def tag2
+    Tag.find_or_create_by(name: "basketball")
+  end
+
+  def tag3
+    Tag.find_or_create_by(name: "death metal")
+  end
+
   def create_and_stub_admin
     admin = User.create(fullname: "John Adams",
                         email:      "admin@example.com",

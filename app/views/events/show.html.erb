@@ -4,6 +4,15 @@
       <h1><%= @event.name %></h1>
     </div>
     <%= image_tag(@event.image.url(:show), class: "event-image-large") %>
+    <br>
+    <div class="event-description col-md-12">
+      <% @event.tags.each_with_index do |tag, ind| %>
+        <span class="label label-primary"><%= tag.name %></span>
+        <% if ind % 3 == 2 %>
+        <br>
+        <% end %>
+      <% end %>
+    </div>
     <div class="event-description">
       <%= "#{@event.format_date} at #{@event.format_time}" %>
     </div>

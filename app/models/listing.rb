@@ -54,6 +54,10 @@ class Listing < ActiveRecord::Base
     tickets.first.format_price
   end
 
+  def view_unformatted_price
+    tickets.first.unformatted_price
+  end
+
   def listing_category
     event.category.name
   end
