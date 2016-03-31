@@ -1,5 +1,4 @@
-require 'rails_helper'
-
+require "rails_helper"
 
 RSpec.describe "OrderMailer" do
   describe 'email' do
@@ -25,13 +24,13 @@ RSpec.describe "OrderMailer" do
       listing_1.save
 
       @order = @user.orders.create(street: "1600 pennslyvania",
-                                  city: "washington",
-                                  state: "District of Columbia",
-                                  zip: "46250",
-                                  fullname: "Lucas Jones",
-                                  first_name: "jonathon",
-                                  last_name: "adams",
-                                  email: @user.email)
+                                   city: "washington",
+                                   state: "District of Columbia",
+                                   zip: "46250",
+                                   fullname: "Lucas Jones",
+                                   first_name: "jonathon",
+                                   last_name: "adams",
+                                   email: @user.email)
 
       @order.tickets << ticket1
 
@@ -39,19 +38,19 @@ RSpec.describe "OrderMailer" do
 
     let(:mail) { OrderMailer.order_email(@order) }
 
-    it 'renders the subject' do
+    it "renders the subject" do
       expect(mail.subject).to eql('🎉Here is your ticket receipt!🎉')
     end
 
-    it 'renders the receiver email' do
+    it "renders the receiver email" do
       expect(mail.to).to eql([@user.email])
     end
 
-    it 'renders the sender email' do
+    it "renders the sender email" do
       expect(mail.from).to eql(['no-reply@example.com'])
     end
 
-    it 'assigns @order.fullname' do
+    it "assigns @order.fullname" do
       expect(mail.body.encoded).to match(@user.fullname)
     end
   end
