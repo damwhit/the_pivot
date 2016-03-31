@@ -3,7 +3,6 @@ require 'spec_helper'
 RSpec.describe OrderMailer do
   describe 'email' do
     before :each do
-      pending
       @user = User.create(fullname: "Lucas Jones", password: "password", email: "lucas@email.com")
 
       Category.create(name: "coffee")
