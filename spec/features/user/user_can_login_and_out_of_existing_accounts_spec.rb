@@ -1,7 +1,6 @@
 require "rails_helper"
 
 RSpec.feature "UserCanLogInandOutofExistingAccount", type: :feature do
-  pending
   def setup
     @user = User.create(first_name: "John",
                         last_name: "Adams",
@@ -11,7 +10,6 @@ RSpec.feature "UserCanLogInandOutofExistingAccount", type: :feature do
   end
 
   scenario "user logs in and out of account" do
-    pending
     setup
 
     visit "/"

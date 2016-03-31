@@ -1,10 +1,8 @@
 require "rails_helper"
 
 RSpec.feature "UserEditsListingForAnEvent", type: :feature do
-  pending
   include SpecHelpers
   scenario "user edits a listing", js: true do
-    pending
     make_listings_and_tickets
     user = User.first
     listing = Listing.last

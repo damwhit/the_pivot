@@ -1,12 +1,10 @@
 require "rails_helper"
 
 RSpec.feature "AdminCanEditAnEvent", type: :feature do
-  pending
   include SpecHelpers
 
   context "click on cancel event button" do
     scenario "see cancelled status on event page, no listings, and flash message" do
-      pending
       create_and_stub_admin
       make_listing
       listing = Listing.last
@@ -31,7 +29,6 @@ RSpec.feature "AdminCanEditAnEvent", type: :feature do
 
   context "update on admin dashboard" do
     scenario "see cancelled status on event page, no listings, and flash message" do
-      pending
       create_and_stub_admin
       make_listing
       listing = Listing.last

@@ -1,10 +1,8 @@
 require "rails_helper"
 
 RSpec.feature "UserViewsDashboard", type: :feature do
-  pending
   include SpecHelpers
   scenario "user views upcoming events, listings, and contact information" do
-    pending
     make_listings_and_tickets_dashboard
 
     user = User.last

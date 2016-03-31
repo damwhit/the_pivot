@@ -68,7 +68,7 @@ class OrdersController < ApplicationController
   end
 
   def index
-    if !current_user.orders == nil
+    if current_user.orders.any?
       @orders = current_user.orders
     else
       flash[:info] = "You don't have any orders!"
