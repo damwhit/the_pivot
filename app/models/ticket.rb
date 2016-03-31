@@ -5,7 +5,7 @@ class Ticket < ActiveRecord::Base
   validates :seat, presence: true
   validates :price, presence: true
   # validates :seat, uniqueness: { scope: [:event_id, :row] }
-  validates :status, inclusion: { in: %w(active purchased reserved),
+  validates :status, inclusion: { in: %w(active purchased reserved inactive),
       message: "%{value} is not a valid size" }
 
   scope :active, -> { where(status: "active") }
@@ -19,7 +19,7 @@ class Ticket < ActiveRecord::Base
   end
 
   def self.formatted_sum
-    "$#{sum(:price)}.00"
+    "$#{(sum(:price)) / 100}.00"
   end
 
   def get_event
