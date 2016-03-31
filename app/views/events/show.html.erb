@@ -4,35 +4,44 @@
       <h1><%= @event.name %></h1>
     </div>
     <%= image_tag(@event.image.url(:show), class: "event-image-large") %>
+    <br>
+    <div class="event-description col-md-12">
+      <% @event.tags.each_with_index do |tag, ind| %>
+        <span class="label label-primary"><%= tag.name %></span>
+        <% if ind % 3 == 2 %>
+        <br>
+        <% end %>
+      <% end %>
+    </div>
     <div class="event-description">
       <%= "#{@event.format_date} at #{@event.format_time}" %>
     </div>
     <div class="event-description">
       <%= @event.venue.city %>, <%= @event.venue.state %> at <%= @event.venue.name %>
     </div>
+    <% if @event.cancelled? %>
+      <div class="event-cancelled">
+        <h1 class="cancelled-text">CANCELLED</h1>
+      </div>
+    <% end %>
+    <% if current_admin? && !@event.cancelled? %>
+      <div class="event-description">
+        <%= button_to "cancel event", admin_event_cancel_path(@event.id), method: "patch", class:"btn btn-danger btn-s text-center" %>
+      </div>
+    <% end %>
   </div>
-
+  <% unless @event.cancelled? %>
   <div class="col-md-6">
     <div class="tickets-title">
       <h1>available listings</h1>
     </div>
-    <% counter = 0  %>
     <% @event.listings.each do |listing| %>
-      <div class="panel panel-default">
-        <div class="panel-heading"> Listing: <%= counter += 1 %> </div>
-          <div id="listing-<%= listing.id %>", class="panel-body">
-            row: <%= listing.view_row %> <span class="tab-space"> quantity: <%= listing.count_tickets %></span> <span class="tab-space">price: <%= listing.view_price %></span>
-            <%= form_tag(cart_tickets_path(listing_id: listing.id), method: "post") do %>
-
-              <div class="col-xs-3 col-sm-3 col-md-3 form-inline">
-                 seats: <%= select_tag "seats", options_for_select(listing.seats), {multiple: true, class: "form-control form-control-sm dropdown-toggle"} %>
-               </div>
-              <%= submit_tag "add to cart!", class: "btn btn-default btn-success listing-cart"%>
-            <% end %>
-          </div>
-      </div>
+      <% if listing.seats.any? %>
+        <%= render partial: "shared/view_listing", locals: { listing: listing }%>
+      <% end %>
     <% end %>
   </div>
+  <% end %>
 </div>
 
 <%= render partial: "shared/mailing_list" %>

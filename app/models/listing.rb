@@ -77,4 +77,11 @@ class Listing < ActiveRecord::Base
   def active?
     status == "active"
   end
+
+  def deactivate
+    update(status: "inactive")
+    tickets.each do |ticket|
+      ticket.update(status: "inactive") if ticket.status == "active"
+    end
+  end
 end

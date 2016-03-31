@@ -2,6 +2,8 @@ class Event < ActiveRecord::Base
   belongs_to :category
   belongs_to :venue
   has_many :listings
+  has_many :taggings, as: :taggable
+  has_many :tags, through: :taggings
 
   # validates :name, presence: true, uniqueness: true
   # validates :category, presence: true
@@ -22,7 +24,7 @@ class Event < ActiveRecord::Base
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
   def format_date
-    time.strftime("%a, %-d %b")
+    time.strftime("%a, %-d %b %Y")
   end
 
   def format_time
@@ -47,6 +49,14 @@ class Event < ActiveRecord::Base
 
   def inactive?
     inactive
+  end
+
+  def cancelled?
+    status == "cancelled"
+  end
+
+  def deactivate_listings
+    listings.each { |listing| listing.deactivate }
   end
 
   def self.category_distribution

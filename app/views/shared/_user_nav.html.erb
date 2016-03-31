@@ -4,7 +4,7 @@
       <a href="#" data-toggle="dropdown" style="color:#777; margin-top: 5px;" class="dropdown-toggle">
         <i class="fa fa-user fa-lg"></i>
       </a>
-      <ul class="dropdown-menu">
+      <ul class="dropdown-menu user-nav">
         <li><%= current_user.fullname.downcase %></li>
         <li class="divider"></li>
         <% if current_user && current_user.admin? %>

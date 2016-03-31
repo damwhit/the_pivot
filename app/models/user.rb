@@ -35,4 +35,16 @@ class User < ActiveRecord::Base
       User.where(status: status)
     end
   end
+
+  def get_active_events
+    events = []
+    orders.each do |order|
+      order.tickets.each do |ticket|
+        if ticket.listing.event.status == "active"
+          events << ticket.listing.event
+        end
+      end
+    end
+    events.uniq.first(3)
+  end
 end
