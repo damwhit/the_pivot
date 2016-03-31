@@ -1,8 +1,10 @@
 require "rails_helper"
 
 RSpec.feature "UserViewsPastAndUpcomingTickets", type: :feature do
+  pending
   include SpecHelpers
   scenario "user views order history and sees upcoming and passed tickets" do
+    pending
     seller1 = user1
     seller2 = user2
 

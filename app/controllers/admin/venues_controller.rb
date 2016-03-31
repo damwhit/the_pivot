@@ -13,6 +13,16 @@ class Admin::VenuesController < Admin::BaseController
     redirect_to admin_venues_path
   end
 
+  def remove_tag
+    venue = Venue.find(params[:id])
+    tag = venue.tags.find(params[:tag_id])
+    if tag
+      venue.tags.delete(tag)
+      flash[:info] = "Removed #{tag.name} from #{venue.name}"
+      redirect_to admin_tag_path(tag.id)
+    end
+  end
+
   private
     def save_valid_tags
       @venue.tags.clear

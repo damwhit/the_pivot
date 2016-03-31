@@ -14,9 +14,9 @@ RSpec.feature "AdminCanViewTags", type: :feature do
     expect(current_path).to eq("/admin/tags")
 
     within(".tags") do
-      expect(page).to have_css "input[value='family']"
-      expect(page).to have_css "input[value='basketball']"
-      expect(page).to have_css "input[value='death metal']"
+      expect(page).to have_content "family"
+      expect(page).to have_content "basketball"
+      expect(page).to have_content "death metal"
     end
   end
 
