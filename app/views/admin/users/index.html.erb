@@ -1,25 +1,6 @@
 <h3 class="<%= params[:status] %> admin-order-index-header">active users</h3><br>
 <p><%= link_to "all users", admin_users_path(status: "all") %> &bull; <%= link_to "active users", admin_users_path(status: "active") %> &bull; <%= link_to "suspended users", admin_users_path(status: "suspended") %></p>
 <br>
-<div class="row">
-  <div class="col-sm-3">
-    <%= form_tag "#", method: 'get' do %>
-      <div class="form-group">
-        <%= text_field_tag :id_search, params[:id], placeholder: "search by id", class: "form-control form-control-sm search-form"%>
-        <button class="btn btn-little-owl btn-sm">search by id</button>
-      </div>
-    <% end %>
-  </div>
-  <div class="col-sm-3">
-    <%= form_tag "#", method: 'get' do %>
-      <div class="form-group">
-        <%= text_field_tag :search, params[:search], placeholder: "search by name", class: "form-control form-control-sm search-form"%>
-        <button class="btn btn-little-owl btn-sm">search by name</button>
-      </div>
-    <% end %>
-  </div>
-</div>
-<br>
 <div class="table-responsive">
   <table class="table table-hover table-condensed table-bordered table-striped order-index-table">
     <thead>
