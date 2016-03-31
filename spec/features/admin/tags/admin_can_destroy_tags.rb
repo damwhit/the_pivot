@@ -21,7 +21,7 @@ RSpec.feature "AdminCanRemoveTagAssociations", type: :feature do
 
     within(".tags") do
       expect(page).to_not have_content tag.id
-      expect(page).to_not have_css "input[value='family']"
+      expect(page).to_not have_content "family"
     end
 
     visit "/events/#{event.id}"
