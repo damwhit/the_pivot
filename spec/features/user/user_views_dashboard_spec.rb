@@ -124,11 +124,6 @@ RSpec.feature "UserViewsDashboard", type: :feature do
       click_on "dashboard"
     end
 
-    within(".user-events") do
-      expect(page).to have_content(event2.name)
-      expect(page).to have_content(event2.name)
-      expect(page).to have_content(event3.name)
-      expect(page).to_not have_content(event4.name)
-    end
+    expect(page).to have_selector(".user-events", count: 3)
   end
 end
