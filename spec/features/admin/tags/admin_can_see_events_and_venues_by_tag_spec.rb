@@ -4,20 +4,20 @@ RSpec.feature "AdminCanViewEventsAndVenuesByTag", type: :feature do
   include SpecHelpers
   scenario "sees event and venue on tag show page" do
     create_and_stub_admin
+    event2
+    venue2
     tag = tag1
     event = event1
-    event_2 = event2
     event.tags << tag
     event.save
     venue_1 = venue1
-    venue_2 = venue2
     venue_1.tags << tag
     venue_1.save
 
     visit "/admin/dashboard"
 
     click_on "tags"
-    click_on "#{tag.id}"
+    click_on tag.id.to_s
 
     within(".events") do
       expect(page).to have_content "Sun Festival"

@@ -23,7 +23,7 @@ class Tag < ActiveRecord::Base
 
   def self.valid_tags(tags)
     valid_tags = []
-    tags.split(',').each do |tag|
+    tags.split(",").each do |tag|
       if valid_tag_name?(tag.strip)
         valid_tags << Tag.find_by(name: tag.strip)
       end

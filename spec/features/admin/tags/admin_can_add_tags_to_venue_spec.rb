@@ -4,8 +4,8 @@ RSpec.feature "AdminCanAddATagToAVenue", type: :feature do
   include SpecHelpers
   scenario "see valid tags on view index page" do
     create_and_stub_admin
-    tag_1 = tag1
-    tag_2 = tag2
+    tag1
+    tag2
     tag3
     venue = venue1
 

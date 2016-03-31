@@ -6,7 +6,9 @@ RSpec.feature "AdminCanCreateAnEvent", type: :feature do
     create_and_stub_admin
     category2
     venue1
-    tag1; tag2; tag3
+    tag1
+    tag2
+    tag3
     date = Date.today + 25
     time = "07:00 PM"
 

@@ -6,7 +6,7 @@ RSpec.describe Tag, type: :model do
   it { should have_many :taggings }
 
   it "should not have the same name as a category" do
-    category = Category.create(name: "sports")
+    Category.create(name: "sports")
     tag = Tag.new(name: "sports")
 
     expect(tag.valid?).to be false
