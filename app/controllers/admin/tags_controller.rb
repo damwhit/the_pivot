@@ -4,8 +4,26 @@ class Admin::TagsController < Admin::BaseController
   end
 
   def new
+    @tag = Tag.new
   end
 
   def show
+  end
+
+  def create
+    @tag = Tag.new(tag_params)
+    if @tag.save
+      flash[:info] = "created new tag: #{@tag.name}!!!"
+      redirect_to admin_tags_path
+    else
+      flash.now[:alert] = "couldn't create tag... try again!!!"
+      render :new
+    end
+  end
+
+  private
+
+  def tag_params
+    params.require(:tag).permit(:name)
   end
 end
