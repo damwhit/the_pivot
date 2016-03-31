@@ -26,10 +26,12 @@ Rails.application.routes.draw do
     resources :comments, only: [:create]
     resources :users, only: [:index, :update]
     patch "/events/:id/cancel", to: "events#cancel", as: "event_cancel"
+    delete "/events/:id/tags/:tag_id", to: "events#remove_tag", as: "event_tag"
     resources :events, only: [:index, :new, :create, :update]
     resources :venues, only: [:index, :show, :update]
+    delete "/venues/:id/tags/:tag_id", to: "venues#remove_tag", as: "venue_tag"
     resources :categories, only: [:index]
-    resources :tags, only: [:index, :new, :show, :create]
+    resources :tags, only: [:index, :new, :show, :create, :destroy]
   end
 
 

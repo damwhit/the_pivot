@@ -4,6 +4,6 @@
   <td><%= event.format_date %></td>
   <td><%= event.format_time %></td>
   <td class="col-md-2">
-    <button class="btn btn-danger btn-s text-center">remove <%= tag.name %> tag</button>
+    <%= link_to "remove #{tag.name} tag", admin_event_tag_path(event.id, tag.id), method: "delete", class:"btn btn-danger btn-s text-center" %>
   </td>
 </tr>
