@@ -24,6 +24,13 @@ class Admin::TagsController < Admin::BaseController
     end
   end
 
+  def destroy
+    tag = Tag.find(params[:id])
+    Tag.destroy(tag.id)
+    flash[:info] = "Removed #{tag.name} tag"
+    redirect_to admin_tags_path
+  end
+
   private
 
   def tag_params
