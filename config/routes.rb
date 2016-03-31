@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   #   get "/orders/:order_id/thanks", to: "orders#thanks", as: "thanks"
   #   resources :listings, only: [:index, :show, :update, :destroy]
   # end
-  resource :user, only: [:new, :create] do
+  resource :user, only: [:new, :create, :edit, :update] do
     resources :orders, only: [:index, :create, :show]
     get "/orders/:order_id/thanks", to: "orders#thanks", as: "thanks"
     resources :listings, only: [:index, :show, :update, :destroy]

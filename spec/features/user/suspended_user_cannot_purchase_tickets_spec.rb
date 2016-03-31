@@ -19,7 +19,7 @@ RSpec.feature "SuspendedUserCannotPurchaseTickets", type: :feature do
 
     click_on "cart"
 
-    expect(Ticket.find(1).status).to eq("reserved")
+    expect(Ticket.find_by(seat: "10").status).to eq("reserved")
 
     click_on "Checkout"
 
@@ -33,6 +33,6 @@ RSpec.feature "SuspendedUserCannotPurchaseTickets", type: :feature do
 
     expect(page).to have_content("cart(0)")
 
-    expect(Ticket.find(1).status).to eq("active")
+    expect(Ticket.find_by(seat: "10").status).to eq("active")
   end
 end
