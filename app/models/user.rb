@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
     events = []
     orders.each do |order|
       order.tickets.each do |ticket|
-        if ticket.listing.event.status == "active"
+        if ticket.listing.event.upcoming?
           events << ticket.listing.event
         end
       end

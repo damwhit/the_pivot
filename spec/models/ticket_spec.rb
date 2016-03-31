@@ -18,7 +18,7 @@ RSpec.describe Ticket, type: :model do
   it { should belong_to :listing }
   it do
     should validate_inclusion_of(:status).
-      in_array(['active', 'purchased', 'reserved', 'inactive'])
+      in_array(["active", "purchased", "reserved", "inactive"])
   end
 
   it "formats the price" do

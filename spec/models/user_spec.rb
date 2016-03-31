@@ -33,9 +33,9 @@ RSpec.describe User, type: :model do
   end
 
   it "should filter by status" do
-    user = user1
+    user1
 
-    user2 = User.create(
+    User.create(
       first_name: "Heather",
       last_name: "Hi",
       email: "Heather@example.com",

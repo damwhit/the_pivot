@@ -21,8 +21,8 @@ RSpec.feature "UserViewsPastAndUpcomingTickets", type: :feature do
     event3 = category1.events.create!(
       name: "Donuts Make Noise",
       venue_id: venue1.id,
-      time: "July 20, 2017 18:00",
-      status: "inactive")
+      time: "July 20, 2010 18:00",
+      status: "active")
 
     event4 = category1.events.create!(
       name: "Hello",

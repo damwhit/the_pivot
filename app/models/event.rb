@@ -8,6 +8,8 @@ class Event < ActiveRecord::Base
   validates :name, presence: true
   validates :category, presence: true
   validates :venue, presence: true
+  validates :status, presence: true, inclusion: { in: %w(active cancelled upcoming),
+                                                  message: "%{value} is not a valid status" }
 
   scope :upcoming_events, -> do
     where("time >= ? AND status != 'cancelled'", Time.zone.now.beginning_of_day).order(:time)

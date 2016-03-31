@@ -36,12 +36,10 @@ RSpec.feature "UserViewsDashboard", type: :feature do
       click_on "dashboard"
     end
 
-    within(".user-events") do
-      expect(page).to have_content(event1.name)
-      expect(page).to have_content(event1.format_date)
-      expect(page).to have_content(event1.venue.name)
-      expect(page).to_not have_content(event2.name)
-    end
+    expect(page).to have_content(event1.name)
+    expect(page).to have_content(event1.format_date)
+    expect(page).to have_content(event1.venue.name)
+    expect(page).to_not have_content(event2.name)
 
     within(".table-listings") do
       expect(page).to have_content(user_listing.id)

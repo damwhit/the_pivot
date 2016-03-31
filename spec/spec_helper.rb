@@ -65,7 +65,7 @@ module SpecHelpers
       name: "Moon Festival",
       venue_id: venue1.id,
       time: "March 02, 2015 16:00",
-      status: "inactive")
+      status: "active")
   end
 
   def event3
@@ -73,7 +73,7 @@ module SpecHelpers
       name: "Old Festival",
       venue_id: venue1.id,
       time: "March 02, 2015 16:00",
-      status: "inactive")
+      status: "active")
   end
 
   def make_listings_and_tickets
