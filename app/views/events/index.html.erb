@@ -26,7 +26,7 @@
             <td><%= event.format_date %></td>
             <td><%= event.time_venue %></td>
             <td><%= event.category.name %></td>
-            <td>**event_tags**</td>
+            <td><%= event.tags.tag_string %></td>
           </tr>
       <% end %>
     </tbody>
