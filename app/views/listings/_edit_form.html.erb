@@ -15,16 +15,18 @@
         <br>
         <div class="row">
           <div class="col-sm-6" id="<%= listing.id %>-row">
+            <h4>row</h4>
             <%= label_tag :row,  nil, class:"sr-only"  %>
             <%= text_field_tag :row, listing.view_row, required:true, class:"form-control text-input" %>
           </div>
           <div class="col-sm-6" id="<%= listing.id %>-price">
+            <h4>price</h4>
             <%= label_tag :price,  nil, class:"sr-only"%>
-            <%= text_field_tag :price, listing.view_price, required:true, class:"form-control text-input" %>
+            <%= text_field_tag :price, listing.view_unformatted_price, required:true, class:"form-control text-input" %>
           </div>
         </div>
         <div class="row">
-          <h3>Seats</h3>
+          <h3 class="edit-form">seats</h3>
           <table class="table table-hover table-condensed table-bordered">
 
           <% listing.tickets.active.each do |ticket| %>
@@ -41,7 +43,7 @@
           <% end %>
           </table>
         </div>
-        <%= link_to("add seat", '#', class: "btn btn-primary add-seat-edit") %>
+        <%= link_to("add seat", '#', class: "btn btn-primary add-seat-edit") %><br><br>
       <% end %>
     </div>
   </div>

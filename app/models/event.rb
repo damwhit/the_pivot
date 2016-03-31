@@ -5,9 +5,9 @@ class Event < ActiveRecord::Base
   has_many :taggings, as: :taggable
   has_many :tags, through: :taggings
 
-  # validates :name, presence: true, uniqueness: true
-  # validates :category, presence: true
-  # validates :venue, presence: true
+  validates :name, presence: true
+  validates :category, presence: true
+  validates :venue, presence: true
 
   scope :upcoming_events, -> do
     where("time >= ? AND status != 'cancelled'", Time.zone.now.beginning_of_day).order(:time)
@@ -37,18 +37,6 @@ class Event < ActiveRecord::Base
 
   def format_location
     "#{venue.city}, #{venue.state}"
-  end
-
-  def self.active_index
-    where(inactive: false).order(:name)
-  end
-
-  def self.inactive_index
-    where(inactive: true).order(:name)
-  end
-
-  def inactive?
-    inactive
   end
 
   def cancelled?

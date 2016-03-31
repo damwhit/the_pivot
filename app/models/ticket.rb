@@ -11,7 +11,11 @@ class Ticket < ActiveRecord::Base
   scope :active, -> { where(status: "active") }
 
   def format_price
-    "$#{price / 100}"
+    "$#{unformatted_price}"
+  end
+
+  def unformatted_price
+    price / 100
   end
 
   def self.formatted_sum

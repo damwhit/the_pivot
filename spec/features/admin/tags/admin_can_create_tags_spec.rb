@@ -16,7 +16,7 @@ RSpec.feature "AdminCanCreateTags", type: :feature do
 
     expect(page).to have_content "created new tag: taylor swift!!!"
     within(".tags") do
-      expect(page).to have_css "input[value='taylor swift']"
+      expect(page).to have_content "taylor swift"
     end
   end
 

@@ -22,9 +22,6 @@ class ListingsController < ApplicationController
     if @listing.save
       flash[:info] = "Your tickets are up for sale!"
       redirect_to user_dashboard_path
-    else
-      flash.now[:alert] = "Sorry, boss lolololololololol.  Something went wrong ;>(... Please try again."
-      render :new
     end
   end
 
@@ -47,9 +44,6 @@ class ListingsController < ApplicationController
     if @listing.save
       flash[:info] = "Listing number #{@listing.id} has been updated!"
       redirect_to user_dashboard_path
-    else
-      flash.now[:alert] = "Sorry, boss lolololololololol.  Something went wrong ;>(... Please try again."
-      render :index
     end
   end
 
