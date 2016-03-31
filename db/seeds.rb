@@ -38,7 +38,7 @@ puts "MMMM tags"
 end
 
 puts "Time for the festivities"
-2.times do
+5.times do
   festivals.events.create(
     name: "Yazz Festival",
     venue_id: @venues.sample.id,
@@ -120,7 +120,7 @@ puts "Time for the festivities"
 end
 
 puts "Is live music more your deal?"
-1.times do
+5.times do
   concerts.events.create(
     name: "The Beetles",
     venue_id: @venues.sample.id,
@@ -180,7 +180,7 @@ puts "Is live music more your deal?"
 end
 puts "Joust!"
 
-1.times do
+5.times do
   sports.events.create(
     name: "USA Basketball",
     venue_id: @venues.sample.id,
@@ -244,7 +244,7 @@ puts "Joust!"
 end
 puts "Grow out those mustaches for charity"
 
-1.times do
+5.times do
   popups.events.create(
     name: "Arugula Time",
     venue_id: @venues.sample.id,
@@ -309,7 +309,7 @@ puts "Grow out those mustaches for charity"
 end
 puts "HA!"
 
-1.times do
+5.times do
   comedy.events.create(
     name: "Amy Schumer",
     venue_id: @venues.sample.id,
@@ -361,7 +361,7 @@ puts "HA!"
 end
 puts "Dig out those costumes"
 
-1.times do
+5.times do
   conventions.events.create(
     name: "Balloons arrr kewl",
     venue_id: @venues.sample.id,
