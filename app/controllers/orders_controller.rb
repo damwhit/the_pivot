@@ -51,7 +51,7 @@ class OrdersController < ApplicationController
       OrderMailer.order_email(@order).deliver_now
       flash[:info] = "Thanks for your order! :)"
       session[:cart] = nil
-      redirect_to thanks_user_path(@order.id)
+      redirect_to thanks_user_order_path(@order.id)
     else
       flash.now[:alert] = "Sorry, friend.  Something went wrong :(... Please try again."
       render :new
@@ -64,7 +64,7 @@ class OrdersController < ApplicationController
   end
 
   def thanks
-    @order = current_user.orders.find(params[:order_id])
+    @order = current_user.orders.find(params[:id])
   end
 
   def index

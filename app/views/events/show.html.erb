@@ -26,7 +26,7 @@
     <% end %>
     <% if current_admin? && !@event.cancelled? %>
       <div class="event-description">
-        <%= button_to "cancel event", admin_event_cancel_path(@event.id), method: "patch", class:"btn btn-danger btn-s text-center" %>
+        <%= button_to "cancel event", cancel_admin_event_path(@event.id), method: "patch", class:"btn btn-danger btn-s text-center" %>
       </div>
     <% end %>
   </div>

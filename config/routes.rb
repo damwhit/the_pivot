@@ -13,8 +13,9 @@ Rails.application.routes.draw do
   resources :mailing_list_emails, only: [:create]
 
   resource :user, only: [:new, :create, :edit, :update] do
-    resources :orders, only: [:index, :create, :show]
-    get "/orders/:order_id/thanks", to: "orders#thanks", as: "thanks"
+    resources :orders, only: [:index, :create, :show] do
+      get 'thanks', on: :member
+    end
     resources :listings, only: [:index, :show, :update, :destroy]
   end
 
@@ -25,9 +26,10 @@ Rails.application.routes.draw do
     get "/dashboard", to: "events#index"
     resources :comments, only: [:create]
     resources :users, only: [:index, :update]
-    patch "/events/:id/cancel", to: "events#cancel", as: "event_cancel"
     delete "/events/:id/tags/:tag_id", to: "events#remove_tag", as: "event_tag"
-    resources :events, only: [:index, :new, :create, :update]
+    resources :events, only: [:index, :new, :create, :update] do
+      patch 'cancel', on: :member
+    end
     resources :venues, only: [:index, :show, :update]
     delete "/venues/:id/tags/:tag_id", to: "venues#remove_tag", as: "venue_tag"
     resources :categories, only: [:index]
